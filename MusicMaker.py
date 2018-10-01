@@ -31,14 +31,22 @@ DarkRed    = (150, 0  , 0  )
 Blue       = (0  , 0  , 255)
 Grey       = (75 , 75 , 75 )
 LightGrey  = (113, 117, 112)
-DarkGrey   = (25 , 25 , 25 )
+DarkGrey   = (50 , 50 , 50 )
+
+circleColour = (255, 255, 255)
 
 #Variables
+#https://github.com/MattLebl/Music-Project.git
 
 #Set up the window
 Surface    = pygame.display.set_mode((windowWidth, windowHeight))
 fadeScreen = pygame.Surface((windowWidth, windowHeight))
 pygame.display.set_caption('Music Maker')
+
+#Extra Notes
+#Piano Tiles Length: 1024 Pixels
+#Individual Octive Length: 341 Pixels
+#White Tile Length: 48 Pixels
 
 while True: #Game Loop
     for event in pygame.event.get():
@@ -46,8 +54,10 @@ while True: #Game Loop
             pygame.quit()
             sys.exit()
 
-    pygame.draw.rect(Surface, DarkGrey, (0, 0, windowWidth, windowHeight), 2)
+    #pygame.draw.rect(Surface, DarkGrey, (0, 0, windowWidth, windowHeight), 0)
 
+            
+    
     pygame.display.flip()
     fpsClock.tick(FPS)
     

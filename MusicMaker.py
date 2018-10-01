@@ -1,4 +1,4 @@
-import pygame, sys, time, os, random, math, colorsys
+import pygame, sys, time, os, random, math, colorsys, keyboard
 from pygame.locals import *
 from random import *
 from ctypes import windll, Structure, c_long, byref
@@ -54,10 +54,8 @@ while True: #Game Loop
             pygame.quit()
             sys.exit()
 
-    #pygame.draw.rect(Surface, DarkGrey, (0, 0, windowWidth, windowHeight), 0)
+    pygame.draw.rect(Surface, DarkGrey, (0, 0, windowWidth, windowHeight), 0)
 
-            
-    
     pygame.display.flip()
     fpsClock.tick(FPS)
     

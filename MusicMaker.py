@@ -36,7 +36,6 @@ DarkGrey   = (50 , 50 , 50 )
 circleColour = (255, 255, 255)
 
 #Variables
-#https://github.com/MattLebl/Music-Project.git
 
 #Set up the window
 Surface    = pygame.display.set_mode((windowWidth, windowHeight))
@@ -47,6 +46,7 @@ pygame.display.set_caption('Music Maker')
 #Piano Tiles Length: 1024 Pixels
 #Individual Octive Length: 341 Pixels
 #White Tile Length: 48 Pixels
+#0.323/1.563
 
 while True: #Game Loop
     for event in pygame.event.get():

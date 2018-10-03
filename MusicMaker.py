@@ -35,6 +35,10 @@ DarkGrey   = (50 , 50 , 50 )
 
 #Variables
 
+#Lists
+noteColorsWhite = [(255, 255, 255), (255, 255, 255), (255, 255, 255), (255, 255, 255), (255, 255, 255), (255, 255, 255), (255, 255, 255), (255, 255, 255), (255, 255, 255), (255, 255, 255)]
+noteColorsBlack = [(0  , 0  , 0  ), (0  , 0  , 0  ), (0  , 0  , 0  ), (0  , 0  , 0  ), (0  , 0  , 0  ), (0  , 0  , 0  ), (0  , 0  , 0  )]
+
 #Set up the window
 Surface    = pygame.display.set_mode((windowWidth, windowHeight))
 fadeScreen = pygame.Surface((windowWidth, windowHeight))
@@ -42,14 +46,11 @@ pygame.display.set_caption('Music Maker')
 
 #Def Functions
 def WhiteKey(x, y, color):
-    pygame.draw.rect(Surface, color, (x, y, 100, 245))
-    pygame.draw.rect(Surface, Black, (x-3, y-3, 103, 248), 3)
+    pygame.draw.rect(Surface, color, (x, y, 90, 245))
+    pygame.draw.rect(Surface, Black, (x-2, y-2, 92, 247), 3)
 
-#Extra Notes
-#Piano Tiles Length: 1024 Pixels
-#Individual Octive Length: 341 Pixels
-#White Tile Length: 48 Pixels
-#0.323/1.563z
+def BlackKey(x, y, color):
+    pygame.draw.rect(Surface, color, (x, y, 45, (249/2)+20))
 
 while True: #Game Loop
     for event in pygame.event.get():
@@ -57,12 +58,33 @@ while True: #Game Loop
             pygame.quit()
             sys.exit()
 
+        if keyboard.is_pressed('a'):
+            noteColorsWhite[0] = (0, 255, 0)
+        else:
+            noteColorsWhite[0] = (255, 255, 255)
+
+    #Background
     pygame.draw.rect(Surface, LightGrey, (0, 0, windowWidth, windowHeight), 0)
 
-    WhiteKey(windowWidth-100, windowHeight-245, White)
-
     #High Octive
+    WhiteKey(windowWidth-92 , windowHeight-247, White)
+    WhiteKey(windowWidth-184, windowHeight-247, White)
+    WhiteKey(windowWidth-276, windowHeight-247, White)
+    WhiteKey(windowWidth-368, windowHeight-247, White)
+    WhiteKey(windowWidth-460, windowHeight-247, White)
+    WhiteKey(windowWidth-552, windowHeight-247, White)
+    WhiteKey(windowWidth-644, windowHeight-247, White)
+    WhiteKey(windowWidth-736, windowHeight-247, White)
+    WhiteKey(windowWidth-828, windowHeight-247, White)
+    WhiteKey(windowWidth-920, windowHeight-247, noteColorsWhite[0])
     
+    BlackKey(windowWidth-116, windowHeight-247, Black)
+    BlackKey(windowWidth-208, windowHeight-247, Black)
+    BlackKey(windowWidth-392, windowHeight-247, Black)
+    BlackKey(windowWidth-484, windowHeight-247, Black)
+    BlackKey(windowWidth-577, windowHeight-247, Black)
+    BlackKey(windowWidth-761, windowHeight-247, Black)
+    BlackKey(windowWidth-853, windowHeight-247, Black)
 
     pygame.display.flip()
     fpsClock.tick(FPS)

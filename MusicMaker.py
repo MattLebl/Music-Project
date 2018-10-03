@@ -38,6 +38,7 @@ DarkGrey   = (50 , 50 , 50 )
 #Lists
 noteColorsWhite = [(255, 255, 255), (255, 255, 255), (255, 255, 255), (255, 255, 255), (255, 255, 255), (255, 255, 255), (255, 255, 255), (255, 255, 255), (255, 255, 255), (255, 255, 255)]
 noteColorsBlack = [(0  , 0  , 0  ), (0  , 0  , 0  ), (0  , 0  , 0  ), (0  , 0  , 0  ), (0  , 0  , 0  ), (0  , 0  , 0  ), (0  , 0  , 0  )]
+keys = ['a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', ';']
 
 #Set up the window
 Surface    = pygame.display.set_mode((windowWidth, windowHeight))
@@ -58,24 +59,24 @@ while True: #Game Loop
             pygame.quit()
             sys.exit()
 
-        if keyboard.is_pressed('a'):
-            noteColorsWhite[0] = (0, 255, 0)
-        else:
-            noteColorsWhite[0] = (255, 255, 255)
+
+        #Keyboard Inputs
+        
+
 
     #Background
     pygame.draw.rect(Surface, LightGrey, (0, 0, windowWidth, windowHeight), 0)
 
     #High Octive
-    WhiteKey(windowWidth-92 , windowHeight-247, White)
-    WhiteKey(windowWidth-184, windowHeight-247, White)
-    WhiteKey(windowWidth-276, windowHeight-247, White)
-    WhiteKey(windowWidth-368, windowHeight-247, White)
-    WhiteKey(windowWidth-460, windowHeight-247, White)
-    WhiteKey(windowWidth-552, windowHeight-247, White)
-    WhiteKey(windowWidth-644, windowHeight-247, White)
-    WhiteKey(windowWidth-736, windowHeight-247, White)
-    WhiteKey(windowWidth-828, windowHeight-247, White)
+    WhiteKey(windowWidth-92 , windowHeight-247, noteColorsWhite[9])
+    WhiteKey(windowWidth-184, windowHeight-247, noteColorsWhite[8])
+    WhiteKey(windowWidth-276, windowHeight-247, noteColorsWhite[7])
+    WhiteKey(windowWidth-368, windowHeight-247, noteColorsWhite[6])
+    WhiteKey(windowWidth-460, windowHeight-247, noteColorsWhite[5])
+    WhiteKey(windowWidth-552, windowHeight-247, noteColorsWhite[4])
+    WhiteKey(windowWidth-644, windowHeight-247, noteColorsWhite[3])
+    WhiteKey(windowWidth-736, windowHeight-247, noteColorsWhite[2])
+    WhiteKey(windowWidth-828, windowHeight-247, noteColorsWhite[1])
     WhiteKey(windowWidth-920, windowHeight-247, noteColorsWhite[0])
     
     BlackKey(windowWidth-116, windowHeight-247, Black)

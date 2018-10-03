@@ -1,4 +1,4 @@
-import pygame, sys, time, os, random, math, colorsys, keyboard
+import pygame, sys, time, os, random, math, colorsys
 from pygame.locals import *
 from random import *
 from ctypes import windll, Structure, c_long, byref
@@ -38,7 +38,6 @@ DarkGrey   = (50 , 50 , 50 )
 #Lists
 noteColorsWhite = [(255, 255, 255), (255, 255, 255), (255, 255, 255), (255, 255, 255), (255, 255, 255), (255, 255, 255), (255, 255, 255), (255, 255, 255), (255, 255, 255), (255, 255, 255)]
 noteColorsBlack = [(0  , 0  , 0  ), (0  , 0  , 0  ), (0  , 0  , 0  ), (0  , 0  , 0  ), (0  , 0  , 0  ), (0  , 0  , 0  ), (0  , 0  , 0  )]
-keys = ['a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', ';']
 
 #Set up the window
 Surface    = pygame.display.set_mode((windowWidth, windowHeight))
@@ -59,9 +58,50 @@ while True: #Game Loop
             pygame.quit()
             sys.exit()
 
-
-        #Keyboard Inputs
-        
+        if event.type == KEYDOWN:
+            #Notes pressed
+            if (event.key == K_a):
+                noteColorsWhite[0] = (0, 255, 0)
+            if (event.key == K_s):
+                noteColorsWhite[1] = (0, 255, 0)
+            if (event.key == K_d):
+                noteColorsWhite[2] = (0, 255, 0)
+            if (event.key == K_f):
+                noteColorsWhite[3] = (0, 255, 0)
+            if (event.key == K_g):
+                noteColorsWhite[4] = (0, 255, 0)
+            if (event.key == K_h):
+                noteColorsWhite[5] = (0, 255, 0)
+            if (event.key == K_j):
+                noteColorsWhite[6] = (0, 255, 0)
+            if (event.key == K_k):
+                noteColorsWhite[7] = (0, 255, 0)
+            if (event.key == K_l):
+                noteColorsWhite[8] = (0, 255, 0)
+            if (event.key == K_SEMICOLON):
+                noteColorsWhite[9] = (0, 255, 0)
+            
+        if event.type == KEYUP:
+            if (event.key == K_a):
+                noteColorsWhite[0] = (255, 255, 255)
+            if (event.key == K_s):
+                noteColorsWhite[1] = (255, 255, 255)
+            if (event.key == K_d):
+                noteColorsWhite[2] = (255, 255, 255)
+            if (event.key == K_f):
+                noteColorsWhite[3] = (255, 255, 255)
+            if (event.key == K_g):
+                noteColorsWhite[4] = (255, 255, 255)
+            if (event.key == K_h):
+                noteColorsWhite[5] = (255, 255, 255)
+            if (event.key == K_j):
+                noteColorsWhite[6] = (255, 255, 255)
+            if (event.key == K_k):
+                noteColorsWhite[7] = (255, 255, 255)
+            if (event.key == K_l):
+                noteColorsWhite[8] = (255, 255, 255)
+            if (event.key == K_SEMICOLON):
+                noteColorsWhite[9] = (255, 255, 255)
 
 
     #Background
@@ -79,13 +119,13 @@ while True: #Game Loop
     WhiteKey(windowWidth-828, windowHeight-247, noteColorsWhite[1])
     WhiteKey(windowWidth-920, windowHeight-247, noteColorsWhite[0])
     
-    BlackKey(windowWidth-116, windowHeight-247, Black)
-    BlackKey(windowWidth-208, windowHeight-247, Black)
-    BlackKey(windowWidth-392, windowHeight-247, Black)
-    BlackKey(windowWidth-484, windowHeight-247, Black)
-    BlackKey(windowWidth-577, windowHeight-247, Black)
-    BlackKey(windowWidth-761, windowHeight-247, Black)
-    BlackKey(windowWidth-853, windowHeight-247, Black)
+    BlackKey(windowWidth-116, windowHeight-247, noteColorsBlack[6])
+    BlackKey(windowWidth-208, windowHeight-247, noteColorsBlack[5])
+    BlackKey(windowWidth-392, windowHeight-247, noteColorsBlack[4])
+    BlackKey(windowWidth-484, windowHeight-247, noteColorsBlack[3])
+    BlackKey(windowWidth-577, windowHeight-247, noteColorsBlack[2])
+    BlackKey(windowWidth-761, windowHeight-247, noteColorsBlack[1])
+    BlackKey(windowWidth-853, windowHeight-247, noteColorsBlack[0])
 
     pygame.display.flip()
     fpsClock.tick(FPS)

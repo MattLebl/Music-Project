@@ -51,6 +51,7 @@ def WhiteKey(x, y, color):
 
 def BlackKey(x, y, color):
     pygame.draw.rect(Surface, color, (x, y, 45, (249/2)+20))
+    pygame.draw.rect(Surface, Black, (x, y-2, 45, (249/2)+22), 3)
 
 while True: #Game Loop
     for event in pygame.event.get():
@@ -59,7 +60,7 @@ while True: #Game Loop
             sys.exit()
 
         if event.type == KEYDOWN:
-            #Notes pressed
+            #Notes Pressed
             if (event.key == K_a):
                 noteColorsWhite[0] = (0, 255, 0)
             if (event.key == K_s):
@@ -80,8 +81,24 @@ while True: #Game Loop
                 noteColorsWhite[8] = (0, 255, 0)
             if (event.key == K_SEMICOLON):
                 noteColorsWhite[9] = (0, 255, 0)
+
+            if (event.key == K_w):
+                noteColorsBlack[0] = (0, 150, 0)
+            if (event.key == K_e):
+                noteColorsBlack[1] = (0, 150, 0)
+            if (event.key == K_t):
+                noteColorsBlack[2] = (0, 150, 0)
+            if (event.key == K_y):
+                noteColorsBlack[3] = (0, 150, 0)
+            if (event.key == K_u):
+                noteColorsBlack[4] = (0, 150, 0)
+            if (event.key == K_o):
+                noteColorsBlack[5] = (0, 150, 0)
+            if (event.key == K_p):
+                noteColorsBlack[6] = (0, 150, 0)
             
         if event.type == KEYUP:
+            #Notes Released
             if (event.key == K_a):
                 noteColorsWhite[0] = (255, 255, 255)
             if (event.key == K_s):
@@ -103,9 +120,26 @@ while True: #Game Loop
             if (event.key == K_SEMICOLON):
                 noteColorsWhite[9] = (255, 255, 255)
 
+            if (event.key == K_w):
+                noteColorsBlack[0] = (0, 0, 0)
+            if (event.key == K_e):
+                noteColorsBlack[1] = (0, 0, 0)
+            if (event.key == K_t):
+                noteColorsBlack[2] = (0, 0, 0)
+            if (event.key == K_y):
+                noteColorsBlack[3] = (0, 0, 0)
+            if (event.key == K_u):
+                noteColorsBlack[4] = (0, 0, 0)
+            if (event.key == K_o):
+                noteColorsBlack[5] = (0, 0, 0)
+            if (event.key == K_p):
+                noteColorsBlack[6] = (0, 0, 0)
+
 
     #Background
-    pygame.draw.rect(Surface, LightGrey, (0, 0, windowWidth, windowHeight), 0)
+    pygame.draw.rect(Surface, LightGrey, (0, 0, windowWidth, windowHeight))
+    pygame.draw.rect(Surface, Grey, (windowWidth-920, 0, 920, windowHeight))
+    pygame.draw.line(Surface, Black, (windowWidth-922, windowHeight), (windowWidth-922, 0), 5)
 
     #High Octive
     WhiteKey(windowWidth-92 , windowHeight-247, noteColorsWhite[9])

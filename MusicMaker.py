@@ -33,12 +33,15 @@ Grey       = (75 , 75 , 75 )
 LightGrey  = (125, 125, 125)
 DarkGrey   = (50 , 50 , 50 )
 
-#Variables
+blackNoteKeys = []
+for x in range(0, 8):
+    blackNoteKeys.append((255, 255, 255))
 
 #Lists
 noteColorsWhite = [(255, 255, 255), (255, 255, 255), (255, 255, 255), (255, 255, 255), (255, 255, 255), (255, 255, 255), (255, 255, 255), (255, 255, 255), (255, 255, 255), (255, 255, 255)]
 noteColorsBlack = [(0  , 0  , 0  ), (0  , 0  , 0  ), (0  , 0  , 0  ), (0  , 0  , 0  ), (0  , 0  , 0  ), (0  , 0  , 0  ), (0  , 0  , 0  )]
-noteButtonList = ["", ";", "L", "K", "J", "H", "G", "F", "D", "S", "A"]
+noteButtonList  = ["", ";", "L", "K", "J", "H", "G", "F", "D", "S", "A"]
+noteButtonList2 = ["", "P", "O", "U", "Y", "T", "E", "W"]
 
 #Set up the window
 Surface    = pygame.display.set_mode((windowWidth, windowHeight))
@@ -96,19 +99,26 @@ while True: #Game Loop
                 noteColorsWhite[9] = (0, 255, 0)
 
             if (event.key == K_w):
-                noteColorsBlack[0] = (0, 150, 0)
+                noteColorsBlack[0] = (0  , 150, 0  )
+                blackNoteKeys[6]   = (0, 0, 0)
             if (event.key == K_e):
-                noteColorsBlack[1] = (0, 150, 0)
+                noteColorsBlack[1] = (0  , 150, 0  )
+                blackNoteKeys[5]   = (0, 0, 0)
             if (event.key == K_t):
-                noteColorsBlack[2] = (0, 150, 0)
+                noteColorsBlack[2] = (0  , 150, 0  )
+                blackNoteKeys[4]   = (0, 0, 0)
             if (event.key == K_y):
-                noteColorsBlack[3] = (0, 150, 0)
+                noteColorsBlack[3] = (0  , 150, 0  )
+                blackNoteKeys[3]   = (0, 0, 0)
             if (event.key == K_u):
-                noteColorsBlack[4] = (0, 150, 0)
+                noteColorsBlack[4] = (0  , 150, 0  )
+                blackNoteKeys[2]   = (0, 0, 0)
             if (event.key == K_o):
-                noteColorsBlack[5] = (0, 150, 0)
+                noteColorsBlack[5] = (0  , 150, 0  )
+                blackNoteKeys[1]   = (0, 0, 0)
             if (event.key == K_p):
-                noteColorsBlack[6] = (0, 150, 0)
+                noteColorsBlack[6] = (0  , 150, 0  )
+                blackNoteKeys[0]   = (0, 0, 0)
             
         if event.type == KEYUP:
             #Notes Released
@@ -135,18 +145,25 @@ while True: #Game Loop
 
             if (event.key == K_w):
                 noteColorsBlack[0] = (0, 0, 0)
+                blackNoteKeys[6]   = (255, 255, 255)
             if (event.key == K_e):
                 noteColorsBlack[1] = (0, 0, 0)
+                blackNoteKeys[5]   = (255, 255, 255)
             if (event.key == K_t):
                 noteColorsBlack[2] = (0, 0, 0)
+                blackNoteKeys[4]   = (255, 255, 255)
             if (event.key == K_y):
                 noteColorsBlack[3] = (0, 0, 0)
+                blackNoteKeys[3]   = (255, 255, 255)
             if (event.key == K_u):
                 noteColorsBlack[4] = (0, 0, 0)
+                blackNoteKeys[2]   = (255, 255, 255)
             if (event.key == K_o):
                 noteColorsBlack[5] = (0, 0, 0)
+                blackNoteKeys[1]   = (255, 255, 255)
             if (event.key == K_p):
                 noteColorsBlack[6] = (0, 0, 0)
+                blackNoteKeys[0]   = (255, 255, 255)
 
 
     #Background
@@ -174,14 +191,21 @@ while True: #Game Loop
     BlackKey(windowWidth-761, windowHeight-247, noteColorsBlack[1])
     BlackKey(windowWidth-853, windowHeight-247, noteColorsBlack[0])
 
+    #White Key Text
     for i in range(1, 12):
         Text(noteButtonList[i], windowWidth-(92*i)+11, windowHeight-15, 20, Black)
         if i > 9:
             break
 
-    #Text("A", windowWidth-909, windowHeight-15, 20, Black)
-    #Text("S", windowWidth-817, windowHeight-15, 20, Black)
-
+    #Black Key Text
+    Text("P", windowWidth-104, windowHeight-112, 15, blackNoteKeys[0])
+    Text("O", windowWidth-196, windowHeight-112, 15, blackNoteKeys[1])
+    Text("U", windowWidth-380, windowHeight-112, 15, blackNoteKeys[2])
+    Text("Y", windowWidth-472, windowHeight-112, 15, blackNoteKeys[3])
+    Text("T", windowWidth-564, windowHeight-112, 15, blackNoteKeys[4])
+    Text("E", windowWidth-748, windowHeight-112, 15, blackNoteKeys[5])
+    Text("W", windowWidth-840, windowHeight-112, 15, blackNoteKeys[6])
+    
     pygame.display.flip()
     fpsClock.tick(FPS)
     

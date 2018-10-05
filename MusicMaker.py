@@ -1,6 +1,7 @@
 import pygame, sys, time, os, random, math, colorsys
 from pygame.locals import *
 from random import *
+#from ctypes import windll, Structure, c_long, byref
 
 pygame.mixer.pre_init(frequency = 22050, size = -16, channels = 2, buffer = 4096)
 pygame.mixer.init(frequency = 22050, size = -16, channels = 2, buffer = 4096)

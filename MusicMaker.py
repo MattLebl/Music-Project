@@ -38,6 +38,7 @@ DarkGrey   = (50 , 50 , 50 )
 #Lists
 noteColorsWhite = [(255, 255, 255), (255, 255, 255), (255, 255, 255), (255, 255, 255), (255, 255, 255), (255, 255, 255), (255, 255, 255), (255, 255, 255), (255, 255, 255), (255, 255, 255)]
 noteColorsBlack = [(0  , 0  , 0  ), (0  , 0  , 0  ), (0  , 0  , 0  ), (0  , 0  , 0  ), (0  , 0  , 0  ), (0  , 0  , 0  ), (0  , 0  , 0  )]
+noteButtonList = ["", ";", "L", "K", "J", "H", "G", "F", "D", "S", "A"]
 
 #Set up the window
 Surface    = pygame.display.set_mode((windowWidth, windowHeight))
@@ -52,6 +53,18 @@ def WhiteKey(x, y, color):
 def BlackKey(x, y, color):
     pygame.draw.rect(Surface, color, (x, y, 45, (249/2)+20))
     pygame.draw.rect(Surface, Black, (x, y-2, 45, (249/2)+22), 3)
+
+#Text Functions
+def text_objects(Text, font, colour):
+     textSurface = font.render(Text, True, colour)
+     return textSurface, textSurface.get_rect()
+
+def Text(Text, xPos, yPos, Size, Colour):
+     largeText          = pygame.font.Font('Fonts/Times_New_Roman_Normal.ttf', Size)
+     TextSurf, TextRect = text_objects(Text, largeText, Colour)
+     TextRect.center    = (xPos, yPos)
+
+     Surface.blit(TextSurf, TextRect)
 
 while True: #Game Loop
     for event in pygame.event.get():
@@ -160,6 +173,14 @@ while True: #Game Loop
     BlackKey(windowWidth-577, windowHeight-247, noteColorsBlack[2])
     BlackKey(windowWidth-761, windowHeight-247, noteColorsBlack[1])
     BlackKey(windowWidth-853, windowHeight-247, noteColorsBlack[0])
+
+    for i in range(1, 12):
+        Text(noteButtonList[i], windowWidth-(92*i)+11, windowHeight-15, 20, Black)
+        if i > 9:
+            break
+
+    #Text("A", windowWidth-909, windowHeight-15, 20, Black)
+    #Text("S", windowWidth-817, windowHeight-15, 20, Black)
 
     pygame.display.flip()
     fpsClock.tick(FPS)

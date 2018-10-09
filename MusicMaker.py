@@ -29,7 +29,9 @@ DarkOrange = (240, 120, 0  )
 Red        = (255, 0  , 0  )
 DarkRed    = (150, 0  , 0  )
 Blue       = (0  , 0  , 255)
-Grey       = (75 , 75 , 75 )
+Grey       = (60 , 60 , 60 )
+Grey2      = (65 , 65 , 65 )
+Grey3      = (75 , 75 , 75 )
 LightGrey  = (125, 125, 125)
 DarkGrey   = (50 , 50 , 50 )
 
@@ -93,6 +95,11 @@ def DrawTiles(tileList):
         pygame.draw.rect(Surface, Green, (t[0], t[1], 90, t[2]-2))
         pygame.draw.rect(Surface, Black, (t[0]-2, t[1]-2, 92, t[2]), 3)
 
+def DrawBlackTiles(tileList):
+    for t in tileList[:]:
+        pygame.draw.rect(Surface, DarkGreen, (t[0], t[1], 45, t[2]-2))
+        pygame.draw.rect(Surface, Black, (t[0], t[1]-2, 45, t[2]), 3)
+
 #Text Functions
 def text_objects(Text, font, colour):
      textSurface = font.render(Text, True, colour)
@@ -147,24 +154,31 @@ while True: #Game Loop
             if (event.key == K_w):
                 noteColorsBlack[0] = (0  , 150, 0  )
                 blackNoteKeys[6]   = (0, 0, 0)
+                pianoTilesW.append([windowWidth-853, windowHeight-247, 0, True])
             if (event.key == K_e):
                 noteColorsBlack[1] = (0  , 150, 0  )
                 blackNoteKeys[5]   = (0, 0, 0)
+                pianoTilesE.append([windowWidth-761, windowHeight-247, 0, True])
             if (event.key == K_t):
                 noteColorsBlack[2] = (0  , 150, 0  )
                 blackNoteKeys[4]   = (0, 0, 0)
+                pianoTilesT.append([windowWidth-577, windowHeight-247, 0, True])
             if (event.key == K_y):
                 noteColorsBlack[3] = (0  , 150, 0  )
                 blackNoteKeys[3]   = (0, 0, 0)
+                pianoTilesY.append([windowWidth-484, windowHeight-247, 0, True])
             if (event.key == K_u):
                 noteColorsBlack[4] = (0  , 150, 0  )
                 blackNoteKeys[2]   = (0, 0, 0)
+                pianoTilesU.append([windowWidth-392, windowHeight-247, 0, True])
             if (event.key == K_o):
                 noteColorsBlack[5] = (0  , 150, 0  )
                 blackNoteKeys[1]   = (0, 0, 0)
+                pianoTilesO.append([windowWidth-208, windowHeight-247, 0, True])
             if (event.key == K_p):
                 noteColorsBlack[6] = (0  , 150, 0  )
                 blackNoteKeys[0]   = (0, 0, 0)
+                pianoTilesP.append([windowWidth-116, windowHeight-247, 0, True])
             
         if event.type == KEYUP:
             #Notes Released
@@ -202,29 +216,41 @@ while True: #Game Loop
             if (event.key == K_w):
                 noteColorsBlack[0] = (0, 0, 0)
                 blackNoteKeys[6]   = (255, 255, 255)
+                pianoTilesW[len(pianoTilesW)-1][3] = False
             if (event.key == K_e):
                 noteColorsBlack[1] = (0, 0, 0)
                 blackNoteKeys[5]   = (255, 255, 255)
+                pianoTilesE[len(pianoTilesE)-1][3] = False
             if (event.key == K_t):
                 noteColorsBlack[2] = (0, 0, 0)
                 blackNoteKeys[4]   = (255, 255, 255)
+                pianoTilesT[len(pianoTilesT)-1][3] = False
             if (event.key == K_y):
                 noteColorsBlack[3] = (0, 0, 0)
                 blackNoteKeys[3]   = (255, 255, 255)
+                pianoTilesY[len(pianoTilesY)-1][3] = False
             if (event.key == K_u):
                 noteColorsBlack[4] = (0, 0, 0)
                 blackNoteKeys[2]   = (255, 255, 255)
+                pianoTilesU[len(pianoTilesU)-1][3] = False
             if (event.key == K_o):
                 noteColorsBlack[5] = (0, 0, 0)
                 blackNoteKeys[1]   = (255, 255, 255)
+                pianoTilesO[len(pianoTilesO)-1][3] = False
             if (event.key == K_p):
                 noteColorsBlack[6] = (0, 0, 0)
                 blackNoteKeys[0]   = (255, 255, 255)
+                pianoTilesP[len(pianoTilesP)-1][3] = False
+                
 
     #Background
     pygame.draw.rect(Surface, LightGrey, (0, 0, windowWidth, windowHeight))
     pygame.draw.rect(Surface, Grey, (windowWidth-920, 0, 920, windowHeight))
     pygame.draw.line(Surface, Black, (windowWidth-922, windowHeight), (windowWidth-922, 0), 5)
+    for x in range(1, 10):
+        pygame.draw.line(Surface, Grey2, (windowWidth-(92*x)-3, 0), (windowWidth-(92*x)-3, windowHeight-247), 3)
+    pygame.draw.line(Surface, Grey3, (windowWidth-(92*3)-3, 0), (windowWidth-(92*3)-3, windowHeight-247), 3)
+    pygame.draw.line(Surface, Grey3, (windowWidth-(92*7)-3, 0), (windowWidth-(92*7)-3, windowHeight-247), 3)
 
     #Delete Tiles
     DeleteTiles(pianoTilesA)
@@ -275,13 +301,13 @@ while True: #Game Loop
     DrawTiles(pianoTilesK)
     DrawTiles(pianoTilesL)
     DrawTiles(pianoTilesSEMI)
-    DrawTiles(pianoTilesW)
-    DrawTiles(pianoTilesE)
-    DrawTiles(pianoTilesT)
-    DrawTiles(pianoTilesY)
-    DrawTiles(pianoTilesU)
-    DrawTiles(pianoTilesO)
-    DrawTiles(pianoTilesP)
+    DrawBlackTiles(pianoTilesW)
+    DrawBlackTiles(pianoTilesE)
+    DrawBlackTiles(pianoTilesT)
+    DrawBlackTiles(pianoTilesY)
+    DrawBlackTiles(pianoTilesU)
+    DrawBlackTiles(pianoTilesO)
+    DrawBlackTiles(pianoTilesP)
 
     #Draw Piano
     WhiteKey(windowWidth-92 , windowHeight-247, noteColorsWhite[9])
@@ -317,6 +343,10 @@ while True: #Game Loop
     Text("T", windowWidth-564, windowHeight-112, 15, blackNoteKeys[4])
     Text("E", windowWidth-748, windowHeight-112, 15, blackNoteKeys[5])
     Text("W", windowWidth-840, windowHeight-112, 15, blackNoteKeys[6])
+
+    #Top Bar
+    pygame.draw.rect(Surface, (150, 150, 150), (windowWidth-918, 2, 918, 30))
+    pygame.draw.rect(Surface, Black, (windowWidth-920, 0, 919, 32), 2)
     
     pygame.display.flip()
     fpsClock.tick(FPS)

@@ -24,7 +24,6 @@ windowWidth  = 1280
 windowHeight = 720
 
 #Sound Variables
-testSound = pygame.mixer.Sound('Sounds\Pistol_Sound.wav')
 
 #Colour Variables
 Black      = (0  , 0  , 0  )

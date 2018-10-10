@@ -26,7 +26,7 @@ windowWidth  = 1280
 windowHeight = 720
 
 #Sound Variables
-testSound = pygame.mixer.Sound('Sounds\Pistol_Sound.wav')
+testSound = pygame.mixer.Sound('C0.wav')
 
 #Colour Variables
 Black      = (0  , 0  , 0  )
@@ -136,6 +136,8 @@ while True: #Game Loop
             if (event.key == K_a):
                 noteColorsWhite[0] = (0, 255, 0)
                 pianoTilesA.append([windowWidth-920, windowHeight-247, 0, True])
+                testSound.play()
+
             if (event.key == K_s):
                 noteColorsWhite[1] = (0, 255, 0)
                 pianoTilesS.append([windowWidth-828, windowHeight-247, 0, True])
@@ -198,6 +200,7 @@ while True: #Game Loop
             if (event.key == K_a):
                 noteColorsWhite[0] = (255, 255, 255)
                 pianoTilesA[len(pianoTilesA)-1][3] = False
+                testSound.stop()
             if (event.key == K_s):
                 noteColorsWhite[1] = (255, 255, 255)
                 pianoTilesS[len(pianoTilesS)-1][3] = False
@@ -255,12 +258,9 @@ while True: #Game Loop
                 blackNoteKeys[0]   = (255, 255, 255)
                 pianoTilesP[len(pianoTilesP)-1][3] = False
 
-<<<<<<< HEAD
             #Sounds
 ##            if (event.key == K_a):
 ##                testSound.play()
-=======
->>>>>>> f7b81c25604a8d032d924fdb0ca1011725eb4485
 
     #Background
     pygame.draw.rect(Surface, LightGrey, (0, 0, windowWidth, windowHeight))

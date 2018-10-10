@@ -19,6 +19,8 @@ fpsClock=pygame.time.Clock()
 #[Variable].get_length() Return the length of this Sound in seconds
 #https://www.pygame.org/docs/ref/mixer.html
 
+#testSound = pygame.mixer.Sound('Sounds\running_water.wav')
+
 #Window Variables
 windowWidth  = 1280
 windowHeight = 720
@@ -255,6 +257,10 @@ while True: #Game Loop
                 blackNoteKeys[0]   = (255, 255, 255)
                 pianoTilesP[len(pianoTilesP)-1][3] = False
                 
+
+            #Sounds
+##            if (event.key == K_a):
+##                testSound.play()
 
     #Background
     pygame.draw.rect(Surface, LightGrey, (0, 0, windowWidth, windowHeight))

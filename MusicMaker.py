@@ -26,7 +26,10 @@ windowWidth  = 1280
 windowHeight = 720
 
 #Sound Variables
+<<<<<<< HEAD
 testSound = pygame.mixer.Sound('C0.wav')
+=======
+>>>>>>> 5e0a4ea6a6d14b394e7012bb481b36f994cf4064
 
 #Colour Variables
 Black      = (0  , 0  , 0  )
@@ -257,10 +260,6 @@ while True: #Game Loop
                 noteColorsBlack[6] = (0, 0, 0)
                 blackNoteKeys[0]   = (255, 255, 255)
                 pianoTilesP[len(pianoTilesP)-1][3] = False
-
-            #Sounds
-##            if (event.key == K_a):
-##                testSound.play()
 
     #Background
     pygame.draw.rect(Surface, LightGrey, (0, 0, windowWidth, windowHeight))

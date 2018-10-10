@@ -11,6 +11,14 @@ pygame.init()
 FPS=30
 fpsClock=pygame.time.Clock()
 
+#Music Code
+#[Variable] = pygame.mixer.Sound(FileLocation)
+#[Variable].play()
+#[Variable].stop()
+#[Variable].fadeout() This will stop playback of the sound after fading out over the time argument in milliseconds.
+#[Variable].get_length() Return the length of this Sound in seconds
+#https://www.pygame.org/docs/ref/mixer.html
+
 #Window Variables
 windowWidth  = 1280
 windowHeight = 720
@@ -68,6 +76,11 @@ pianoTilesP = []
 Surface    = pygame.display.set_mode((windowWidth, windowHeight))
 fadeScreen = pygame.Surface((windowWidth, windowHeight))
 pygame.display.set_caption('Music Maker')
+
+#Classes
+
+#class Tiles:
+    
 
 #Def Functions
 def WhiteKey(x, y, color):

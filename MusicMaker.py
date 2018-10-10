@@ -256,7 +256,6 @@ while True: #Game Loop
                 noteColorsBlack[6] = (0, 0, 0)
                 blackNoteKeys[0]   = (255, 255, 255)
                 pianoTilesP[len(pianoTilesP)-1][3] = False
-                
 
             #Sounds
 ##            if (event.key == K_a):

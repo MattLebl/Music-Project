@@ -1,7 +1,7 @@
 import pygame, sys, time, os, random, math, colorsys
 from pygame.locals import *
 from random import *
-#from ctypes import windll, Structure, c_long, byref
+from ctypes import windll, Structure, c_long, byref
 
 pygame.mixer.pre_init(frequency = 22050, size = -16, channels = 2, buffer = 4096)
 pygame.mixer.init(frequency = 22050, size = -16, channels = 2, buffer = 4096)
@@ -19,17 +19,12 @@ fpsClock=pygame.time.Clock()
 #[Variable].get_length() Return the length of this Sound in seconds
 #https://www.pygame.org/docs/ref/mixer.html
 
-#testSound = pygame.mixer.Sound('Sounds\running_water.wav')
-
 #Window Variables
 windowWidth  = 1280
 windowHeight = 720
 
 #Sound Variables
-<<<<<<< HEAD
-testSound = pygame.mixer.Sound('C0.wav')
-=======
->>>>>>> 5e0a4ea6a6d14b394e7012bb481b36f994cf4064
+C0 = pygame.mixer.Sound('C0.wav')
 
 #Colour Variables
 Black      = (0  , 0  , 0  )
@@ -139,8 +134,7 @@ while True: #Game Loop
             if (event.key == K_a):
                 noteColorsWhite[0] = (0, 255, 0)
                 pianoTilesA.append([windowWidth-920, windowHeight-247, 0, True])
-                testSound.play()
-
+                C0.play()
             if (event.key == K_s):
                 noteColorsWhite[1] = (0, 255, 0)
                 pianoTilesS.append([windowWidth-828, windowHeight-247, 0, True])
@@ -201,9 +195,9 @@ while True: #Game Loop
         if event.type == KEYUP:
             #Notes Released
             if (event.key == K_a):
+                C0.stop()
                 noteColorsWhite[0] = (255, 255, 255)
                 pianoTilesA[len(pianoTilesA)-1][3] = False
-                testSound.stop()
             if (event.key == K_s):
                 noteColorsWhite[1] = (255, 255, 255)
                 pianoTilesS[len(pianoTilesS)-1][3] = False

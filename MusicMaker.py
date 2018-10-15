@@ -3,8 +3,7 @@ from pygame.locals import *
 from random import *
 from ctypes import windll, Structure, c_long, byref
 
-pygame.mixer.pre_init(frequency = 22050, size = -16, channels = 2, buffer = 4096)
-pygame.mixer.init(frequency = 22050, size = -16, channels = 2, buffer = 4096)
+pygame.mixer.pre_init(44100, -16, 1, 512)
 
 pygame.init()
 
@@ -24,7 +23,13 @@ windowWidth  = 1280
 windowHeight = 720
 
 #Sound Variables
-C0 = pygame.mixer.Sound('C0.wav')
+A2 = pygame.mixer.Sound('A2.wav')
+B2 = pygame.mixer.Sound('B2.wav')
+C2 = pygame.mixer.Sound('C2.wav')
+D2 = pygame.mixer.Sound('D2.wav')
+E2 = pygame.mixer.Sound('E2.wav')
+F2 = pygame.mixer.Sound('F2.wav')
+G2 = pygame.mixer.Sound('G2.wav')   
 
 #Colour Variables
 Black      = (0  , 0  , 0  )
@@ -134,25 +139,31 @@ while True: #Game Loop
             if (event.key == K_a):
                 noteColorsWhite[0] = (0, 255, 0)
                 pianoTilesA.append([windowWidth-920, windowHeight-247, 0, True])
-                C0.play()
+                C2.play()
             if (event.key == K_s):
                 noteColorsWhite[1] = (0, 255, 0)
                 pianoTilesS.append([windowWidth-828, windowHeight-247, 0, True])
+                D2.play()
             if (event.key == K_d):
                 noteColorsWhite[2] = (0, 255, 0)
                 pianoTilesD.append([windowWidth-736, windowHeight-247, 0, True])
+                E2.play()
             if (event.key == K_f):
                 noteColorsWhite[3] = (0, 255, 0)
                 pianoTilesF.append([windowWidth-644, windowHeight-247, 0, True])
+                F2.play()
             if (event.key == K_g):
                 noteColorsWhite[4] = (0, 255, 0)
                 pianoTilesG.append([windowWidth-552, windowHeight-247, 0, True])
+                G2.play()
             if (event.key == K_h):
                 noteColorsWhite[5] = (0, 255, 0)
                 pianoTilesH.append([windowWidth-460, windowHeight-247, 0, True])
+                A2.play()
             if (event.key == K_j):
                 noteColorsWhite[6] = (0, 255, 0)
                 pianoTilesJ.append([windowWidth-368, windowHeight-247, 0, True])
+                B2.play()
             if (event.key == K_k):
                 noteColorsWhite[7] = (0, 255, 0)
                 pianoTilesK.append([windowWidth-276, windowHeight-247, 0, True])
@@ -195,27 +206,33 @@ while True: #Game Loop
         if event.type == KEYUP:
             #Notes Released
             if (event.key == K_a):
-                C0.stop()
                 noteColorsWhite[0] = (255, 255, 255)
                 pianoTilesA[len(pianoTilesA)-1][3] = False
+                C2.stop()
             if (event.key == K_s):
                 noteColorsWhite[1] = (255, 255, 255)
                 pianoTilesS[len(pianoTilesS)-1][3] = False
+                D2.stop()
             if (event.key == K_d):
                 noteColorsWhite[2] = (255, 255, 255)
                 pianoTilesD[len(pianoTilesD)-1][3] = False
+                E2.stop()
             if (event.key == K_f):
                 noteColorsWhite[3] = (255, 255, 255)
                 pianoTilesF[len(pianoTilesF)-1][3] = False
+                F2.stop()
             if (event.key == K_g):
                 noteColorsWhite[4] = (255, 255, 255)
                 pianoTilesG[len(pianoTilesG)-1][3] = False
+                G2.stop()
             if (event.key == K_h):
                 noteColorsWhite[5] = (255, 255, 255)
                 pianoTilesH[len(pianoTilesH)-1][3] = False
+                A2.stop()
             if (event.key == K_j):
                 noteColorsWhite[6] = (255, 255, 255)
                 pianoTilesJ[len(pianoTilesJ)-1][3] = False
+                B2.stop()
             if (event.key == K_k):
                 noteColorsWhite[7] = (255, 255, 255)
                 pianoTilesK[len(pianoTilesK)-1][3] = False
@@ -225,7 +242,6 @@ while True: #Game Loop
             if (event.key == K_SEMICOLON):
                 noteColorsWhite[9] = (255, 255, 255)
                 pianoTilesSEMI[len(pianoTilesSEMI)-1][3] = False
-
             if (event.key == K_w):
                 noteColorsBlack[0] = (0, 0, 0)
                 blackNoteKeys[6]   = (255, 255, 255)

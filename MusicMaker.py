@@ -27,6 +27,9 @@ windowWidth  = 1280
 windowHeight = 720
 
 #Sound Variables
+<<<<<<< HEAD
+testSound = pygame.mixer.Sound('C0.wav')
+=======
 A2 = pygame.mixer.Sound(os.path.join(dir, './A2.wav'))
 B2 = pygame.mixer.Sound(os.path.join(dir, './B2.wav'))
 C2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/C2.wav'))
@@ -43,8 +46,12 @@ ASharp2 = pygame.mixer.Sound(os.path.join(dir, './ASharp2.wav'))
 C3 = pygame.mixer.Sound(os.path.join(dir, './C3.wav'))
 D3 = pygame.mixer.Sound(os.path.join(dir, './D3.wav'))
 E3 = pygame.mixer.Sound(os.path.join(dir, './E3.wav'))
+<<<<<<< HEAD
 CSharp3 = pygame.mixer.Sound(os.path.join(dir, './CSharp3.wav'))
 DSharp3 = pygame.mixer.Sound(os.path.join(dir, './DSharp3.wav'))
+=======
+>>>>>>> f4c4cbc13e58ca8c938463c0f10ceeb044358a30
+>>>>>>> adff0c347a7386ad60129c1db61996a657b80d90
 
 #Colour Variables
 Black      = (0  , 0  , 0  )

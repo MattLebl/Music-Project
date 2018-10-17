@@ -1,7 +1,7 @@
 import pygame, sys, time, os, random, math, colorsys
 from pygame.locals import *
 from random import *
-from ctypes import windll, Structure, c_long, byref
+#from ctypes import windll, Structure, c_long, byref
 
 pygame.mixer.pre_init(44100, -16, 1, 512)
 
@@ -34,10 +34,17 @@ D2 = pygame.mixer.Sound(os.path.join(dir, './D2.wav'))
 E2 = pygame.mixer.Sound(os.path.join(dir, './E2.wav'))
 F2 = pygame.mixer.Sound(os.path.join(dir, './F2.wav'))
 G2 = pygame.mixer.Sound(os.path.join(dir, './G2.wav'))
+CSharp2 = pygame.mixer.Sound(os.path.join(dir, './CSharp2.wav'))
+DSharp2 = pygame.mixer.Sound(os.path.join(dir, './DSharp2.wav'))
+FSharp2 = pygame.mixer.Sound(os.path.join(dir, './FSharp2.wav'))
+GSharp2 = pygame.mixer.Sound(os.path.join(dir, './GSharp2.wav'))
+ASharp2 = pygame.mixer.Sound(os.path.join(dir, './ASharp2.wav'))
 
 C3 = pygame.mixer.Sound(os.path.join(dir, './C3.wav'))
 D3 = pygame.mixer.Sound(os.path.join(dir, './D3.wav'))
 E3 = pygame.mixer.Sound(os.path.join(dir, './E3.wav'))
+CSharp3 = pygame.mixer.Sound(os.path.join(dir, './CSharp3.wav'))
+DSharp3 = pygame.mixer.Sound(os.path.join(dir, './DSharp3.wav'))
 
 #Colour Variables
 Black      = (0  , 0  , 0  )
@@ -64,9 +71,14 @@ for x in range(0, 8):
     blackNoteKeys.append((255, 255, 255))
 
 #Lists
-noteColorsWhite = [(255, 255, 255), (255, 255, 255), (255, 255, 255), (255, 255, 255), (255, 255, 255), (255, 255, 255), (255, 255, 255), (255, 255, 255), (255, 255, 255), (255, 255, 255)]
-noteColorsBlack = [(0  , 0  , 0  ), (0  , 0  , 0  ), (0  , 0  , 0  ), (0  , 0  , 0  ), (0  , 0  , 0  ), (0  , 0  , 0  ), (0  , 0  , 0  )]
+noteColorsWhite = []
+for i in range(0, 10):
+    noteColorsWhite.append((255, 255, 255))
+noteColorsBlack = []
+for i in range(0, 7):
+    noteColorsBlack.append((0  , 0  , 0  ))
 noteButtonList  = ["", ";", "L", "K", "J", "H", "G", "F", "D", "S", "A"]
+currentOctive   = [False, True, False]
 
 #Paino Tiles Lists
 pianoTilesA = []
@@ -144,147 +156,356 @@ while True: #Game Loop
 
         if event.type == KEYDOWN:
             #Notes Pressed
+
+            #Moves Octive down
+            if (event.key == K_z):
+                if (currentOctive[1] == True):
+                    currentOctive[1] = False
+                    currentOctive[0] = True
+                if (currentOctive[2] == True):
+                    currentOctive[2] = False
+                    currentOctive[1] = True
+
+            #Moves Octive up
+            if (event.key == K_x):
+                if (currentOctive[1] == True):
+                    currentOctive[1] = False
+                    currentOctive[2] = True
+                if (currentOctive[0] == True):
+                    currentOctive[0] = False
+                    currentOctive[1] = True
+
+            #Resets octive to base
+            if (event.key == K_c):
+                currentOctive[1] = True
+                currentOctive[0] = False
+                currentOctive[2] = False
+            
             if (event.key == K_a):
                 noteColorsWhite[0] = (0, 255, 0)
                 pianoTilesA.append([windowWidth-920, windowHeight-247, 0, True])
-                C2.play()
+                if (currentOctive[0] == True):
+                    print("First Octive Note")
+                elif (currentOctive[1] == True):
+                    C2.play()
+                elif (currentOctive[2] == True):
+                    print("Third Octive Note")
             if (event.key == K_s):
                 noteColorsWhite[1] = (0, 255, 0)
                 pianoTilesS.append([windowWidth-828, windowHeight-247, 0, True])
-                D2.play()
+                if (currentOctive[0] == True):
+                    print("First Octive Note")
+                elif (currentOctive[1] == True):
+                    D2.play()
+                elif (currentOctive[2] == True):
+                    print("Third Octive Note")
             if (event.key == K_d):
                 noteColorsWhite[2] = (0, 255, 0)
                 pianoTilesD.append([windowWidth-736, windowHeight-247, 0, True])
-                E2.play()
+                if (currentOctive[0] == True):
+                    print("First Octive Note")
+                elif (currentOctive[1] == True):
+                    E2.play()
+                elif (currentOctive[2] == True):
+                    print("Third Octive Note")
             if (event.key == K_f):
                 noteColorsWhite[3] = (0, 255, 0)
                 pianoTilesF.append([windowWidth-644, windowHeight-247, 0, True])
-                F2.play()
+                if (currentOctive[0] == True):
+                    print("First Octive Note")
+                elif (currentOctive[1] == True):
+                    F2.play()
+                elif (currentOctive[2] == True):
+                    print("Third Octive Note")
             if (event.key == K_g):
                 noteColorsWhite[4] = (0, 255, 0)
                 pianoTilesG.append([windowWidth-552, windowHeight-247, 0, True])
-                G2.play()
+                if (currentOctive[0] == True):
+                    print("First Octive Note")
+                elif (currentOctive[1] == True):
+                    G2.play()
+                elif (currentOctive[2] == True):
+                    print("Third Octive Note")
             if (event.key == K_h):
                 noteColorsWhite[5] = (0, 255, 0)
                 pianoTilesH.append([windowWidth-460, windowHeight-247, 0, True])
-                A2.play()
+                if (currentOctive[0] == True):
+                    print("First Octive Note")
+                elif (currentOctive[1] == True):
+                    A2.play()
+                elif (currentOctive[2] == True):
+                    print("Third Octive Note")
             if (event.key == K_j):
                 noteColorsWhite[6] = (0, 255, 0)
                 pianoTilesJ.append([windowWidth-368, windowHeight-247, 0, True])
-                B2.play()
+                if (currentOctive[0] == True):
+                    print("First Octive Note")
+                elif (currentOctive[1] == True):
+                    B2.play()
+                elif (currentOctive[2] == True):
+                    print("Third Octive Note")
             if (event.key == K_k):
                 noteColorsWhite[7] = (0, 255, 0)
                 pianoTilesK.append([windowWidth-276, windowHeight-247, 0, True])
-                C3.play()
+                if (currentOctive[0] == True):
+                    print("First Octive Note")
+                elif (currentOctive[1] == True):
+                    C3.play()
+                elif (currentOctive[2] == True):
+                    print("Third Octive Note")
             if (event.key == K_l):
                 noteColorsWhite[8] = (0, 255, 0)
                 pianoTilesL.append([windowWidth-184, windowHeight-247, 0, True])
-                D3.play()
+                if (currentOctive[0] == True):
+                    print("First Octive Note")
+                elif (currentOctive[1] == True):
+                    D3.play()
+                elif (currentOctive[2] == True):
+                    print("Third Octive Note")
             if (event.key == K_SEMICOLON):
                 noteColorsWhite[9] = (0, 255, 0)
                 pianoTilesSEMI.append([windowWidth-92, windowHeight-247, 0, True])
-                E3.play()
+                if (currentOctive[0] == True):
+                    print("First Octive Note")
+                elif (currentOctive[1] == True):
+                    E3.play()
+                elif (currentOctive[2] == True):
+                    print("Third Octive Note")
 
             if (event.key == K_w):
                 noteColorsBlack[0] = (0  , 150, 0  )
                 blackNoteKeys[6]   = (0, 0, 0)
                 pianoTilesW.append([windowWidth-853, windowHeight-247, 0, True])
+                if (currentOctive[0] == True):
+                    print("First Octive Note")
+                elif (currentOctive[1] == True):
+                    CSharp2.play()
+                elif (currentOctive[2] == True):
+                    print("Third Octive Note")
             if (event.key == K_e):
                 noteColorsBlack[1] = (0  , 150, 0  )
                 blackNoteKeys[5]   = (0, 0, 0)
                 pianoTilesE.append([windowWidth-761, windowHeight-247, 0, True])
+                if (currentOctive[0] == True):
+                    print("First Octive Note")
+                elif (currentOctive[1] == True):
+                    DSharp2.play()
+                elif (currentOctive[2] == True):
+                    print("Third Octive Note")
             if (event.key == K_t):
                 noteColorsBlack[2] = (0  , 150, 0  )
                 blackNoteKeys[4]   = (0, 0, 0)
                 pianoTilesT.append([windowWidth-577, windowHeight-247, 0, True])
+                if (currentOctive[0] == True):
+                    print("First Octive Note")
+                elif (currentOctive[1] == True):
+                    FSharp2.play()
+                elif (currentOctive[2] == True):
+                    print("Third Octive Note")
             if (event.key == K_y):
                 noteColorsBlack[3] = (0  , 150, 0  )
                 blackNoteKeys[3]   = (0, 0, 0)
                 pianoTilesY.append([windowWidth-484, windowHeight-247, 0, True])
+                if (currentOctive[0] == True):
+                    print("First Octive Note")
+                elif (currentOctive[1] == True):
+                    GSharp2.play()
+                elif (currentOctive[2] == True):
+                    print("Third Octive Note")
             if (event.key == K_u):
                 noteColorsBlack[4] = (0  , 150, 0  )
                 blackNoteKeys[2]   = (0, 0, 0)
                 pianoTilesU.append([windowWidth-392, windowHeight-247, 0, True])
+                if (currentOctive[0] == True):
+                    print("First Octive Note")
+                elif (currentOctive[1] == True):
+                    ASharp2.play()
+                elif (currentOctive[2] == True):
+                    print("Third Octive Note")
             if (event.key == K_o):
                 noteColorsBlack[5] = (0  , 150, 0  )
                 blackNoteKeys[1]   = (0, 0, 0)
                 pianoTilesO.append([windowWidth-208, windowHeight-247, 0, True])
+                if (currentOctive[0] == True):
+                    print("First Octive Note")
+                elif (currentOctive[1] == True):
+                    CSharp3.play()
+                elif (currentOctive[2] == True):
+                    print("Third Octive Note")
             if (event.key == K_p):
                 noteColorsBlack[6] = (0  , 150, 0  )
                 blackNoteKeys[0]   = (0, 0, 0)
                 pianoTilesP.append([windowWidth-116, windowHeight-247, 0, True])
+                if (currentOctive[0] == True):
+                    print("First Octive Note")
+                elif (currentOctive[1] == True):
+                    DSharp3.play()
+                elif (currentOctive[2] == True):
+                    print("Third Octive Note")
             
         if event.type == KEYUP:
             #Notes Released
             if (event.key == K_a):
                 noteColorsWhite[0] = (255, 255, 255)
                 pianoTilesA[len(pianoTilesA)-1][3] = False
-                C2.fadeout(500)
+                if (currentOctive[0] == True):
+                    print("First Octive Note")
+                elif (currentOctive[1] == True):
+                    C2.fadeout(500)
+                elif (currentOctive[2] == True):
+                    print("Third Octive Note")
             if (event.key == K_s):
                 noteColorsWhite[1] = (255, 255, 255)
                 pianoTilesS[len(pianoTilesS)-1][3] = False
-                D2.fadeout(500)
+                if (currentOctive[0] == True):
+                    print("First Octive Note")
+                elif (currentOctive[1] == True):
+                    D2.fadeout(500)
+                elif (currentOctive[2] == True):
+                    print("Third Octive Note")
             if (event.key == K_d):
                 noteColorsWhite[2] = (255, 255, 255)
                 pianoTilesD[len(pianoTilesD)-1][3] = False
-                E2.fadeout(500)
+                if (currentOctive[0] == True):
+                    print("First Octive Note")
+                elif (currentOctive[1] == True):
+                    E2.fadeout(500)
+                elif (currentOctive[2] == True):
+                    print("Third Octive Note")
             if (event.key == K_f):
                 noteColorsWhite[3] = (255, 255, 255)
                 pianoTilesF[len(pianoTilesF)-1][3] = False
-                F2.fadeout(500)
+                if (currentOctive[0] == True):
+                    print("First Octive Note")
+                elif (currentOctive[1] == True):
+                    F2.fadeout(500)
+                elif (currentOctive[2] == True):
+                    print("Third Octive Note")
             if (event.key == K_g):
                 noteColorsWhite[4] = (255, 255, 255)
                 pianoTilesG[len(pianoTilesG)-1][3] = False
-                G2.fadeout(500)
+                if (currentOctive[0] == True):
+                    print("First Octive Note")
+                elif (currentOctive[1] == True):
+                    G2.fadeout(500)
+                elif (currentOctive[2] == True):
+                    print("Third Octive Note")
             if (event.key == K_h):
                 noteColorsWhite[5] = (255, 255, 255)
                 pianoTilesH[len(pianoTilesH)-1][3] = False
-                A2.fadeout(500)
+                if (currentOctive[0] == True):
+                    print("First Octive Note")
+                elif (currentOctive[1] == True):
+                    A2.fadeout(500)
+                elif (currentOctive[2] == True):
+                    print("Third Octive Note")
             if (event.key == K_j):
                 noteColorsWhite[6] = (255, 255, 255)
                 pianoTilesJ[len(pianoTilesJ)-1][3] = False
-                B2.fadeout(500)
+                if (currentOctive[0] == True):
+                    print("First Octive Note")
+                elif (currentOctive[1] == True):
+                    B2.fadeout(500)
+                elif (currentOctive[2] == True):
+                    print("Third Octive Note")
             if (event.key == K_k):
                 noteColorsWhite[7] = (255, 255, 255)
                 pianoTilesK[len(pianoTilesK)-1][3] = False
-                C3.fadeout(500)
+                if (currentOctive[0] == True):
+                    print("First Octive Note")
+                elif (currentOctive[1] == True):
+                    C3.fadeout(500)
+                elif (currentOctive[2] == True):
+                    print("Third Octive Note")
             if (event.key == K_l):
                 noteColorsWhite[8] = (255, 255, 255)
                 pianoTilesL[len(pianoTilesL)-1][3] = False
-                D3.fadeout(500)
+                if (currentOctive[0] == True):
+                    print("First Octive Note")
+                elif (currentOctive[1] == True):
+                    D3.fadeout(500)
+                elif (currentOctive[2] == True):
+                    print("Third Octive Note")
             if (event.key == K_SEMICOLON):
                 noteColorsWhite[9] = (255, 255, 255)
                 pianoTilesSEMI[len(pianoTilesSEMI)-1][3] = False
-                E3.fadeout(500)
+                if (currentOctive[0] == True):
+                    print("First Octive Note")
+                elif (currentOctive[1] == True):
+                    E3.fadeout(500)
+                elif (currentOctive[2] == True):
+                    print("Third Octive Note")
                 
             if (event.key == K_w):
                 noteColorsBlack[0] = (0, 0, 0)
                 blackNoteKeys[6]   = (255, 255, 255)
                 pianoTilesW[len(pianoTilesW)-1][3] = False
+                if (currentOctive[0] == True):
+                    print("First Octive Note")
+                elif (currentOctive[1] == True):
+                    CSharp2.fadeout(500)
+                elif (currentOctive[2] == True):
+                    print("Third Octive Note")
             if (event.key == K_e):
                 noteColorsBlack[1] = (0, 0, 0)
                 blackNoteKeys[5]   = (255, 255, 255)
                 pianoTilesE[len(pianoTilesE)-1][3] = False
+                if (currentOctive[0] == True):
+                    print("First Octive Note")
+                elif (currentOctive[1] == True):
+                    DSharp2.fadeout(500)
+                elif (currentOctive[2] == True):
+                    print("Third Octive Note")
             if (event.key == K_t):
                 noteColorsBlack[2] = (0, 0, 0)
                 blackNoteKeys[4]   = (255, 255, 255)
                 pianoTilesT[len(pianoTilesT)-1][3] = False
+                if (currentOctive[0] == True):
+                    print("First Octive Note")
+                elif (currentOctive[1] == True):
+                    FSharp2.fadeout(500)
+                elif (currentOctive[2] == True):
+                    print("Third Octive Note")
             if (event.key == K_y):
                 noteColorsBlack[3] = (0, 0, 0)
                 blackNoteKeys[3]   = (255, 255, 255)
                 pianoTilesY[len(pianoTilesY)-1][3] = False
+                if (currentOctive[0] == True):
+                    print("First Octive Note")
+                elif (currentOctive[1] == True):
+                    GSharp2.fadeout(500)
+                elif (currentOctive[2] == True):
+                    print("Third Octive Note")
             if (event.key == K_u):
                 noteColorsBlack[4] = (0, 0, 0)
                 blackNoteKeys[2]   = (255, 255, 255)
                 pianoTilesU[len(pianoTilesU)-1][3] = False
+                if (currentOctive[0] == True):
+                    print("First Octive Note")
+                elif (currentOctive[1] == True):
+                    ASharp2.fadeout(500)
+                elif (currentOctive[2] == True):
+                    print("Third Octive Note")
             if (event.key == K_o):
                 noteColorsBlack[5] = (0, 0, 0)
                 blackNoteKeys[1]   = (255, 255, 255)
                 pianoTilesO[len(pianoTilesO)-1][3] = False
+                if (currentOctive[0] == True):
+                    print("First Octive Note")
+                elif (currentOctive[1] == True):
+                    CSharp3.fadeout(500)
+                elif (currentOctive[2] == True):
+                    print("Third Octive Note")
             if (event.key == K_p):
                 noteColorsBlack[6] = (0, 0, 0)
                 blackNoteKeys[0]   = (255, 255, 255)
                 pianoTilesP[len(pianoTilesP)-1][3] = False
+                if (currentOctive[0] == True):
+                    print("First Octive Note")
+                elif (currentOctive[1] == True):
+                    DSharp3.fadeout(500)
+                elif (currentOctive[2] == True):
+                    print("Third Octive Note")
 
     #Background
     pygame.draw.rect(Surface, LightGrey, (0, 0, windowWidth, windowHeight))

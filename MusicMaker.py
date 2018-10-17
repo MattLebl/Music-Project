@@ -18,6 +18,8 @@ dir = os.path.dirname(__file__)
 #[Variable].stop()
 #[Variable].fadeout() This will stop playback of the sound after fading out over the time argument in milliseconds.
 #[Variable].get_length() Return the length of this Sound in seconds
+#[Variable].set_volume()
+#[Variable].get_volume()
 #https://www.pygame.org/docs/ref/mixer.html
 
 #Window Variables
@@ -27,7 +29,7 @@ windowHeight = 720
 #Sound Variables
 A2 = pygame.mixer.Sound(os.path.join(dir, './A2.wav'))
 B2 = pygame.mixer.Sound(os.path.join(dir, './B2.wav'))
-C2 = pygame.mixer.Sound(os.path.join(dir, './C2.wav'))
+C2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/C2.wav'))
 D2 = pygame.mixer.Sound(os.path.join(dir, './D2.wav'))
 E2 = pygame.mixer.Sound(os.path.join(dir, './E2.wav'))
 F2 = pygame.mixer.Sound(os.path.join(dir, './F2.wav'))

@@ -1,15 +1,16 @@
 import pygame, sys, time, os, random, math, colorsys
 from pygame.locals import *
 from random import *
-#from ctypes import windll, Structure, c_long, byref
+from ctypes import windll, Structure, c_long, byref
 
-pygame.mixer.pre_init(frequency = 22050, size = -16, channels = 2, buffer = 4096)
-pygame.mixer.init(frequency = 22050, size = -16, channels = 2, buffer = 4096)
+pygame.mixer.pre_init(44100, -16, 1, 512)
 
 pygame.init()
 
 FPS=30
 fpsClock=pygame.time.Clock()
+
+dir = os.path.dirname(__file__)
 
 #Music Code
 #[Variable] = pygame.mixer.Sound(FileLocation)
@@ -17,16 +18,30 @@ fpsClock=pygame.time.Clock()
 #[Variable].stop()
 #[Variable].fadeout() This will stop playback of the sound after fading out over the time argument in milliseconds.
 #[Variable].get_length() Return the length of this Sound in seconds
+#[Variable].set_volume()
+#[Variable].get_volume()
 #https://www.pygame.org/docs/ref/mixer.html
-
-#testSound = pygame.mixer.Sound('Sounds\running_water.wav')
 
 #Window Variables
 windowWidth  = 1280
 windowHeight = 720
 
 #Sound Variables
+<<<<<<< HEAD
 testSound = pygame.mixer.Sound('C0.wav')
+=======
+A2 = pygame.mixer.Sound(os.path.join(dir, './A2.wav'))
+B2 = pygame.mixer.Sound(os.path.join(dir, './B2.wav'))
+C2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/C2.wav'))
+D2 = pygame.mixer.Sound(os.path.join(dir, './D2.wav'))
+E2 = pygame.mixer.Sound(os.path.join(dir, './E2.wav'))
+F2 = pygame.mixer.Sound(os.path.join(dir, './F2.wav'))
+G2 = pygame.mixer.Sound(os.path.join(dir, './G2.wav'))
+
+C3 = pygame.mixer.Sound(os.path.join(dir, './C3.wav'))
+D3 = pygame.mixer.Sound(os.path.join(dir, './D3.wav'))
+E3 = pygame.mixer.Sound(os.path.join(dir, './E3.wav'))
+>>>>>>> f4c4cbc13e58ca8c938463c0f10ceeb044358a30
 
 #Colour Variables
 Black      = (0  , 0  , 0  )
@@ -136,35 +151,43 @@ while True: #Game Loop
             if (event.key == K_a):
                 noteColorsWhite[0] = (0, 255, 0)
                 pianoTilesA.append([windowWidth-920, windowHeight-247, 0, True])
-                testSound.play()
-
+                C2.play()
             if (event.key == K_s):
                 noteColorsWhite[1] = (0, 255, 0)
                 pianoTilesS.append([windowWidth-828, windowHeight-247, 0, True])
+                D2.play()
             if (event.key == K_d):
                 noteColorsWhite[2] = (0, 255, 0)
                 pianoTilesD.append([windowWidth-736, windowHeight-247, 0, True])
+                E2.play()
             if (event.key == K_f):
                 noteColorsWhite[3] = (0, 255, 0)
                 pianoTilesF.append([windowWidth-644, windowHeight-247, 0, True])
+                F2.play()
             if (event.key == K_g):
                 noteColorsWhite[4] = (0, 255, 0)
                 pianoTilesG.append([windowWidth-552, windowHeight-247, 0, True])
+                G2.play()
             if (event.key == K_h):
                 noteColorsWhite[5] = (0, 255, 0)
                 pianoTilesH.append([windowWidth-460, windowHeight-247, 0, True])
+                A2.play()
             if (event.key == K_j):
                 noteColorsWhite[6] = (0, 255, 0)
                 pianoTilesJ.append([windowWidth-368, windowHeight-247, 0, True])
+                B2.play()
             if (event.key == K_k):
                 noteColorsWhite[7] = (0, 255, 0)
                 pianoTilesK.append([windowWidth-276, windowHeight-247, 0, True])
+                C3.play()
             if (event.key == K_l):
                 noteColorsWhite[8] = (0, 255, 0)
                 pianoTilesL.append([windowWidth-184, windowHeight-247, 0, True])
+                D3.play()
             if (event.key == K_SEMICOLON):
                 noteColorsWhite[9] = (0, 255, 0)
                 pianoTilesSEMI.append([windowWidth-92, windowHeight-247, 0, True])
+                E3.play()
 
             if (event.key == K_w):
                 noteColorsBlack[0] = (0  , 150, 0  )
@@ -200,35 +223,44 @@ while True: #Game Loop
             if (event.key == K_a):
                 noteColorsWhite[0] = (255, 255, 255)
                 pianoTilesA[len(pianoTilesA)-1][3] = False
-                testSound.stop()
+                C2.fadeout(500)
             if (event.key == K_s):
                 noteColorsWhite[1] = (255, 255, 255)
                 pianoTilesS[len(pianoTilesS)-1][3] = False
+                D2.fadeout(500)
             if (event.key == K_d):
                 noteColorsWhite[2] = (255, 255, 255)
                 pianoTilesD[len(pianoTilesD)-1][3] = False
+                E2.fadeout(500)
             if (event.key == K_f):
                 noteColorsWhite[3] = (255, 255, 255)
                 pianoTilesF[len(pianoTilesF)-1][3] = False
+                F2.fadeout(500)
             if (event.key == K_g):
                 noteColorsWhite[4] = (255, 255, 255)
                 pianoTilesG[len(pianoTilesG)-1][3] = False
+                G2.fadeout(500)
             if (event.key == K_h):
                 noteColorsWhite[5] = (255, 255, 255)
                 pianoTilesH[len(pianoTilesH)-1][3] = False
+                A2.fadeout(500)
             if (event.key == K_j):
                 noteColorsWhite[6] = (255, 255, 255)
                 pianoTilesJ[len(pianoTilesJ)-1][3] = False
+                B2.fadeout(500)
             if (event.key == K_k):
                 noteColorsWhite[7] = (255, 255, 255)
                 pianoTilesK[len(pianoTilesK)-1][3] = False
+                C3.fadeout(500)
             if (event.key == K_l):
                 noteColorsWhite[8] = (255, 255, 255)
                 pianoTilesL[len(pianoTilesL)-1][3] = False
+                D3.fadeout(500)
             if (event.key == K_SEMICOLON):
                 noteColorsWhite[9] = (255, 255, 255)
                 pianoTilesSEMI[len(pianoTilesSEMI)-1][3] = False
-
+                E3.fadeout(500)
+                
             if (event.key == K_w):
                 noteColorsBlack[0] = (0, 0, 0)
                 blackNoteKeys[6]   = (255, 255, 255)

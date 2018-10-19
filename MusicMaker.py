@@ -105,6 +105,11 @@ Surface    = pygame.display.set_mode((windowWidth, windowHeight))
 fadeScreen = pygame.Surface((windowWidth, windowHeight))
 pygame.display.set_caption('Music Maker')
 
+#Variables
+volumeSliderX = 50
+volume = 1
+mousePosition = pygame.mouse.get_pos()
+
 #Def Functions
 def WhiteKey(x, y, color):
     pygame.draw.rect(Surface, color, (x, y, 90, 245))
@@ -135,6 +140,9 @@ def DrawBlackTiles(tileList):
     for t in tileList[:]:
         pygame.draw.rect(Surface, DarkGreen, (t[0], t[1], 45, t[2]-2))
         pygame.draw.rect(Surface, Black, (t[0], t[1]-2, 45, t[2]), 3)
+
+def ChangeVolume(sound, volume):
+    sound.set_volume(volume)
 
 #Text Functions
 def text_objects(Text, font, colour):
@@ -507,6 +515,16 @@ while True: #Game Loop
                 elif (currentOctive[2] == True):
                     print("Third Octive Note")
 
+    #Change Volume
+    volume = volumeSliderX/50
+
+    #Move Bar
+    mousePressed = pygame.mouse.get_pressed()
+    mousePosition = pygame.mouse.get_pos()
+    
+    if (mousePressed[0] == 1 and mousePosition[0] <= (windowWidth-905)+volumeSliderX+10 and mousePosition[0] >= (windowWidth-905)+volumeSliderX and mousePosition[1] >= 11 and mousePosition[1] <= 26):
+        volumeSliderX = mousePosition[0]-380
+
     #Background
     pygame.draw.rect(Surface, LightGrey, (0, 0, windowWidth, windowHeight))
     pygame.draw.rect(Surface, Grey, (windowWidth-920, 0, 920, windowHeight))
@@ -609,8 +627,12 @@ while True: #Game Loop
     Text("W", windowWidth-840, windowHeight-112, 15, blackNoteKeys[6])
 
     #Top Bar
-    pygame.draw.rect(Surface, (150, 150, 150), (windowWidth-918, 2, 918, 30))
-    pygame.draw.rect(Surface, Black, (windowWidth-920, 0, 919, 32), 2)
+    pygame.draw.rect(Surface, (150, 150, 150), (windowWidth-918, 2, 918, 35))
+    pygame.draw.rect(Surface, Black, (windowWidth-920, 0, 919, 37), 2)
+
+    pygame.draw.rect(Surface, DarkGrey, (windowWidth-900, 16, 100, 5))
+    pygame.draw.rect(Surface, Green, (windowWidth-900, 16, volumeSliderX, 5))
+    pygame.draw.rect(Surface, (230, 230, 230), ((windowWidth-905)+volumeSliderX, 11, 10, 15))
     
     pygame.display.flip()
     fpsClock.tick(FPS)

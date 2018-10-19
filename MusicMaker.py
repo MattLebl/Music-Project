@@ -108,7 +108,11 @@ pygame.display.set_caption('Music Maker')
 #Variables
 volumeSliderX = 50
 volume = 1
+activeSlider = False;
+
+#Mouse Variables
 mousePosition = pygame.mouse.get_pos()
+mousePressed  = pygame.mouse.get_pressed()
 
 #Def Functions
 def WhiteKey(x, y, color):
@@ -141,7 +145,7 @@ def DrawBlackTiles(tileList):
         pygame.draw.rect(Surface, DarkGreen, (t[0], t[1], 45, t[2]-2))
         pygame.draw.rect(Surface, Black, (t[0], t[1]-2, 45, t[2]), 3)
 
-def ChangeVolume(sound, volume):
+def ChangeVolume(sound):
     sound.set_volume(volume)
 
 #Text Functions
@@ -515,15 +519,61 @@ while True: #Game Loop
                 elif (currentOctive[2] == True):
                     print("Third Octive Note")
 
+    #A2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/A2.wav'))
+    #B2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/B2.wav'))
+    #C2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/C2.wav'))
+    #D2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/D2.wav'))
+    #E2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/E2.wav'))
+    #F2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/F2.wav'))
+    #G2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/G2.wav'))
+    #CSharp2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/CSharp2.wav'))
+    #DSharp2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/DSharp2.wav'))
+    #FSharp2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/FSharp2.wav'))
+    #GSharp2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/GSharp2.wav'))
+    #ASharp2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/ASharp2.wav'))
+
+    #C3 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/C3.wav'))
+    #D3 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/D3.wav'))
+    #E3 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/E3.wav'))
+    #CSharp3 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/CSharp3.wav'))
+    #DSharp3 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/DSharp3.wav'))
+    
     #Change Volume
     volume = volumeSliderX/50
+    ChangeVolume(A2)
+    ChangeVolume(B2)
+    ChangeVolume(C2)
+    ChangeVolume(D2)
+    ChangeVolume(E2)
+    ChangeVolume(F2)
+    ChangeVolume(G2)
+    ChangeVolume(CSharp2)
+    ChangeVolume(DSharp2)
+    ChangeVolume(FSharp2)
+    ChangeVolume(GSharp2)
+    ChangeVolume(ASharp2)
+    ChangeVolume(C3)
+    ChangeVolume(D3)
+    ChangeVolume(E3)
+    ChangeVolume(CSharp3)
+    ChangeVolume(DSharp3)
 
     #Move Bar
     mousePressed = pygame.mouse.get_pressed()
     mousePosition = pygame.mouse.get_pos()
     
     if (mousePressed[0] == 1 and mousePosition[0] <= (windowWidth-905)+volumeSliderX+10 and mousePosition[0] >= (windowWidth-905)+volumeSliderX and mousePosition[1] >= 11 and mousePosition[1] <= 26):
+        activeSlider = True;
+
+    if (activeSlider):
         volumeSliderX = mousePosition[0]-380
+        if (mousePressed[0] == 0):
+            activeSlider = False;
+
+    if (volumeSliderX > 100):
+        volumeSliderX = 100
+    elif (volumeSliderX < 0):
+        volumeSliderX = 0
 
     #Background
     pygame.draw.rect(Surface, LightGrey, (0, 0, windowWidth, windowHeight))

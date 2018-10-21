@@ -1,7 +1,9 @@
+#Current Known Bugs:
+#When switching octives while pressing a note, then releasing it in the new octive, the old octive note will not fade out
+
 import pygame, sys, time, os, random, math, colorsys
 from pygame.locals import *
 from random import *
-#from ctypes import windll, Structure, c_long, byref
 
 pygame.mixer.pre_init(44100, -16, 1, 512)
 
@@ -40,11 +42,24 @@ FSharp2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/FSharp2.wav'))
 GSharp2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/GSharp2.wav'))
 ASharp2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/ASharp2.wav'))
 
+A3 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/A3.wav'))
+B3 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/B3.wav'))
 C3 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/C3.wav'))
 D3 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/D3.wav'))
 E3 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/E3.wav'))
+F3 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/F3.wav'))
+G3 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/G3.wav'))
 CSharp3 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/CSharp3.wav'))
 DSharp3 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/DSharp3.wav'))
+FSharp3 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/FSharp3.wav'))
+GSharp3 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/GSharp3.wav'))
+ASharp3 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/ASharp3.wav'))
+
+C4 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/C4.wav'))
+D4 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/D4.wav'))
+E4 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/E4.wav'))
+CSharp4 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/CSharp4.wav'))
+DSharp4 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/DSharp4.wav'))
 
 #Colour Variables
 Black      = (0  , 0  , 0  )
@@ -201,7 +216,7 @@ while True: #Game Loop
                 elif (currentOctive[1] == True):
                     C2.play()
                 elif (currentOctive[2] == True):
-                    print("Third Octive Note")
+                    C3.play()
             if (event.key == K_s):
                 noteColorsWhite[1] = (0, 255, 0)
                 pianoTilesS.append([windowWidth-828, windowHeight-247, 0, True])
@@ -210,7 +225,7 @@ while True: #Game Loop
                 elif (currentOctive[1] == True):
                     D2.play()
                 elif (currentOctive[2] == True):
-                    print("Third Octive Note")
+                    D3.play()
             if (event.key == K_d):
                 noteColorsWhite[2] = (0, 255, 0)
                 pianoTilesD.append([windowWidth-736, windowHeight-247, 0, True])
@@ -219,7 +234,7 @@ while True: #Game Loop
                 elif (currentOctive[1] == True):
                     E2.play()
                 elif (currentOctive[2] == True):
-                    print("Third Octive Note")
+                    E3.play()
             if (event.key == K_f):
                 noteColorsWhite[3] = (0, 255, 0)
                 pianoTilesF.append([windowWidth-644, windowHeight-247, 0, True])
@@ -228,7 +243,7 @@ while True: #Game Loop
                 elif (currentOctive[1] == True):
                     F2.play()
                 elif (currentOctive[2] == True):
-                    print("Third Octive Note")
+                    F3.play()
             if (event.key == K_g):
                 noteColorsWhite[4] = (0, 255, 0)
                 pianoTilesG.append([windowWidth-552, windowHeight-247, 0, True])
@@ -237,7 +252,7 @@ while True: #Game Loop
                 elif (currentOctive[1] == True):
                     G2.play()
                 elif (currentOctive[2] == True):
-                    print("Third Octive Note")
+                    G3.play()
             if (event.key == K_h):
                 noteColorsWhite[5] = (0, 255, 0)
                 pianoTilesH.append([windowWidth-460, windowHeight-247, 0, True])
@@ -246,7 +261,7 @@ while True: #Game Loop
                 elif (currentOctive[1] == True):
                     A2.play()
                 elif (currentOctive[2] == True):
-                    print("Third Octive Note")
+                    A3.play()
             if (event.key == K_j):
                 noteColorsWhite[6] = (0, 255, 0)
                 pianoTilesJ.append([windowWidth-368, windowHeight-247, 0, True])
@@ -255,7 +270,7 @@ while True: #Game Loop
                 elif (currentOctive[1] == True):
                     B2.play()
                 elif (currentOctive[2] == True):
-                    print("Third Octive Note")
+                    B3.play()
             if (event.key == K_k):
                 noteColorsWhite[7] = (0, 255, 0)
                 pianoTilesK.append([windowWidth-276, windowHeight-247, 0, True])
@@ -264,7 +279,7 @@ while True: #Game Loop
                 elif (currentOctive[1] == True):
                     C3.play()
                 elif (currentOctive[2] == True):
-                    print("Third Octive Note")
+                    C4.play()
             if (event.key == K_l):
                 noteColorsWhite[8] = (0, 255, 0)
                 pianoTilesL.append([windowWidth-184, windowHeight-247, 0, True])
@@ -273,7 +288,7 @@ while True: #Game Loop
                 elif (currentOctive[1] == True):
                     D3.play()
                 elif (currentOctive[2] == True):
-                    print("Third Octive Note")
+                    D4.play()
             if (event.key == K_SEMICOLON):
                 noteColorsWhite[9] = (0, 255, 0)
                 pianoTilesSEMI.append([windowWidth-92, windowHeight-247, 0, True])
@@ -282,7 +297,7 @@ while True: #Game Loop
                 elif (currentOctive[1] == True):
                     E3.play()
                 elif (currentOctive[2] == True):
-                    print("Third Octive Note")
+                    E4.play()
 
             if (event.key == K_w):
                 noteColorsBlack[0] = (0  , 150, 0  )
@@ -293,7 +308,7 @@ while True: #Game Loop
                 elif (currentOctive[1] == True):
                     CSharp2.play()
                 elif (currentOctive[2] == True):
-                    print("Third Octive Note")
+                    CSharp3.play()
             if (event.key == K_e):
                 noteColorsBlack[1] = (0  , 150, 0  )
                 blackNoteKeys[5]   = (0, 0, 0)
@@ -303,7 +318,7 @@ while True: #Game Loop
                 elif (currentOctive[1] == True):
                     DSharp2.play()
                 elif (currentOctive[2] == True):
-                    print("Third Octive Note")
+                    DSharp3.play()
             if (event.key == K_t):
                 noteColorsBlack[2] = (0  , 150, 0  )
                 blackNoteKeys[4]   = (0, 0, 0)
@@ -313,7 +328,7 @@ while True: #Game Loop
                 elif (currentOctive[1] == True):
                     FSharp2.play()
                 elif (currentOctive[2] == True):
-                    print("Third Octive Note")
+                    FSharp3.play()
             if (event.key == K_y):
                 noteColorsBlack[3] = (0  , 150, 0  )
                 blackNoteKeys[3]   = (0, 0, 0)
@@ -323,7 +338,7 @@ while True: #Game Loop
                 elif (currentOctive[1] == True):
                     GSharp2.play()
                 elif (currentOctive[2] == True):
-                    print("Third Octive Note")
+                    GSharp3.play()
             if (event.key == K_u):
                 noteColorsBlack[4] = (0  , 150, 0  )
                 blackNoteKeys[2]   = (0, 0, 0)
@@ -333,7 +348,7 @@ while True: #Game Loop
                 elif (currentOctive[1] == True):
                     ASharp2.play()
                 elif (currentOctive[2] == True):
-                    print("Third Octive Note")
+                    ASharp3.play()
             if (event.key == K_o):
                 noteColorsBlack[5] = (0  , 150, 0  )
                 blackNoteKeys[1]   = (0, 0, 0)
@@ -343,7 +358,7 @@ while True: #Game Loop
                 elif (currentOctive[1] == True):
                     CSharp3.play()
                 elif (currentOctive[2] == True):
-                    print("Third Octive Note")
+                    CSharp4.play()
             if (event.key == K_p):
                 noteColorsBlack[6] = (0  , 150, 0  )
                 blackNoteKeys[0]   = (0, 0, 0)
@@ -353,7 +368,7 @@ while True: #Game Loop
                 elif (currentOctive[1] == True):
                     DSharp3.play()
                 elif (currentOctive[2] == True):
-                    print("Third Octive Note")
+                    DSharp4.play()
             
         if event.type == KEYUP:
             #Notes Released
@@ -365,7 +380,7 @@ while True: #Game Loop
                 elif (currentOctive[1] == True):
                     C2.fadeout(500)
                 elif (currentOctive[2] == True):
-                    print("Third Octive Note")
+                    C3.fadeout(500)
             if (event.key == K_s):
                 noteColorsWhite[1] = (255, 255, 255)
                 pianoTilesS[len(pianoTilesS)-1][3] = False
@@ -374,7 +389,7 @@ while True: #Game Loop
                 elif (currentOctive[1] == True):
                     D2.fadeout(500)
                 elif (currentOctive[2] == True):
-                    print("Third Octive Note")
+                    D3.fadeout(500)
             if (event.key == K_d):
                 noteColorsWhite[2] = (255, 255, 255)
                 pianoTilesD[len(pianoTilesD)-1][3] = False
@@ -383,7 +398,7 @@ while True: #Game Loop
                 elif (currentOctive[1] == True):
                     E2.fadeout(500)
                 elif (currentOctive[2] == True):
-                    print("Third Octive Note")
+                    E3.fadeout(500)
             if (event.key == K_f):
                 noteColorsWhite[3] = (255, 255, 255)
                 pianoTilesF[len(pianoTilesF)-1][3] = False
@@ -392,7 +407,7 @@ while True: #Game Loop
                 elif (currentOctive[1] == True):
                     F2.fadeout(500)
                 elif (currentOctive[2] == True):
-                    print("Third Octive Note")
+                    F3.fadeout(500)
             if (event.key == K_g):
                 noteColorsWhite[4] = (255, 255, 255)
                 pianoTilesG[len(pianoTilesG)-1][3] = False
@@ -401,7 +416,7 @@ while True: #Game Loop
                 elif (currentOctive[1] == True):
                     G2.fadeout(500)
                 elif (currentOctive[2] == True):
-                    print("Third Octive Note")
+                    G3.fadeout(500)
             if (event.key == K_h):
                 noteColorsWhite[5] = (255, 255, 255)
                 pianoTilesH[len(pianoTilesH)-1][3] = False
@@ -410,7 +425,7 @@ while True: #Game Loop
                 elif (currentOctive[1] == True):
                     A2.fadeout(500)
                 elif (currentOctive[2] == True):
-                    print("Third Octive Note")
+                    A3.fadeout(500)
             if (event.key == K_j):
                 noteColorsWhite[6] = (255, 255, 255)
                 pianoTilesJ[len(pianoTilesJ)-1][3] = False
@@ -419,7 +434,7 @@ while True: #Game Loop
                 elif (currentOctive[1] == True):
                     B2.fadeout(500)
                 elif (currentOctive[2] == True):
-                    print("Third Octive Note")
+                    B3.fadeout(500)
             if (event.key == K_k):
                 noteColorsWhite[7] = (255, 255, 255)
                 pianoTilesK[len(pianoTilesK)-1][3] = False
@@ -428,7 +443,7 @@ while True: #Game Loop
                 elif (currentOctive[1] == True):
                     C3.fadeout(500)
                 elif (currentOctive[2] == True):
-                    print("Third Octive Note")
+                    C4.fadeout(500)
             if (event.key == K_l):
                 noteColorsWhite[8] = (255, 255, 255)
                 pianoTilesL[len(pianoTilesL)-1][3] = False
@@ -437,7 +452,7 @@ while True: #Game Loop
                 elif (currentOctive[1] == True):
                     D3.fadeout(500)
                 elif (currentOctive[2] == True):
-                    print("Third Octive Note")
+                    D4.fadeout(500)
             if (event.key == K_SEMICOLON):
                 noteColorsWhite[9] = (255, 255, 255)
                 pianoTilesSEMI[len(pianoTilesSEMI)-1][3] = False
@@ -446,7 +461,7 @@ while True: #Game Loop
                 elif (currentOctive[1] == True):
                     E3.fadeout(500)
                 elif (currentOctive[2] == True):
-                    print("Third Octive Note")
+                    E4.fadeout(500)
                 
             if (event.key == K_w):
                 noteColorsBlack[0] = (0, 0, 0)
@@ -457,7 +472,7 @@ while True: #Game Loop
                 elif (currentOctive[1] == True):
                     CSharp2.fadeout(500)
                 elif (currentOctive[2] == True):
-                    print("Third Octive Note")
+                    CSharp3.fadeout(500)
             if (event.key == K_e):
                 noteColorsBlack[1] = (0, 0, 0)
                 blackNoteKeys[5]   = (255, 255, 255)
@@ -467,7 +482,7 @@ while True: #Game Loop
                 elif (currentOctive[1] == True):
                     DSharp2.fadeout(500)
                 elif (currentOctive[2] == True):
-                    print("Third Octive Note")
+                    DSharp3.fadeout(500)
             if (event.key == K_t):
                 noteColorsBlack[2] = (0, 0, 0)
                 blackNoteKeys[4]   = (255, 255, 255)
@@ -477,7 +492,7 @@ while True: #Game Loop
                 elif (currentOctive[1] == True):
                     FSharp2.fadeout(500)
                 elif (currentOctive[2] == True):
-                    print("Third Octive Note")
+                    FSharp3.fadeout(500)
             if (event.key == K_y):
                 noteColorsBlack[3] = (0, 0, 0)
                 blackNoteKeys[3]   = (255, 255, 255)
@@ -487,7 +502,7 @@ while True: #Game Loop
                 elif (currentOctive[1] == True):
                     GSharp2.fadeout(500)
                 elif (currentOctive[2] == True):
-                    print("Third Octive Note")
+                    GSharp3.fadeout(500)
             if (event.key == K_u):
                 noteColorsBlack[4] = (0, 0, 0)
                 blackNoteKeys[2]   = (255, 255, 255)
@@ -497,7 +512,7 @@ while True: #Game Loop
                 elif (currentOctive[1] == True):
                     ASharp2.fadeout(500)
                 elif (currentOctive[2] == True):
-                    print("Third Octive Note")
+                    ASharp3.fadeout(500)
             if (event.key == K_o):
                 noteColorsBlack[5] = (0, 0, 0)
                 blackNoteKeys[1]   = (255, 255, 255)
@@ -507,7 +522,7 @@ while True: #Game Loop
                 elif (currentOctive[1] == True):
                     CSharp3.fadeout(500)
                 elif (currentOctive[2] == True):
-                    print("Third Octive Note")
+                    CSharp4.fadeout(400)
             if (event.key == K_p):
                 noteColorsBlack[6] = (0, 0, 0)
                 blackNoteKeys[0]   = (255, 255, 255)
@@ -517,26 +532,7 @@ while True: #Game Loop
                 elif (currentOctive[1] == True):
                     DSharp3.fadeout(500)
                 elif (currentOctive[2] == True):
-                    print("Third Octive Note")
-
-    #A2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/A2.wav'))
-    #B2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/B2.wav'))
-    #C2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/C2.wav'))
-    #D2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/D2.wav'))
-    #E2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/E2.wav'))
-    #F2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/F2.wav'))
-    #G2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/G2.wav'))
-    #CSharp2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/CSharp2.wav'))
-    #DSharp2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/DSharp2.wav'))
-    #FSharp2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/FSharp2.wav'))
-    #GSharp2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/GSharp2.wav'))
-    #ASharp2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/ASharp2.wav'))
-
-    #C3 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/C3.wav'))
-    #D3 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/D3.wav'))
-    #E3 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/E3.wav'))
-    #CSharp3 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/CSharp3.wav'))
-    #DSharp3 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/DSharp3.wav'))
+                    DSharp4.fadeout(500)
     
     #Change Volume
     volume = volumeSliderX/50

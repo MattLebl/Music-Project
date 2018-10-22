@@ -1,7 +1,7 @@
 import pygame, sys, time, os, random, math, colorsys
 from pygame.locals import *
 from random import *
-from ctypes import windll, Structure, c_long, byref
+#from ctypes import windll, Structure, c_long, byref
 
 pygame.mixer.pre_init(44100, -16, 1, 512)
 
@@ -27,9 +27,6 @@ windowWidth  = 1280
 windowHeight = 720
 
 #Sound Variables
-<<<<<<< HEAD
-testSound = pygame.mixer.Sound('C0.wav')
-=======
 A2 = pygame.mixer.Sound(os.path.join(dir, './A2.wav'))
 B2 = pygame.mixer.Sound(os.path.join(dir, './B2.wav'))
 C2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/C2.wav'))
@@ -41,7 +38,6 @@ G2 = pygame.mixer.Sound(os.path.join(dir, './G2.wav'))
 C3 = pygame.mixer.Sound(os.path.join(dir, './C3.wav'))
 D3 = pygame.mixer.Sound(os.path.join(dir, './D3.wav'))
 E3 = pygame.mixer.Sound(os.path.join(dir, './E3.wav'))
->>>>>>> f4c4cbc13e58ca8c938463c0f10ceeb044358a30
 
 #Colour Variables
 Black      = (0  , 0  , 0  )

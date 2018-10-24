@@ -4,6 +4,10 @@
 import pygame, sys, time, os, random, math, colorsys
 from pygame.locals import *
 from random import *
+<<<<<<< HEAD
+#from ctypes import windll, Structure, c_long, byref
+=======
+>>>>>>> 8ce16b7ee5887375201317c1f4c8874f05e55516
 
 pygame.mixer.pre_init(44100, -16, 1, 512)
 
@@ -29,6 +33,19 @@ windowWidth  = 1280
 windowHeight = 720
 
 #Sound Variables
+<<<<<<< HEAD
+A2 = pygame.mixer.Sound(os.path.join(dir, './A2.wav'))
+B2 = pygame.mixer.Sound(os.path.join(dir, './B2.wav'))
+C2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/C2.wav'))
+D2 = pygame.mixer.Sound(os.path.join(dir, './D2.wav'))
+E2 = pygame.mixer.Sound(os.path.join(dir, './E2.wav'))
+F2 = pygame.mixer.Sound(os.path.join(dir, './F2.wav'))
+G2 = pygame.mixer.Sound(os.path.join(dir, './G2.wav'))
+
+C3 = pygame.mixer.Sound(os.path.join(dir, './C3.wav'))
+D3 = pygame.mixer.Sound(os.path.join(dir, './D3.wav'))
+E3 = pygame.mixer.Sound(os.path.join(dir, './E3.wav'))
+=======
 A2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/A2.wav'))
 B2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/B2.wav'))
 C2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/C2.wav'))
@@ -60,6 +77,7 @@ D4 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/D4.wav'))
 E4 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/E4.wav'))
 CSharp4 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/CSharp4.wav'))
 DSharp4 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/DSharp4.wav'))
+>>>>>>> 8ce16b7ee5887375201317c1f4c8874f05e55516
 
 #Colour Variables
 Black      = (0  , 0  , 0  )

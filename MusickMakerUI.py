@@ -11,10 +11,10 @@ BLACK = (0, 0, 0)
 RED = (255, 0, 0)
 BLUE = (0, 0, 255)
 
-SCREENWIDTH = 1440
-SCREENHEIGHT = 785
-size = (SCREENWIDTH, SCREENHEIGHT)
-screen = pygame.display.set_mode(size)
+windowWidth = 1440
+windowHeight = 785
+window = (windowWidth, windowHeight)
+screen = pygame.display.set_mode(window)
 
 class Button():
     """This is a class for a generic button.
@@ -28,7 +28,10 @@ class Button():
        font_name = name of font
        font_size = size of font
     """
-    def __init__(self, txt, location, action, bg=WHITE, fg=BLACK, size=(150, 75), font_name="Segoe Print", font_size=40):
+    def __init__(self, txt, location, action, bg=WHITE, fg=BLACK, size=(20, 20), font_name="Segoe Print", font_size=40):
+
+        super (). __init__ ()
+
         self.color = bg  # the static (normal) color
         self.bg = bg  # actual background color, can change on mouseover
         self.fg = fg  # text color
@@ -43,7 +46,7 @@ class Button():
         self.rect = self.surface.get_rect(center=location)
 
         self.call_back_ = action
-
+        
     def draw(self):
         self.mouseover()
 
@@ -61,3 +64,33 @@ class Button():
     def call_back(self):
         """Runs a function when clicked"""
         self.call_back_()
+
+class Record(Button):
+
+    def __init__(self, txt, location, action, bg=WHITE, fg=BLACK, size=(20, 20), font_name="Segoe Print", font_size=40):
+
+        #super (). __init__ (self, txt, location, action, bg=WHITE, fg=BLACK, size=(20, 20), font_name="Segoe Print", font_size=40):
+        
+        self.color = bg  # the static (normal) color
+        self.bg = bg  # actual background color, can change on mouseover
+        self.fg = fg  # text color
+        self.size = size
+
+        self.font = pygame.font.SysFont(font_name, font_size)
+        self.txt = txt
+        self.txt_surf = self.font.render(self.txt, 1, self.fg)
+        self.txt_rect = self.txt_surf.get_rect(center=[s//2 for s in self.size])
+
+        self.surface = pygame.surface.Surface(size)
+        self.rect = self.surface.get_rect(center=location)
+
+        self.call_back_ = action
+        
+
+
+
+
+
+
+
+        

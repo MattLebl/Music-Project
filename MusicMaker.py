@@ -1,5 +1,5 @@
-#Current Known Bugs:
-#When switching octives while pressing a note, then releasing it in the new octive, the old octive note will not fade out
+#https://stackoverflow.com/questions/9770073/sound-generation-synthesis-with-python
+#https://soledadpenades.com/posts/2009/fastest-way-to-generate-wav-files-in-python-using-the-wave-module/
 
 import pygame, sys, time, os, random, math, colorsys
 from pygame.locals import *
@@ -33,7 +33,6 @@ windowWidth  = 1280
 windowHeight = 720
 
 #Sound Variables
-<<<<<<< HEAD
 A2 = pygame.mixer.Sound(os.path.join(dir, './A2.wav'))
 B2 = pygame.mixer.Sound(os.path.join(dir, './B2.wav'))
 C2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/C2.wav'))
@@ -77,7 +76,6 @@ D4 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/D4.wav'))
 E4 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/E4.wav'))
 CSharp4 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/CSharp4.wav'))
 DSharp4 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/DSharp4.wav'))
->>>>>>> 8ce16b7ee5887375201317c1f4c8874f05e55516
 
 #Colour Variables
 Black      = (0  , 0  , 0  )
@@ -135,13 +133,15 @@ pianoTilesP = []
 
 #Set up the window
 Surface    = pygame.display.set_mode((windowWidth, windowHeight))
-fadeScreen = pygame.Surface((windowWidth, windowHeight))
 pygame.display.set_caption('Music Maker')
 
 #Variables
 volumeSliderX = 50
 volume = 1
 activeSlider = False;
+reverbSliderX = 25
+reverb = 500
+activeSlider2 = False;
 
 #Mouse Variables
 mousePosition = pygame.mouse.get_pos()
@@ -200,8 +200,6 @@ while True: #Game Loop
             sys.exit()
 
         if event.type == KEYDOWN:
-            #Notes Pressed
-
             #Moves Octive down
             if (event.key == K_z):
                 if (currentOctive[1] == True):
@@ -393,164 +391,112 @@ while True: #Game Loop
             if (event.key == K_a):
                 noteColorsWhite[0] = (255, 255, 255)
                 pianoTilesA[len(pianoTilesA)-1][3] = False
-                if (currentOctive[0] == True):
-                    print("First Octive Note")
-                elif (currentOctive[1] == True):
-                    C2.fadeout(500)
-                elif (currentOctive[2] == True):
-                    C3.fadeout(500)
+                
+                C2.fadeout(reverb)
+                C3.fadeout(reverb)
             if (event.key == K_s):
                 noteColorsWhite[1] = (255, 255, 255)
                 pianoTilesS[len(pianoTilesS)-1][3] = False
-                if (currentOctive[0] == True):
-                    print("First Octive Note")
-                elif (currentOctive[1] == True):
-                    D2.fadeout(500)
-                elif (currentOctive[2] == True):
-                    D3.fadeout(500)
+                
+                D2.fadeout(reverb)
+                D3.fadeout(reverb)
             if (event.key == K_d):
                 noteColorsWhite[2] = (255, 255, 255)
                 pianoTilesD[len(pianoTilesD)-1][3] = False
-                if (currentOctive[0] == True):
-                    print("First Octive Note")
-                elif (currentOctive[1] == True):
-                    E2.fadeout(500)
-                elif (currentOctive[2] == True):
-                    E3.fadeout(500)
+                
+                E2.fadeout(reverb)
+                E3.fadeout(reverb)
             if (event.key == K_f):
                 noteColorsWhite[3] = (255, 255, 255)
                 pianoTilesF[len(pianoTilesF)-1][3] = False
-                if (currentOctive[0] == True):
-                    print("First Octive Note")
-                elif (currentOctive[1] == True):
-                    F2.fadeout(500)
-                elif (currentOctive[2] == True):
-                    F3.fadeout(500)
+                
+                F2.fadeout(reverb)
+                F3.fadeout(reverb)
             if (event.key == K_g):
                 noteColorsWhite[4] = (255, 255, 255)
                 pianoTilesG[len(pianoTilesG)-1][3] = False
-                if (currentOctive[0] == True):
-                    print("First Octive Note")
-                elif (currentOctive[1] == True):
-                    G2.fadeout(500)
-                elif (currentOctive[2] == True):
-                    G3.fadeout(500)
+                
+                G2.fadeout(reverb)
+                G3.fadeout(reverb)
             if (event.key == K_h):
                 noteColorsWhite[5] = (255, 255, 255)
                 pianoTilesH[len(pianoTilesH)-1][3] = False
-                if (currentOctive[0] == True):
-                    print("First Octive Note")
-                elif (currentOctive[1] == True):
-                    A2.fadeout(500)
-                elif (currentOctive[2] == True):
-                    A3.fadeout(500)
+
+                A2.fadeout(reverb)
+                A3.fadeout(reverb)
             if (event.key == K_j):
                 noteColorsWhite[6] = (255, 255, 255)
                 pianoTilesJ[len(pianoTilesJ)-1][3] = False
-                if (currentOctive[0] == True):
-                    print("First Octive Note")
-                elif (currentOctive[1] == True):
-                    B2.fadeout(500)
-                elif (currentOctive[2] == True):
-                    B3.fadeout(500)
+                
+                B2.fadeout(reverb)
+                B3.fadeout(reverb)
             if (event.key == K_k):
                 noteColorsWhite[7] = (255, 255, 255)
                 pianoTilesK[len(pianoTilesK)-1][3] = False
-                if (currentOctive[0] == True):
-                    print("First Octive Note")
-                elif (currentOctive[1] == True):
-                    C3.fadeout(500)
-                elif (currentOctive[2] == True):
-                    C4.fadeout(500)
+                
+                C3.fadeout(reverb)
+                C4.fadeout(reverb)
             if (event.key == K_l):
                 noteColorsWhite[8] = (255, 255, 255)
                 pianoTilesL[len(pianoTilesL)-1][3] = False
-                if (currentOctive[0] == True):
-                    print("First Octive Note")
-                elif (currentOctive[1] == True):
-                    D3.fadeout(500)
-                elif (currentOctive[2] == True):
-                    D4.fadeout(500)
+
+                D3.fadeout(reverb)
+                D4.fadeout(reverb)
             if (event.key == K_SEMICOLON):
                 noteColorsWhite[9] = (255, 255, 255)
                 pianoTilesSEMI[len(pianoTilesSEMI)-1][3] = False
-                if (currentOctive[0] == True):
-                    print("First Octive Note")
-                elif (currentOctive[1] == True):
-                    E3.fadeout(500)
-                elif (currentOctive[2] == True):
-                    E4.fadeout(500)
                 
+                E3.fadeout(reverb)
+                E4.fadeout(reverb)
             if (event.key == K_w):
                 noteColorsBlack[0] = (0, 0, 0)
                 blackNoteKeys[6]   = (255, 255, 255)
                 pianoTilesW[len(pianoTilesW)-1][3] = False
-                if (currentOctive[0] == True):
-                    print("First Octive Note")
-                elif (currentOctive[1] == True):
-                    CSharp2.fadeout(500)
-                elif (currentOctive[2] == True):
-                    CSharp3.fadeout(500)
+                
+                CSharp2.fadeout(reverb)
+                CSharp3.fadeout(reverb)
             if (event.key == K_e):
                 noteColorsBlack[1] = (0, 0, 0)
                 blackNoteKeys[5]   = (255, 255, 255)
                 pianoTilesE[len(pianoTilesE)-1][3] = False
-                if (currentOctive[0] == True):
-                    print("First Octive Note")
-                elif (currentOctive[1] == True):
-                    DSharp2.fadeout(500)
-                elif (currentOctive[2] == True):
-                    DSharp3.fadeout(500)
+                
+                DSharp2.fadeout(reverb)
+                DSharp3.fadeout(reverb)
             if (event.key == K_t):
                 noteColorsBlack[2] = (0, 0, 0)
                 blackNoteKeys[4]   = (255, 255, 255)
                 pianoTilesT[len(pianoTilesT)-1][3] = False
-                if (currentOctive[0] == True):
-                    print("First Octive Note")
-                elif (currentOctive[1] == True):
-                    FSharp2.fadeout(500)
-                elif (currentOctive[2] == True):
-                    FSharp3.fadeout(500)
+                
+                FSharp2.fadeout(reverb)
+                FSharp3.fadeout(reverb)
             if (event.key == K_y):
                 noteColorsBlack[3] = (0, 0, 0)
                 blackNoteKeys[3]   = (255, 255, 255)
                 pianoTilesY[len(pianoTilesY)-1][3] = False
-                if (currentOctive[0] == True):
-                    print("First Octive Note")
-                elif (currentOctive[1] == True):
-                    GSharp2.fadeout(500)
-                elif (currentOctive[2] == True):
-                    GSharp3.fadeout(500)
+
+                GSharp2.fadeout(reverb)
+                GSharp3.fadeout(reverb)
             if (event.key == K_u):
                 noteColorsBlack[4] = (0, 0, 0)
                 blackNoteKeys[2]   = (255, 255, 255)
                 pianoTilesU[len(pianoTilesU)-1][3] = False
-                if (currentOctive[0] == True):
-                    print("First Octive Note")
-                elif (currentOctive[1] == True):
-                    ASharp2.fadeout(500)
-                elif (currentOctive[2] == True):
-                    ASharp3.fadeout(500)
+
+                ASharp2.fadeout(reverb)
+                ASharp3.fadeout(reverb)
             if (event.key == K_o):
                 noteColorsBlack[5] = (0, 0, 0)
                 blackNoteKeys[1]   = (255, 255, 255)
                 pianoTilesO[len(pianoTilesO)-1][3] = False
-                if (currentOctive[0] == True):
-                    print("First Octive Note")
-                elif (currentOctive[1] == True):
-                    CSharp3.fadeout(500)
-                elif (currentOctive[2] == True):
-                    CSharp4.fadeout(400)
+
+                CSharp3.fadeout(reverb)
+                CSharp4.fadeout(reverb)
             if (event.key == K_p):
                 noteColorsBlack[6] = (0, 0, 0)
                 blackNoteKeys[0]   = (255, 255, 255)
                 pianoTilesP[len(pianoTilesP)-1][3] = False
-                if (currentOctive[0] == True):
-                    print("First Octive Note")
-                elif (currentOctive[1] == True):
-                    DSharp3.fadeout(500)
-                elif (currentOctive[2] == True):
-                    DSharp4.fadeout(500)
+                
+                DSharp3.fadeout(reverb)
+                DSharp4.fadeout(reverb)
     
     #Change Volume
     volume = volumeSliderX/50
@@ -572,22 +518,42 @@ while True: #Game Loop
     ChangeVolume(CSharp3)
     ChangeVolume(DSharp3)
 
-    #Move Bar
+    #Change Reverb
+    reverb = reverbSliderX*20
+
+    #Move Bars
     mousePressed = pygame.mouse.get_pressed()
     mousePosition = pygame.mouse.get_pos()
     
-    if (mousePressed[0] == 1 and mousePosition[0] <= (windowWidth-905)+volumeSliderX+10 and mousePosition[0] >= (windowWidth-905)+volumeSliderX and mousePosition[1] >= 11 and mousePosition[1] <= 26):
-        activeSlider = True;
+    if (activeSlider2 == False and mousePressed[0] == 1 and mousePosition[0] <= (windowWidth-875)+100 and mousePosition[0] >= (windowWidth-875) and mousePosition[1] >= 16 and mousePosition[1] <= 21 or
+        activeSlider2 == False and mousePressed[0] == 1 and mousePosition[0] <= (windowWidth-880)+volumeSliderX+10 and mousePosition[0] >= (windowWidth-880)+volumeSliderX and mousePosition[1] >= 11 and mousePosition[1] <= 26):
+        activeSlider = True
 
     if (activeSlider):
-        volumeSliderX = mousePosition[0]-380
+        volumeSliderX = mousePosition[0]-405
         if (mousePressed[0] == 0):
-            activeSlider = False;
+            activeSlider = False
 
     if (volumeSliderX > 100):
         volumeSliderX = 100
     elif (volumeSliderX < 0):
         volumeSliderX = 0
+
+
+
+    if (activeSlider == False and mousePressed[0] == 1 and mousePosition[0] <= (windowWidth-725)+reverbSliderX+10 and mousePosition[0] >= (windowWidth-725)+reverbSliderX and mousePosition[1] >= 11 and mousePosition[1] <= 26 or
+        activeSlider == False and mousePressed[0] == 1 and mousePosition[0] <= (windowWidth-725)+100 and mousePosition[0] >= (windowWidth-725) and mousePosition[1] >= 16 and mousePosition[1] <= 21):
+        activeSlider2 = True
+
+    if (activeSlider2):
+        reverbSliderX = mousePosition[0]-(405+125)
+        if (mousePressed[0] == 0):
+            activeSlider2 = False
+
+    if (reverbSliderX > 100):
+        reverbSliderX = 100
+    elif (reverbSliderX < 0):
+        reverbSliderX = 0
 
     #Background
     pygame.draw.rect(Surface, LightGrey, (0, 0, windowWidth, windowHeight))
@@ -694,9 +660,21 @@ while True: #Game Loop
     pygame.draw.rect(Surface, (150, 150, 150), (windowWidth-918, 2, 918, 35))
     pygame.draw.rect(Surface, Black, (windowWidth-920, 0, 919, 37), 2)
 
-    pygame.draw.rect(Surface, DarkGrey, (windowWidth-900, 16, 100, 5))
-    pygame.draw.rect(Surface, Green, (windowWidth-900, 16, volumeSliderX, 5))
-    pygame.draw.rect(Surface, (230, 230, 230), ((windowWidth-905)+volumeSliderX, 11, 10, 15))
+    #Volume Slider
+    pygame.draw.rect(Surface, DarkGrey, (windowWidth-875, 16, 100, 5))
+    pygame.draw.rect(Surface, Green, (windowWidth-875, 16, volumeSliderX, 5))
+    pygame.draw.rect(Surface, (230, 230, 230), ((windowWidth-880)+volumeSliderX, 11, 10, 15))
+
+    pygame.draw.rect(Surface, Black, (windowWidth-910, 8, 20, 20), 2)
+    Text("V", windowWidth-900, 19, 15, Black)
+
+    #Reverb
+    #pygame.draw.rect(Surface, DarkGrey, (windowWidth-725, 16, 100, 5))
+    #pygame.draw.rect(Surface, Green, (windowWidth-725, 16, reverbSliderX, 5))
+    #pygame.draw.rect(Surface, (230, 230, 230), ((windowWidth-730)+reverbSliderX, 11, 10, 15))
+
+    pygame.draw.rect(Surface, Black, (windowWidth-760, 8, 20, 20), 2)
+    Text("R", windowWidth-748.5, 18, 15, Black)
     
     pygame.display.flip()
     fpsClock.tick(FPS)

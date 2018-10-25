@@ -4,10 +4,11 @@
 import pygame, sys, time, os, random, math, colorsys
 from pygame.locals import *
 from random import *
-<<<<<<< HEAD
+from MusickMakerUI import Button
+from MusickMakerUI import Record
+from MusickMakerUI import Info
+
 #from ctypes import windll, Structure, c_long, byref
-=======
->>>>>>> 8ce16b7ee5887375201317c1f4c8874f05e55516
 
 pygame.mixer.pre_init(44100, -16, 1, 512)
 
@@ -33,18 +34,17 @@ windowWidth  = 1280
 windowHeight = 720
 
 #Sound Variables
-A2 = pygame.mixer.Sound(os.path.join(dir, './A2.wav'))
-B2 = pygame.mixer.Sound(os.path.join(dir, './B2.wav'))
+A2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/A2.wav'))
+B2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/B2.wav'))
 C2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/C2.wav'))
-D2 = pygame.mixer.Sound(os.path.join(dir, './D2.wav'))
-E2 = pygame.mixer.Sound(os.path.join(dir, './E2.wav'))
-F2 = pygame.mixer.Sound(os.path.join(dir, './F2.wav'))
-G2 = pygame.mixer.Sound(os.path.join(dir, './G2.wav'))
+D2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/D2.wav'))
+E2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/E2.wav'))
+F2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/F2.wav'))
+G2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/G2.wav'))
 
-C3 = pygame.mixer.Sound(os.path.join(dir, './C3.wav'))
-D3 = pygame.mixer.Sound(os.path.join(dir, './D3.wav'))
-E3 = pygame.mixer.Sound(os.path.join(dir, './E3.wav'))
-=======
+C3 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/C3.wav'))
+D3 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/D3.wav'))
+E3 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/E3.wav'))
 A2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/A2.wav'))
 B2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/B2.wav'))
 C2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/C2.wav'))
@@ -192,6 +192,30 @@ def Text(Text, xPos, yPos, Size, Colour):
      TextRect.center    = (xPos, yPos)
 
      Surface.blit(TextSurf, TextRect)
+
+#Functions for buttoons
+def my_next_function():
+       print("it's working")
+       
+def mousebuttondown(level):
+    """A function that checks which button was pressed"""
+    pos = pygame.mouse.get_pos()
+    if level == 1:
+        for button in level1_buttons:
+            if button.rect.collidepoint(pos):
+                button.call_back()
+
+level = 1
+menuOn = True
+
+#create buttons
+button_record = Record("•", (818, 20), my_next_function, bg=(50, 200, 20))
+button_info = Info("i", (1250, 20), my_next_function, bg=(91, 230, 255))
+
+#arrange button groups depending on level
+level1_buttons = [button_record, button_info]
+
+clock = pygame.time.Clock()
 
 while True: #Game Loop
     for event in pygame.event.get():
@@ -559,6 +583,8 @@ while True: #Game Loop
     pygame.draw.rect(Surface, LightGrey, (0, 0, windowWidth, windowHeight))
     pygame.draw.rect(Surface, Grey, (windowWidth-920, 0, 920, windowHeight))
     pygame.draw.line(Surface, Black, (windowWidth-922, windowHeight), (windowWidth-922, 0), 5)
+    pygame.draw.rect(Surface, Black, (0, 0, windowWidth/3.55, windowHeight/2), 3)
+    pygame.draw.rect(Surface, Black, (windowWidth, windowHeight/2, windowWidth/3.55, windowHeight), 3)
     for x in range(1, 10):
         pygame.draw.line(Surface, Grey2, (windowWidth-(92*x)-3, 0), (windowWidth-(92*x)-3, windowHeight-247), 3)
     pygame.draw.line(Surface, Grey3, (windowWidth-(92*3)-3, 0), (windowWidth-(92*3)-3, windowHeight-247), 3)
@@ -669,12 +695,17 @@ while True: #Game Loop
     Text("V", windowWidth-900, 19, 15, Black)
 
     #Reverb
-    #pygame.draw.rect(Surface, DarkGrey, (windowWidth-725, 16, 100, 5))
-    #pygame.draw.rect(Surface, Green, (windowWidth-725, 16, reverbSliderX, 5))
-    #pygame.draw.rect(Surface, (230, 230, 230), ((windowWidth-730)+reverbSliderX, 11, 10, 15))
+    pygame.draw.rect(Surface, DarkGrey, (windowWidth-725, 16, 100, 5))
+    pygame.draw.rect(Surface, Green, (windowWidth-725, 16, reverbSliderX, 5))
+    pygame.draw.rect(Surface, (230, 230, 230), ((windowWidth-730)+reverbSliderX, 11, 10, 15))
 
     pygame.draw.rect(Surface, Black, (windowWidth-760, 8, 20, 20), 2)
     Text("R", windowWidth-748.5, 18, 15, Black)
+
+    #Draws buttons
+    if level == 1:
+        for button in level1_buttons:
+            button.draw()
     
     pygame.display.flip()
     fpsClock.tick(FPS)

@@ -67,7 +67,7 @@ class Button():
 
 class Record(Button):
 
-    def __init__(self, txt, location, action, bg=WHITE, fg=BLACK, size=(20, 20), font_name="Segoe Print", font_size=40):
+    def __init__(self, txt, location, action, bg=WHITE, fg=BLACK, size=(20, 20), font_name="Segoe Print", font_size=30):
 
         #super (). __init__ (self, txt, location, action, bg=WHITE, fg=BLACK, size=(20, 20), font_name="Segoe Print", font_size=40):
         
@@ -86,11 +86,25 @@ class Record(Button):
 
         self.call_back_ = action
         
+class Info(Button):
 
+    def __init__(self, txt, location, action, bg=WHITE, fg=BLACK, size=(20, 20), font_name="Segoe Print", font_size=30):
 
-
-
-
-
-
+        #super (). __init__ (self, txt, location, action, bg=WHITE, fg=BLACK, size=(20, 20), font_name="Segoe Print", font_size=40):
         
+        self.color = bg  # the static (normal) color
+        self.bg = bg  # actual background color, can change on mouseover
+        self.fg = fg  # text color
+        self.size = size
+
+        self.font = pygame.font.SysFont(font_name, font_size)
+        self.txt = txt
+        self.txt_surf = self.font.render(self.txt, 1, self.fg)
+        self.txt_rect = self.txt_surf.get_rect(center=[s//2 for s in self.size])
+
+        self.surface = pygame.surface.Surface(size)
+        self.rect = self.surface.get_rect(center=location)
+
+        self.call_back_ = action
+
+

@@ -4,10 +4,6 @@
 import pygame, sys, time, os, random, math, colorsys
 from pygame.locals import *
 from random import *
-<<<<<<< HEAD
-#from ctypes import windll, Structure, c_long, byref
-=======
->>>>>>> 8ce16b7ee5887375201317c1f4c8874f05e55516
 
 pygame.mixer.pre_init(44100, -16, 1, 512)
 
@@ -33,19 +29,6 @@ windowWidth  = 1280
 windowHeight = 720
 
 #Sound Variables
-<<<<<<< HEAD
-A2 = pygame.mixer.Sound(os.path.join(dir, './A2.wav'))
-B2 = pygame.mixer.Sound(os.path.join(dir, './B2.wav'))
-C2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/C2.wav'))
-D2 = pygame.mixer.Sound(os.path.join(dir, './D2.wav'))
-E2 = pygame.mixer.Sound(os.path.join(dir, './E2.wav'))
-F2 = pygame.mixer.Sound(os.path.join(dir, './F2.wav'))
-G2 = pygame.mixer.Sound(os.path.join(dir, './G2.wav'))
-
-C3 = pygame.mixer.Sound(os.path.join(dir, './C3.wav'))
-D3 = pygame.mixer.Sound(os.path.join(dir, './D3.wav'))
-E3 = pygame.mixer.Sound(os.path.join(dir, './E3.wav'))
-=======
 A2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/A2.wav'))
 B2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/B2.wav'))
 C2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/C2.wav'))
@@ -77,7 +60,6 @@ D4 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/D4.wav'))
 E4 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/E4.wav'))
 CSharp4 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/CSharp4.wav'))
 DSharp4 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/DSharp4.wav'))
->>>>>>> 8ce16b7ee5887375201317c1f4c8874f05e55516
 
 #Colour Variables
 Black      = (0  , 0  , 0  )
@@ -502,6 +484,7 @@ while True: #Game Loop
     
     #Change Volume
     volume = volumeSliderX/50
+    
     ChangeVolume(A2)
     ChangeVolume(B2)
     ChangeVolume(C2)
@@ -514,11 +497,23 @@ while True: #Game Loop
     ChangeVolume(FSharp2)
     ChangeVolume(GSharp2)
     ChangeVolume(ASharp2)
+    ChangeVolume(A3)
+    ChangeVolume(B3)
     ChangeVolume(C3)
     ChangeVolume(D3)
     ChangeVolume(E3)
+    ChangeVolume(F3)
+    ChangeVolume(G3)
     ChangeVolume(CSharp3)
     ChangeVolume(DSharp3)
+    ChangeVolume(FSharp3)
+    ChangeVolume(GSharp3)
+    ChangeVolume(ASharp3)
+    ChangeVolume(C4)
+    ChangeVolume(D4)
+    ChangeVolume(E4)
+    ChangeVolume(CSharp4)
+    ChangeVolume(DSharp4)
 
     #Change Reverb
     reverb = reverbSliderX*20
@@ -548,7 +543,7 @@ while True: #Game Loop
         activeSlider2 = True
 
     if (activeSlider2):
-        reverbSliderX = mousePosition[0]-(405+125)
+        reverbSliderX = mousePosition[0]-(555)
         if (mousePressed[0] == 0):
             activeSlider2 = False
 
@@ -667,16 +662,28 @@ while True: #Game Loop
     pygame.draw.rect(Surface, Green, (windowWidth-875, 16, volumeSliderX, 5))
     pygame.draw.rect(Surface, (230, 230, 230), ((windowWidth-880)+volumeSliderX, 11, 10, 15))
 
-    pygame.draw.rect(Surface, Black, (windowWidth-910, 8, 20, 20), 2)
-    Text("V", windowWidth-900, 19, 15, Black)
+    if (activeSlider == False):
+        pygame.draw.rect(Surface, Black, (windowWidth-910, 8, 20, 20), 2)
+        Text("V", windowWidth-900, 19, 15, Black)
+    elif (activeSlider == True):
+        pygame.draw.rect(Surface, Green, (windowWidth-910, 8, 20, 20), 2)
+        Text("V", windowWidth-900, 19, 15, Green)
 
     #Reverb
-    #pygame.draw.rect(Surface, DarkGrey, (windowWidth-725, 16, 100, 5))
-    #pygame.draw.rect(Surface, Green, (windowWidth-725, 16, reverbSliderX, 5))
-    #pygame.draw.rect(Surface, (230, 230, 230), ((windowWidth-730)+reverbSliderX, 11, 10, 15))
+    pygame.draw.rect(Surface, DarkGrey, (windowWidth-725, 16, 100, 5))
+    pygame.draw.rect(Surface, Green, (windowWidth-725, 16, reverbSliderX, 5))
+    pygame.draw.rect(Surface, (230, 230, 230), ((windowWidth-730)+reverbSliderX, 11, 10, 15))
 
-    pygame.draw.rect(Surface, Black, (windowWidth-760, 8, 20, 20), 2)
-    Text("R", windowWidth-748.5, 18, 15, Black)
+    if (activeSlider2 == False):
+        pygame.draw.rect(Surface, Black, (windowWidth-760, 8, 20, 20), 2)
+        Text("R", windowWidth-748.5, 18, 15, Black)
+    elif (activeSlider2 == True):
+        pygame.draw.rect(Surface, Green, (windowWidth-760, 8, 20, 20), 2)
+        Text("R", windowWidth-748.5, 18, 15, Green)
+
+    #Info Icon
+    pygame.draw.circle(Surface, Black, (windowWidth-25, windowHeight-275), 15, 2)
+    Text("i", windowWidth-26, windowHeight-276, 20, Black)
     
     pygame.display.flip()
     fpsClock.tick(FPS)

@@ -75,6 +75,8 @@ DarkOrange = (240, 120, 0  )
 Red        = (255, 0  , 0  )
 DarkRed    = (150, 0  , 0  )
 Blue       = (0  , 0  , 255)
+SkyBlue    = (135, 200, 255)
+DarkSkyBlue= (95 , 160, 215)
 Grey       = (60 , 60 , 60 )
 Grey2      = (65 , 65 , 65 )
 Grey3      = (75 , 75 , 75 )
@@ -126,6 +128,10 @@ activeSlider = False;
 reverbSliderX = 25
 reverb = 500
 activeSlider2 = False;
+
+infoWindow = False;
+infoWindowX = windowWidth
+iButtonPressed = False;
 
 #Mouse Variables
 mousePosition = pygame.mouse.get_pos()
@@ -184,6 +190,15 @@ while True: #Game Loop
             sys.exit()
 
         if event.type == KEYDOWN:
+            #Open info window
+            if (event.key == K_i):
+                if (infoWindow == True):
+                    infoWindow = False
+                elif (infoWindow == False):
+                    infoWindow = True
+
+                iButtonPressed = True
+            
             #Moves Octive down
             if (event.key == K_z):
                 if (currentOctive[1] == True):
@@ -371,6 +386,10 @@ while True: #Game Loop
                     DSharp4.play()
             
         if event.type == KEYUP:
+            #Release I button
+            if (event.key == K_i):
+                iButtonPressed = False
+            
             #Notes Released
             if (event.key == K_a):
                 noteColorsWhite[0] = (255, 255, 255)
@@ -682,8 +701,26 @@ while True: #Game Loop
         Text("R", windowWidth-748.5, 18, 15, Green)
 
     #Info Icon
-    pygame.draw.circle(Surface, Black, (windowWidth-25, windowHeight-275), 15, 2)
-    Text("i", windowWidth-26, windowHeight-276, 20, Black)
+    if (iButtonPressed):
+        pygame.draw.rect(Surface, DarkSkyBlue, (windowWidth-30, 9, 20, 20))
+        pygame.draw.rect(Surface, Black, (windowWidth-30, 9, 20, 20), 1)
+    else:
+        pygame.draw.rect(Surface, SkyBlue, (windowWidth-30, 9, 20, 20))
+        pygame.draw.rect(Surface, Black, (windowWidth-30, 9, 20, 20), 1)
+    Text("i", windowWidth-20, 19, 18, Black)
+
+    #Draw Info Window
+    if (infoWindow):
+        infoWindowX -= 75
+        if (infoWindowX <= windowWidth-490):
+            infoWindowX = windowWidth-490
+    else:
+        infoWindowX += 75
+        if (infoWindowX >= windowWidth):
+            infoWindowX = windowWidth
+
+    pygame.draw.rect(Surface, LightGrey, (infoWindowX, 50, 500, 200))
+    pygame.draw.rect(Surface, Black, (infoWindowX, 50, 500, 200), 2)
     
     pygame.display.flip()
     fpsClock.tick(FPS)

@@ -32,6 +32,28 @@ windowHeight = 720
 Surface    = pygame.display.set_mode((windowWidth, windowHeight))
 pygame.display.set_caption('Music Maker')
 
+def text_objects(Text, font, colour):
+     textSurface = font.render(Text, True, colour)
+     return textSurface, textSurface.get_rect()
+
+def Text(Text, xPos, yPos, Size, Colour):
+     largeText          = pygame.font.Font('Fonts/Times_New_Roman_Normal.ttf', Size)
+     TextSurf, TextRect = text_objects(Text, largeText, Colour)
+     TextRect.center    = (xPos, yPos)
+
+     Surface.blit(TextSurf, TextRect)
+
+class Mouse():
+    def Position():
+        p = pygame.mouse.get_pos()
+
+        return p
+
+    def Pressed():
+        p = pygame.mouse.get_pressed()
+
+        return p
+
 class Draw():
     def WhiteKey(x, y, color):
         pygame.draw.rect(Surface, color, (x, y, 90, 245))
@@ -63,6 +85,36 @@ class Draw():
             pygame.draw.rect(Surface, DarkGreen, (t[0], t[1], 45, t[2]-2))
             pygame.draw.rect(Surface, Black, (t[0], t[1]-2, 45, t[2]), 3)
 
+    def Background():
+        pygame.draw.rect(Surface, LightGrey, (0, 0, windowWidth, windowHeight))
+        pygame.draw.rect(Surface, Grey, (windowWidth-920, 0, 920, windowHeight))
+        pygame.draw.line(Surface, Black, (windowWidth-922, windowHeight), (windowWidth-922, 0), 5)
+        pygame.draw.rect(Surface, Black, (0, 0, windowWidth/3.55, windowHeight/2), 3)
+        pygame.draw.rect(Surface, Black, (windowWidth, windowHeight/2, windowWidth/3.55, windowHeight), 3)
+        for x in range(1, 10):
+            pygame.draw.line(Surface, Grey2, (windowWidth-(92*x)-3, 0), (windowWidth-(92*x)-3, windowHeight-247), 3)
+        pygame.draw.line(Surface, Grey3, (windowWidth-(92*3)-3, 0), (windowWidth-(92*3)-3, windowHeight-247), 3)
+        pygame.draw.line(Surface, Grey3, (windowWidth-(92*7)-3, 0), (windowWidth-(92*7)-3, windowHeight-247), 3)
+        pygame.draw.rect(Surface, (150, 150, 150), (windowWidth-918, 2, 918, 35))
+        pygame.draw.rect(Surface, Black, (windowWidth-920, 0, 919, 37), 2)
+
+    def WhiteKeyText(buttonList):
+        for i in range(1, 12):
+            Text(buttonList[i], windowWidth-(92*i)+11, windowHeight-15, 20, Black)
+            if i > 9:
+                break
+
+    def BlackKeyText(buttonList):
+        Text("P", windowWidth-104, windowHeight-112, 15, buttonList[0])
+        Text("O", windowWidth-196, windowHeight-112, 15, buttonList[1])
+        Text("U", windowWidth-380, windowHeight-112, 15, buttonList[2])
+        Text("Y", windowWidth-472, windowHeight-112, 15, buttonList[3])
+        Text("T", windowWidth-564, windowHeight-112, 15, buttonList[4])
+        Text("E", windowWidth-748, windowHeight-112, 15, buttonList[5])
+        Text("W", windowWidth-840, windowHeight-112, 15, buttonList[6])
+
 class Function():
     def ChangeVolume(sound, volume):
         sound.set_volume(volume)
+
+

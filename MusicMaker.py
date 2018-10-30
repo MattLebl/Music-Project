@@ -134,22 +134,6 @@ infoWindow = False;
 infoWindowX = windowWidth
 iButtonPressed = False;
 
-#Mouse Variables
-mousePosition = pygame.mouse.get_pos()
-mousePressed  = pygame.mouse.get_pressed()
-
-#Text Functions
-def text_objects(Text, font, colour):
-     textSurface = font.render(Text, True, colour)
-     return textSurface, textSurface.get_rect()
-
-def Text(Text, xPos, yPos, Size, Colour):
-     largeText          = pygame.font.Font('Fonts/Times_New_Roman_Normal.ttf', Size)
-     TextSurf, TextRect = text_objects(Text, largeText, Colour)
-     TextRect.center    = (xPos, yPos)
-
-     Surface.blit(TextSurf, TextRect)
-
 while True: #Game Loop
     for event in pygame.event.get():
         if event.type == QUIT:
@@ -505,8 +489,8 @@ while True: #Game Loop
     reverb = reverbSliderX*20
 
     #Move Bars
-    mousePressed = pygame.mouse.get_pressed()
-    mousePosition = pygame.mouse.get_pos()
+    mousePressed = Mouse.Pressed()
+    mousePosition = Mouse.Position()
     
     if (activeSlider2 == False and mousePressed[0] == 1 and mousePosition[0] <= (windowWidth-875)+100 and mousePosition[0] >= (windowWidth-875) and mousePosition[1] >= 16 and mousePosition[1] <= 21 or
         activeSlider2 == False and mousePressed[0] == 1 and mousePosition[0] <= (windowWidth-880)+volumeSliderX+10 and mousePosition[0] >= (windowWidth-880)+volumeSliderX and mousePosition[1] >= 11 and mousePosition[1] <= 26):
@@ -521,8 +505,6 @@ while True: #Game Loop
         volumeSliderX = 100
     elif (volumeSliderX < 0):
         volumeSliderX = 0
-
-
 
     if (activeSlider == False and mousePressed[0] == 1 and mousePosition[0] <= (windowWidth-725)+reverbSliderX+10 and mousePosition[0] >= (windowWidth-725)+reverbSliderX and mousePosition[1] >= 11 and mousePosition[1] <= 26 or
         activeSlider == False and mousePressed[0] == 1 and mousePosition[0] <= (windowWidth-725)+100 and mousePosition[0] >= (windowWidth-725) and mousePosition[1] >= 16 and mousePosition[1] <= 21):
@@ -539,15 +521,7 @@ while True: #Game Loop
         reverbSliderX = 0
 
     #Background
-    pygame.draw.rect(Surface, LightGrey, (0, 0, windowWidth, windowHeight))
-    pygame.draw.rect(Surface, Grey, (windowWidth-920, 0, 920, windowHeight))
-    pygame.draw.line(Surface, Black, (windowWidth-922, windowHeight), (windowWidth-922, 0), 5)
-    pygame.draw.rect(Surface, Black, (0, 0, windowWidth/3.55, windowHeight/2), 3)
-    pygame.draw.rect(Surface, Black, (windowWidth, windowHeight/2, windowWidth/3.55, windowHeight), 3)
-    for x in range(1, 10):
-        pygame.draw.line(Surface, Grey2, (windowWidth-(92*x)-3, 0), (windowWidth-(92*x)-3, windowHeight-247), 3)
-    pygame.draw.line(Surface, Grey3, (windowWidth-(92*3)-3, 0), (windowWidth-(92*3)-3, windowHeight-247), 3)
-    pygame.draw.line(Surface, Grey3, (windowWidth-(92*7)-3, 0), (windowWidth-(92*7)-3, windowHeight-247), 3)
+    Draw.Background()
 
     #Delete Tiles
     Draw.DeleteTiles(pianoTilesA)
@@ -626,24 +600,9 @@ while True: #Game Loop
     Draw.BlackKey(windowWidth-761, windowHeight-247, noteColorsBlack[1])
     Draw.BlackKey(windowWidth-853, windowHeight-247, noteColorsBlack[0])
 
-    #White Key Text
-    for i in range(1, 12):
-        Text(noteButtonList[i], windowWidth-(92*i)+11, windowHeight-15, 20, Black)
-        if i > 9:
-            break
-    
-    #Black Key Text
-    Text("P", windowWidth-104, windowHeight-112, 15, blackNoteKeys[0])
-    Text("O", windowWidth-196, windowHeight-112, 15, blackNoteKeys[1])
-    Text("U", windowWidth-380, windowHeight-112, 15, blackNoteKeys[2])
-    Text("Y", windowWidth-472, windowHeight-112, 15, blackNoteKeys[3])
-    Text("T", windowWidth-564, windowHeight-112, 15, blackNoteKeys[4])
-    Text("E", windowWidth-748, windowHeight-112, 15, blackNoteKeys[5])
-    Text("W", windowWidth-840, windowHeight-112, 15, blackNoteKeys[6])
-
-    #Top Bar
-    pygame.draw.rect(Surface, (150, 150, 150), (windowWidth-918, 2, 918, 35))
-    pygame.draw.rect(Surface, Black, (windowWidth-920, 0, 919, 37), 2)
+    #Key Text
+    Draw.WhiteKeyText(noteButtonList)
+    Draw.BlackKeyText(blackNoteKeys)
 
     #Volume Slider
     pygame.draw.rect(Surface, DarkGrey, (windowWidth-875, 16, 100, 5))
@@ -662,8 +621,12 @@ while True: #Game Loop
     pygame.draw.rect(Surface, Green, (windowWidth-725, 16, reverbSliderX, 5))
     pygame.draw.rect(Surface, (230, 230, 230), ((windowWidth-730)+reverbSliderX, 11, 10, 15))
 
-    pygame.draw.rect(Surface, Black, (windowWidth-760, 8, 20, 20), 2)
-    Text("R", windowWidth-748.5, 18, 15, Black)
+    if (activeSlider2 == False):
+        pygame.draw.rect(Surface, Black, (windowWidth-760, 8, 20, 20), 2)
+        Text("R", windowWidth-748.5, 18, 15, Black)
+    elif (activeSlider2 == True):
+        pygame.draw.rect(Surface, Green, (windowWidth-760, 8, 20, 20), 2)
+        Text("R", windowWidth-748.5, 18, 15, Green)
 
     #Info Icon
     if (iButtonPressed):

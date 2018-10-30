@@ -5,6 +5,9 @@ import pygame, sys, time, os, random, math, colorsys
 from pygame.locals import *
 from random import *
 
+#Import MusicMakerClasses
+from MusicMakerClasses import *
+
 pygame.mixer.pre_init(44100, -16, 1, 512)
 
 pygame.init()
@@ -136,40 +139,6 @@ iButtonPressed = False;
 #Mouse Variables
 mousePosition = pygame.mouse.get_pos()
 mousePressed  = pygame.mouse.get_pressed()
-
-#Def Functions
-def WhiteKey(x, y, color):
-    pygame.draw.rect(Surface, color, (x, y, 90, 245))
-    pygame.draw.rect(Surface, Black, (x-2, y-2, 92, 247), 3)
-
-def BlackKey(x, y, color):
-    pygame.draw.rect(Surface, color, (x, y, 45, (249/2)+20))
-    pygame.draw.rect(Surface, Black, (x, y-2, 45, (249/2)+22), 3)
-
-def DeleteTiles(tileList):
-    for t in tileList[:]:
-        if t[1]+t[2] <= 0:
-            tileList.remove(t)
-            break
-
-def MoveTiles(tileList):
-    for t in tileList[:]:
-        t[1] -= 8
-        if t[3] == True:
-            t[2] += 8
-
-def DrawTiles(tileList):
-    for t in tileList[:]:
-        pygame.draw.rect(Surface, Green, (t[0], t[1], 90, t[2]-2))
-        pygame.draw.rect(Surface, Black, (t[0]-2, t[1]-2, 92, t[2]), 3)
-
-def DrawBlackTiles(tileList):
-    for t in tileList[:]:
-        pygame.draw.rect(Surface, DarkGreen, (t[0], t[1], 45, t[2]-2))
-        pygame.draw.rect(Surface, Black, (t[0], t[1]-2, 45, t[2]), 3)
-
-def ChangeVolume(sound):
-    sound.set_volume(volume)
 
 #Text Functions
 def text_objects(Text, font, colour):
@@ -504,35 +473,35 @@ while True: #Game Loop
     #Change Volume
     volume = volumeSliderX/50
     
-    ChangeVolume(A2)
-    ChangeVolume(B2)
-    ChangeVolume(C2)
-    ChangeVolume(D2)
-    ChangeVolume(E2)
-    ChangeVolume(F2)
-    ChangeVolume(G2)
-    ChangeVolume(CSharp2)
-    ChangeVolume(DSharp2)
-    ChangeVolume(FSharp2)
-    ChangeVolume(GSharp2)
-    ChangeVolume(ASharp2)
-    ChangeVolume(A3)
-    ChangeVolume(B3)
-    ChangeVolume(C3)
-    ChangeVolume(D3)
-    ChangeVolume(E3)
-    ChangeVolume(F3)
-    ChangeVolume(G3)
-    ChangeVolume(CSharp3)
-    ChangeVolume(DSharp3)
-    ChangeVolume(FSharp3)
-    ChangeVolume(GSharp3)
-    ChangeVolume(ASharp3)
-    ChangeVolume(C4)
-    ChangeVolume(D4)
-    ChangeVolume(E4)
-    ChangeVolume(CSharp4)
-    ChangeVolume(DSharp4)
+    Function.ChangeVolume(A2, volume)
+    Function.ChangeVolume(B2, volume)
+    Function.ChangeVolume(C2, volume)
+    Function.ChangeVolume(D2, volume)
+    Function.ChangeVolume(E2, volume)
+    Function.ChangeVolume(F2, volume)
+    Function.ChangeVolume(G2, volume)
+    Function.ChangeVolume(CSharp2, volume)
+    Function.ChangeVolume(DSharp2, volume)
+    Function.ChangeVolume(FSharp2, volume)
+    Function.ChangeVolume(GSharp2, volume)
+    Function.ChangeVolume(ASharp2, volume)
+    Function.ChangeVolume(A3, volume)
+    Function.ChangeVolume(B3, volume)
+    Function.ChangeVolume(C3, volume)
+    Function.ChangeVolume(D3, volume)
+    Function.ChangeVolume(E3, volume)
+    Function.ChangeVolume(F3, volume)
+    Function.ChangeVolume(G3, volume)
+    Function.ChangeVolume(CSharp3, volume)
+    Function.ChangeVolume(DSharp3, volume)
+    Function.ChangeVolume(FSharp3, volume)
+    Function.ChangeVolume(GSharp3, volume)
+    Function.ChangeVolume(ASharp3, volume)
+    Function.ChangeVolume(C4, volume)
+    Function.ChangeVolume(D4, volume)
+    Function.ChangeVolume(E4, volume)
+    Function.ChangeVolume(CSharp4, volume)
+    Function.ChangeVolume(DSharp4, volume)
 
     #Change Reverb
     reverb = reverbSliderX*20
@@ -581,81 +550,81 @@ while True: #Game Loop
     pygame.draw.line(Surface, Grey3, (windowWidth-(92*7)-3, 0), (windowWidth-(92*7)-3, windowHeight-247), 3)
 
     #Delete Tiles
-    DeleteTiles(pianoTilesA)
-    DeleteTiles(pianoTilesS)
-    DeleteTiles(pianoTilesD)
-    DeleteTiles(pianoTilesF)
-    DeleteTiles(pianoTilesG)
-    DeleteTiles(pianoTilesH)
-    DeleteTiles(pianoTilesJ)
-    DeleteTiles(pianoTilesK)
-    DeleteTiles(pianoTilesL)
-    DeleteTiles(pianoTilesSEMI)
-    DeleteTiles(pianoTilesW)
-    DeleteTiles(pianoTilesE)
-    DeleteTiles(pianoTilesT)
-    DeleteTiles(pianoTilesY)
-    DeleteTiles(pianoTilesU)
-    DeleteTiles(pianoTilesO)
-    DeleteTiles(pianoTilesP)
+    Draw.DeleteTiles(pianoTilesA)
+    Draw.DeleteTiles(pianoTilesS)
+    Draw.DeleteTiles(pianoTilesD)
+    Draw.DeleteTiles(pianoTilesF)
+    Draw.DeleteTiles(pianoTilesG)
+    Draw.DeleteTiles(pianoTilesH)
+    Draw.DeleteTiles(pianoTilesJ)
+    Draw.DeleteTiles(pianoTilesK)
+    Draw.DeleteTiles(pianoTilesL)
+    Draw.DeleteTiles(pianoTilesSEMI)
+    Draw.DeleteTiles(pianoTilesW)
+    Draw.DeleteTiles(pianoTilesE)
+    Draw.DeleteTiles(pianoTilesT)
+    Draw.DeleteTiles(pianoTilesY)
+    Draw.DeleteTiles(pianoTilesU)
+    Draw.DeleteTiles(pianoTilesO)
+    Draw.DeleteTiles(pianoTilesP)
 
     #Move Tiles
-    MoveTiles(pianoTilesA)
-    MoveTiles(pianoTilesS)
-    MoveTiles(pianoTilesD)
-    MoveTiles(pianoTilesF)
-    MoveTiles(pianoTilesG)
-    MoveTiles(pianoTilesH)
-    MoveTiles(pianoTilesJ)
-    MoveTiles(pianoTilesK)
-    MoveTiles(pianoTilesL)
-    MoveTiles(pianoTilesSEMI)
-    MoveTiles(pianoTilesW)
-    MoveTiles(pianoTilesE)
-    MoveTiles(pianoTilesT)
-    MoveTiles(pianoTilesY)
-    MoveTiles(pianoTilesU)
-    MoveTiles(pianoTilesO)
-    MoveTiles(pianoTilesP)
+    Draw.MoveTiles(pianoTilesA)
+    Draw.MoveTiles(pianoTilesS)
+    Draw.MoveTiles(pianoTilesD)
+    Draw.MoveTiles(pianoTilesF)
+    Draw.MoveTiles(pianoTilesG)
+    Draw.MoveTiles(pianoTilesH)
+    Draw.MoveTiles(pianoTilesJ)
+    Draw.MoveTiles(pianoTilesK)
+    Draw.MoveTiles(pianoTilesL)
+    Draw.MoveTiles(pianoTilesSEMI)
+    Draw.MoveTiles(pianoTilesW)
+    Draw.MoveTiles(pianoTilesE)
+    Draw.MoveTiles(pianoTilesT)
+    Draw.MoveTiles(pianoTilesY)
+    Draw.MoveTiles(pianoTilesU)
+    Draw.MoveTiles(pianoTilesO)
+    Draw.MoveTiles(pianoTilesP)
 
     #Draw Tiles
-    DrawTiles(pianoTilesA)
-    DrawTiles(pianoTilesS)
-    DrawTiles(pianoTilesD)
-    DrawTiles(pianoTilesF)
-    DrawTiles(pianoTilesG)
-    DrawTiles(pianoTilesH)
-    DrawTiles(pianoTilesJ)
-    DrawTiles(pianoTilesK)
-    DrawTiles(pianoTilesL)
-    DrawTiles(pianoTilesSEMI)
-    DrawBlackTiles(pianoTilesW)
-    DrawBlackTiles(pianoTilesE)
-    DrawBlackTiles(pianoTilesT)
-    DrawBlackTiles(pianoTilesY)
-    DrawBlackTiles(pianoTilesU)
-    DrawBlackTiles(pianoTilesO)
-    DrawBlackTiles(pianoTilesP)
+    Draw.DrawTiles(pianoTilesA)
+    Draw.DrawTiles(pianoTilesS)
+    Draw.DrawTiles(pianoTilesD)
+    Draw.DrawTiles(pianoTilesF)
+    Draw.DrawTiles(pianoTilesG)
+    Draw.DrawTiles(pianoTilesH)
+    Draw.DrawTiles(pianoTilesJ)
+    Draw.DrawTiles(pianoTilesK)
+    Draw.DrawTiles(pianoTilesL)
+    Draw.DrawTiles(pianoTilesSEMI)
+    Draw.DrawBlackTiles(pianoTilesW)
+    Draw.DrawBlackTiles(pianoTilesE)
+    Draw.DrawBlackTiles(pianoTilesT)
+    Draw.DrawBlackTiles(pianoTilesY)
+    Draw.DrawBlackTiles(pianoTilesU)
+    Draw.DrawBlackTiles(pianoTilesO)
+    Draw.DrawBlackTiles(pianoTilesP)
 
     #Draw Piano
-    WhiteKey(windowWidth-92 , windowHeight-247, noteColorsWhite[9])
-    WhiteKey(windowWidth-184, windowHeight-247, noteColorsWhite[8])
-    WhiteKey(windowWidth-276, windowHeight-247, noteColorsWhite[7])
-    WhiteKey(windowWidth-368, windowHeight-247, noteColorsWhite[6])
-    WhiteKey(windowWidth-460, windowHeight-247, noteColorsWhite[5])
-    WhiteKey(windowWidth-552, windowHeight-247, noteColorsWhite[4])
-    WhiteKey(windowWidth-644, windowHeight-247, noteColorsWhite[3])
-    WhiteKey(windowWidth-736, windowHeight-247, noteColorsWhite[2])
-    WhiteKey(windowWidth-828, windowHeight-247, noteColorsWhite[1])
-    WhiteKey(windowWidth-920, windowHeight-247, noteColorsWhite[0])
+    Draw.WhiteKey(windowWidth-92 , windowHeight-247, noteColorsWhite[9])
+    Draw.WhiteKey(windowWidth-184, windowHeight-247, noteColorsWhite[8])
+    Draw.WhiteKey(windowWidth-276, windowHeight-247, noteColorsWhite[7])
+    Draw.WhiteKey(windowWidth-368, windowHeight-247, noteColorsWhite[6])
+    Draw.WhiteKey(windowWidth-460, windowHeight-247, noteColorsWhite[5])
+    Draw.WhiteKey(windowWidth-552, windowHeight-247, noteColorsWhite[4])
+    Draw.WhiteKey(windowWidth-644, windowHeight-247, noteColorsWhite[3])
+    Draw.WhiteKey(windowWidth-736, windowHeight-247, noteColorsWhite[2])
+    Draw.WhiteKey(windowWidth-828, windowHeight-247, noteColorsWhite[1])
+    Draw.WhiteKey(windowWidth-920, windowHeight-247, noteColorsWhite[0])
     
-    BlackKey(windowWidth-116, windowHeight-247, noteColorsBlack[6])
-    BlackKey(windowWidth-208, windowHeight-247, noteColorsBlack[5])
-    BlackKey(windowWidth-392, windowHeight-247, noteColorsBlack[4])
-    BlackKey(windowWidth-484, windowHeight-247, noteColorsBlack[3])
-    BlackKey(windowWidth-577, windowHeight-247, noteColorsBlack[2])
-    BlackKey(windowWidth-761, windowHeight-247, noteColorsBlack[1])
-    BlackKey(windowWidth-853, windowHeight-247, noteColorsBlack[0])
+    Draw.BlackKey(windowWidth-116, windowHeight-247, noteColorsBlack[6])
+    Draw.BlackKey(windowWidth-208, windowHeight-247, noteColorsBlack[5])
+    Draw.BlackKey(windowWidth-392, windowHeight-247, noteColorsBlack[4])
+    Draw.BlackKey(windowWidth-484, windowHeight-247, noteColorsBlack[3])
+    Draw.BlackKey(windowWidth-577, windowHeight-247, noteColorsBlack[2])
+    Draw.BlackKey(windowWidth-761, windowHeight-247, noteColorsBlack[1])
+    Draw.BlackKey(windowWidth-853, windowHeight-247, noteColorsBlack[0])
 
     #White Key Text
     for i in range(1, 12):

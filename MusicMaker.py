@@ -4,9 +4,9 @@
 import pygame, sys, time, os, random, math, colorsys
 from pygame.locals import *
 from random import *
-from MusickMakerUI import Button
-from MusickMakerUI import Record
-from MusickMakerUI import Info
+from MusickMakerClasses import Button
+from MusickMakerClasses import Record
+from MusickMakerClasses import Info
 
 #from ctypes import windll, Structure, c_long, byref
 
@@ -202,6 +202,32 @@ def Text(Text, xPos, yPos, Size, Colour):
 #Functions for buttoons
 def my_next_function():
        print("it's working")
+
+def my_info_function():
+
+    global windowWidth
+    windoWidth = 1280
+    global infoWindow
+    infoWindow = False
+    global infoWindowX
+    infoWindowX = windowWidth
+
+    if (event.key == K_i and infoWindow == True):
+        infoWindow == False
+    elif (event.key == K_i and infoWindow == False):
+        infoWindow == True
+
+    if (infoWindow == True):
+        infoWindowX -= 75
+        if (infoWindowX <= windowWidth-490):
+            infoWindowX = windowWidth-490
+    else:
+        infoWindowX += 75
+        if (infoWindowX >= windowWidth):
+            infoWindowX = windowWidth
+
+    pygame.draw.rect(Surface, LightGrey, (infoWindowX, 50, 500, 200))
+    pygame.draw.rect(Surface, Black, (infoWindowX, 50, 500, 200), 2)
        
 def mousebuttondown(level):
     """A function that checks which button was pressed"""
@@ -216,7 +242,7 @@ menuOn = True
 
 #create buttons
 button_record = Record("•", (818, 20), my_next_function, bg=(50, 200, 20))
-button_info = Info("i", (1250, 20), my_next_function, bg=(91, 230, 255))
+button_info = Info("i", (1250, 20), my_info_function, bg=(91, 230, 255))
 
 #arrange button groups depending on level
 level1_buttons = [button_record, button_info]
@@ -595,8 +621,6 @@ while True: #Game Loop
     elif (volumeSliderX < 0):
         volumeSliderX = 0
 
-
-
     if (activeSlider == False and mousePressed[0] == 1 and mousePosition[0] <= (windowWidth-725)+reverbSliderX+10 and mousePosition[0] >= (windowWidth-725)+reverbSliderX and mousePosition[1] >= 11 and mousePosition[1] <= 26 or
         activeSlider == False and mousePressed[0] == 1 and mousePosition[0] <= (windowWidth-725)+100 and mousePosition[0] >= (windowWidth-725) and mousePosition[1] >= 16 and mousePosition[1] <= 21):
         activeSlider2 = True
@@ -615,8 +639,13 @@ while True: #Game Loop
     pygame.draw.rect(Surface, LightGrey, (0, 0, windowWidth, windowHeight))
     pygame.draw.rect(Surface, Grey, (windowWidth-920, 0, 920, windowHeight))
     pygame.draw.line(Surface, Black, (windowWidth-922, windowHeight), (windowWidth-922, 0), 5)
-    pygame.draw.rect(Surface, Black, (0, 0, windowWidth/3.55, windowHeight/2), 3)
-    pygame.draw.rect(Surface, Black, (windowWidth, windowHeight/2, windowWidth/3.55, windowHeight), 3)
+
+    #Instrument tab
+    pygame.draw.rect(Surface, Black, (0, 0, windowWidth/3.55, windowHeight/1.75), 3)
+    Text("Instruments", windowWidth-100, 18, 15, Black)
+
+    pygame.draw.rect(Surface, Black, (0, windowHeight/1.75, windowWidth/3.55, windowHeight), 3)
+
     for x in range(1, 10):
         pygame.draw.line(Surface, Grey2, (windowWidth-(92*x)-3, 0), (windowWidth-(92*x)-3, windowHeight-247), 3)
     pygame.draw.line(Surface, Grey3, (windowWidth-(92*3)-3, 0), (windowWidth-(92*3)-3, windowHeight-247), 3)
@@ -742,6 +771,7 @@ while True: #Game Loop
     if level == 1:
         for button in level1_buttons:
             button.draw()
+            
     if (activeSlider2 == False):
         pygame.draw.rect(Surface, Black, (windowWidth-760, 8, 20, 20), 2)
         Text("R", windowWidth-748.5, 18, 15, Black)
@@ -759,17 +789,17 @@ while True: #Game Loop
     Text("i", windowWidth-20, 19, 18, Black)
 
     #Draw Info Window
-    if (infoWindow):
-        infoWindowX -= 75
-        if (infoWindowX <= windowWidth-490):
-            infoWindowX = windowWidth-490
-    else:
-        infoWindowX += 75
-        if (infoWindowX >= windowWidth):
-            infoWindowX = windowWidth
+##    if (infoWindow):
+##        infoWindowX -= 75
+##        if (infoWindowX <= windowWidth-490):
+##            infoWindowX = windowWidth-490
+##    else:
+##        infoWindowX += 75
+##        if (infoWindowX >= windowWidth):
+##            infoWindowX = windowWidth
 
-    pygame.draw.rect(Surface, LightGrey, (infoWindowX, 50, 500, 200))
-    pygame.draw.rect(Surface, Black, (infoWindowX, 50, 500, 200), 2)
+##    pygame.draw.rect(Surface, LightGrey, (infoWindowX, 50, 500, 200))
+##    pygame.draw.rect(Surface, Black, (infoWindowX, 50, 500, 200), 2)
     
     pygame.display.flip()
     fpsClock.tick(FPS)

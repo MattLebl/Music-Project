@@ -538,7 +538,33 @@ while True: #Game Loop
         reverbSliderX = 0
 
     #Background
+<<<<<<< HEAD
+=======
     Draw.Background()
+<<<<<<< HEAD
+=======
+        
+>>>>>>> 3613bb4302d38033858586f03c9089a667f8bb0b
+    pygame.draw.rect(Surface, LightGrey, (0, 0, windowWidth, windowHeight))
+    pygame.draw.rect(Surface, Grey, (windowWidth-920, 0, 920, windowHeight))
+    pygame.draw.line(Surface, Black, (windowWidth-922, windowHeight), (windowWidth-922, 0), 5)
+
+    #Instrument tab
+    pygame.draw.rect(Surface, Black, (0, 0, windowWidth/3.55, windowHeight/1.75), 3)
+    Text("Instruments", windowWidth-100, 18, 15, Black)
+
+    pygame.draw.rect(Surface, Black, (0, windowHeight/1.75, windowWidth/3.55, windowHeight), 3)
+
+    for x in range(1, 10):
+        pygame.draw.line(Surface, Grey2, (windowWidth-(92*x)-3, 0), (windowWidth-(92*x)-3, windowHeight-247), 3)
+    pygame.draw.line(Surface, Grey3, (windowWidth-(92*3)-3, 0), (windowWidth-(92*3)-3, windowHeight-247), 3)
+    pygame.draw.line(Surface, Grey3, (windowWidth-(92*7)-3, 0), (windowWidth-(92*7)-3, windowHeight-247), 3)
+    Draw.Background()
+    #for x in range(1, 10):
+        #pygame.draw.line(Surface, Grey2, (windowWidth-(92*x)-3, 0), (windowWidth-(92*x)-3, windowHeight-247), 3)
+        #pygame.draw.line(Surface, Grey3, (windowWidth-(92*3)-3, 0), (windowWidth-(92*3)-3, windowHeight-247), 3)
+        #pygame.draw.line(Surface, Grey3, (windowWidth-(92*7)-3, 0), (windowWidth-(92*7)-3, windowHeight-247), 3)
+>>>>>>> 2f64fa8e45d14cc6f7f465205d5efc1047a2fda3
 
     #Delete Tiles
     Draw.DeleteTiles(pianoTilesA)

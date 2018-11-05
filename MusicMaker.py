@@ -133,8 +133,26 @@ activeSlider2 = False;
 infoWindow = False;
 infoWindowX = windowWidth
 iButtonPressed = False;
+buttonPressed = False
+
+#pygame.draw.rect(Surface, DarkSkyBlue, (windowWidth-30, 9, 20, 20))
+#pygame.draw.rect(Surface, Black, (windowWidth-30, 9, 20, 20), 1)
 
 while True: #Game Loop
+    #Mouse Pressed info button
+    if (Mouse.Pressed()[0] and Mouse.Position()[0] >= windowWidth-30 and Mouse.Position()[0] <= windowWidth-10 and Mouse.Position()[1] >= 9 and Mouse.Position()[1] <= 29):
+        if (buttonPressed == False):
+            if (infoWindow == True):
+                infoWindow = False
+            elif (infoWindow == False):
+                infoWindow = True
+
+            iButtonPressed = True
+            buttonPressed = True
+    else:
+        iButtonPressed = False
+        buttonPressed = False
+    
     for event in pygame.event.get():
         if event.type == QUIT:
             pygame.quit()
@@ -580,6 +598,9 @@ while True: #Game Loop
     Draw.DrawBlackTiles(pianoTilesO)
     Draw.DrawBlackTiles(pianoTilesP)
 
+    #Top Bar
+    Draw.TopBar()
+
     #Draw Piano
     Draw.WhiteKey(windowWidth-92 , windowHeight-247, noteColorsWhite[9])
     Draw.WhiteKey(windowWidth-184, windowHeight-247, noteColorsWhite[8])
@@ -605,28 +626,10 @@ while True: #Game Loop
     Draw.BlackKeyText(blackNoteKeys)
 
     #Volume Slider
-    pygame.draw.rect(Surface, DarkGrey, (windowWidth-875, 16, 100, 5))
-    pygame.draw.rect(Surface, Green, (windowWidth-875, 16, volumeSliderX, 5))
-    pygame.draw.rect(Surface, (230, 230, 230), ((windowWidth-880)+volumeSliderX, 11, 10, 15))
+    Draw.VolumeSlider(volumeSliderX, activeSlider)
 
-    if (activeSlider == False):
-        pygame.draw.rect(Surface, Black, (windowWidth-910, 8, 20, 20), 2)
-        Text("V", windowWidth-900, 19, 15, Black)
-    elif (activeSlider == True):
-        pygame.draw.rect(Surface, Green, (windowWidth-910, 8, 20, 20), 2)
-        Text("V", windowWidth-900, 19, 15, Green)
-
-    #Reverb
-    pygame.draw.rect(Surface, DarkGrey, (windowWidth-725, 16, 100, 5))
-    pygame.draw.rect(Surface, Green, (windowWidth-725, 16, reverbSliderX, 5))
-    pygame.draw.rect(Surface, (230, 230, 230), ((windowWidth-730)+reverbSliderX, 11, 10, 15))
-
-    if (activeSlider2 == False):
-        pygame.draw.rect(Surface, Black, (windowWidth-760, 8, 20, 20), 2)
-        Text("R", windowWidth-748.5, 18, 15, Black)
-    elif (activeSlider2 == True):
-        pygame.draw.rect(Surface, Green, (windowWidth-760, 8, 20, 20), 2)
-        Text("R", windowWidth-748.5, 18, 15, Green)
+    #Reverb Slider
+    Draw.ReverbSlider(reverbSliderX, activeSlider2)
 
     #Info Icon
     if (iButtonPressed):

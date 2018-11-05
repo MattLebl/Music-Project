@@ -62,28 +62,6 @@ E4 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/E4.wav'))
 CSharp4 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/CSharp4.wav'))
 DSharp4 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/DSharp4.wav'))
 
-#Colour Variables
-Black      = (0  , 0  , 0  )
-White      = (255, 255, 255)
-Red        = (255, 0  , 0  )
-LightGreen = (0  , 255, 48 )
-Green      = (0  , 255, 0  )
-DarkGreen  = (0  , 150, 0  )
-Yellow     = (255, 255, 0  )
-DarkYellow = (150, 150, 0  )
-Orange     = (255, 165, 0  )
-DarkOrange = (240, 120, 0  )
-Red        = (255, 0  , 0  )
-DarkRed    = (150, 0  , 0  )
-Blue       = (0  , 0  , 255)
-SkyBlue    = (135, 200, 255)
-DarkSkyBlue= (95 , 160, 215)
-Grey       = (60 , 60 , 60 )
-Grey2      = (65 , 65 , 65 )
-Grey3      = (75 , 75 , 75 )
-LightGrey  = (125, 125, 125)
-DarkGrey   = (50 , 50 , 50 )
-
 blackNoteKeys = []
 for x in range(0, 8):
     blackNoteKeys.append((255, 255, 255))
@@ -135,6 +113,11 @@ infoWindowX = windowWidth
 iButtonPressed = False;
 buttonPressed = False
 
+octaveWindow = False
+octaveWindowX = windowWidth/2
+octaveWindowY = -100
+qButtonPressed = False
+
 #pygame.draw.rect(Surface, DarkSkyBlue, (windowWidth-30, 9, 20, 20))
 #pygame.draw.rect(Surface, Black, (windowWidth-30, 9, 20, 20), 1)
 
@@ -185,6 +168,15 @@ while True: #Game Loop
                     infoWindow = True
 
                 iButtonPressed = True
+
+            #Open octave window
+            if (event.key == K_q):
+                if (octaveWindow == True):
+                    octaveWindow = False
+                elif (octaveWindow == False):
+                    octaveWindow = True
+
+                qButtonPressed = True
             
             #Moves Octive down
             if (event.key == K_z):
@@ -557,11 +549,8 @@ while True: #Game Loop
         reverbSliderX = 0
 
     #Background
-<<<<<<< HEAD
-=======
     Draw.Background()
         
->>>>>>> 3613bb4302d38033858586f03c9089a667f8bb0b
     pygame.draw.rect(Surface, LightGrey, (0, 0, windowWidth, windowHeight))
     pygame.draw.rect(Surface, Grey, (windowWidth-920, 0, 920, windowHeight))
     pygame.draw.line(Surface, Black, (windowWidth-922, windowHeight), (windowWidth-922, 0), 5)
@@ -577,10 +566,6 @@ while True: #Game Loop
     pygame.draw.line(Surface, Grey3, (windowWidth-(92*3)-3, 0), (windowWidth-(92*3)-3, windowHeight-247), 3)
     pygame.draw.line(Surface, Grey3, (windowWidth-(92*7)-3, 0), (windowWidth-(92*7)-3, windowHeight-247), 3)
     Draw.Background()
-    #for x in range(1, 10):
-        #pygame.draw.line(Surface, Grey2, (windowWidth-(92*x)-3, 0), (windowWidth-(92*x)-3, windowHeight-247), 3)
-        #pygame.draw.line(Surface, Grey3, (windowWidth-(92*3)-3, 0), (windowWidth-(92*3)-3, windowHeight-247), 3)
-        #pygame.draw.line(Surface, Grey3, (windowWidth-(92*7)-3, 0), (windowWidth-(92*7)-3, windowHeight-247), 3)
 
     #Delete Tiles
     Draw.DeleteTiles(pianoTilesA)
@@ -639,6 +624,28 @@ while True: #Game Loop
     Draw.DrawBlackTiles(pianoTilesO)
     Draw.DrawBlackTiles(pianoTilesP)
 
+    #Octave Button
+    if (qButtonPressed):
+        pygame.draw.rect(Surface, DarkSkyBlue, (windowWidth-910, 8, 20, 20))
+        pygame.draw.rect(Surface, Black, (windowWidth-910, 8, 20, 20), 1)
+    else:
+        pygame.draw.rect(Surface, SkyBlue, (windowWidth-910, 8, 20, 20))
+        pygame.draw.rect(Surface, Black, (windowWidth-910, 8, 20, 20), 1)
+    Text("Q", windowWidth-900, 19, 15, Green)
+    
+    #Octave Window
+    if (octaveWindow):
+        octaveWindowY += 75
+        if (octaveWindowY <= windowHeight + 50):
+            octaveWindowX = windowHeight+ 50
+    else:
+        octaveWindowY -= 75
+        if (octaveWindowY >= 50):
+            octaveWIndowY = 50
+
+    pygame.draw.rect(Surface, LightGrey, (octaveWindowX, octaveWindowY, 500, 200))
+    pygame.draw.rect(Surface, Black, (octaveWindowX, octaveWindowY, 500, 200))
+    
     #Top Bar
     Draw.TopBar()
 
@@ -672,23 +679,6 @@ while True: #Game Loop
     #Reverb Slider
     Draw.ReverbSlider(reverbSliderX, activeSlider2)
     #pygame.draw.rect(Surface, DarkGrey, (windowWidth-875, 16, 100, 5))
-    #pygame.draw.rect(Surface, Green, (windowWidth-875, 16, volumeSliderX, 5))
-    #pygame.draw.rect(Surface, (230, 230, 230), ((windowWidth-880)+volumeSliderX, 11, 10, 15))
-
-    #if (activeSlider == False):
-    #    pygame.draw.rect(Surface, Black, (windowWidth-910, 8, 20, 20), 2)
-    #    Text("V", windowWidth-900, 19, 15, Black)
-    #elif (activeSlider == True):
-    #    pygame.draw.rect(Surface, Green, (windowWidth-910, 8, 20, 20), 2)
-    #    Text("V", windowWidth-900, 19, 15, Green)
-
-    #Reverb
-    #pygame.draw.rect(Surface, DarkGrey, (windowWidth-725, 16, 100, 5))
-    #pygame.draw.rect(Surface, Green, (windowWidth-725, 16, reverbSliderX, 5))
-    #pygame.draw.rect(Surface, (230, 230, 230), ((windowWidth-730)+reverbSliderX, 11, 10, 15))
-
-    #pygame.draw.rect(Surface, Black, (windowWidth-760, 8, 20, 20), 2)
-    #Text("R", windowWidth-748.5, 18, 15, Black)
             
     if (activeSlider2 == False):
         pygame.draw.rect(Surface, Black, (windowWidth-760, 8, 20, 20), 2)

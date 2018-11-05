@@ -2,6 +2,22 @@ import pygame, sys, time, os, random, math, colorsys
 from pygame.locals import *
 from random import *
 
+windowWidth  = 1280
+windowHeight = 720
+Surface      = pygame.display.set_mode((windowWidth, windowHeight))
+pygame.display.set_caption('Music Maker')
+
+def text_objects(Text, font, colour):
+     textSurface = font.render(Text, True, colour)
+     return textSurface, textSurface.get_rect()
+
+def Text(Text, xPos, yPos, Size, Colour):
+     largeText          = pygame.font.Font('Fonts/Times_New_Roman_Normal.ttf', Size)
+     TextSurf, TextRect = text_objects(Text, largeText, Colour)
+     TextRect.center    = (xPos, yPos)
+
+     Surface.blit(TextSurf, TextRect)
+
 Black      = (0  , 0  , 0  )
 White      = (255, 255, 255)
 Red        = (255, 0  , 0  )
@@ -23,21 +39,8 @@ Grey3      = (75 , 75 , 75 )
 LightGrey  = (125, 125, 125)
 DarkGrey   = (50 , 50 , 50 )
 
-windowWidth  = 1280
-windowHeight = 720
-Surface    = pygame.display.set_mode((windowWidth, windowHeight))
-pygame.display.set_caption('Music Maker')
-
-def text_objects(Text, font, colour):
-     textSurface = font.render(Text, True, colour)
-     return textSurface, textSurface.get_rect()
-
-def Text(Text, xPos, yPos, Size, Colour):
-     largeText          = pygame.font.Font('Fonts/Times_New_Roman_Normal.ttf', Size)
-     TextSurf, TextRect = text_objects(Text, largeText, Colour)
-     TextRect.center    = (xPos, yPos)
-
-     Surface.blit(TextSurf, TextRect)
+#class Color():
+     #def
 
 class Mouse():
     def Position():
@@ -85,7 +88,8 @@ class Draw():
         pygame.draw.rect(Surface, LightGrey, (0, 0, windowWidth, windowHeight))
         pygame.draw.rect(Surface, Grey, (windowWidth-920, 0, 920, windowHeight))
         pygame.draw.line(Surface, Black, (windowWidth-922, windowHeight), (windowWidth-922, 0), 5)
-        pygame.draw.rect(Surface, Black, (0, 0, windowWidth/3.55, windowHeight/2), 3)
+        pygame.draw.rect(Surface, Black, (0, 0, windowWidth/3.55, windowHeight/1.75), 3)
+        pygame.draw.rect(Surface, Black, (0, windowHeight/1.75, windowWidth/3.55, windowHeight), 3)
         pygame.draw.rect(Surface, Black, (windowWidth, windowHeight/2, windowWidth/3.55, windowHeight), 3)
         for x in range(1, 10):
             pygame.draw.line(Surface, Grey2, (windowWidth-(92*x)-3, 0), (windowWidth-(92*x)-3, windowHeight-247), 3)
@@ -112,31 +116,29 @@ class Draw():
         Text("W", windowWidth-840, windowHeight-112, 15, buttonList[6])
 
      def VolumeSlider(volumeSliderX, activeSlider):
-          pygame.draw.rect(Surface, DarkGrey, (windowWidth-875, 16, 100, 5))
-          pygame.draw.rect(Surface, Green, (windowWidth-875, 16, volumeSliderX, 5))
-          pygame.draw.rect(Surface, (230, 230, 230), ((windowWidth-880)+volumeSliderX, 11, 10, 15))
+          pygame.draw.rect(Surface, DarkGrey, (windowWidth-875+35, 16, 100, 5))
+          pygame.draw.rect(Surface, Green, (windowWidth-875+35, 16, volumeSliderX, 5))
+          pygame.draw.rect(Surface, (230, 230, 230), ((windowWidth-880+35)+volumeSliderX, 11, 10, 15))
 
           if (activeSlider == False):
-               pygame.draw.rect(Surface, Black, (windowWidth-910, 8, 20, 20), 2)
-               Text("V", windowWidth-900, 19, 15, Black)
+               pygame.draw.rect(Surface, Black, (windowWidth-910+35, 8, 20, 20), 2)
+               Text("V", windowWidth-900+35, 19, 15, Black)
           elif (activeSlider == True):
-               pygame.draw.rect(Surface, Green, (windowWidth-910, 8, 20, 20), 2)
-               Text("V", windowWidth-900, 19, 15, Green)
+               pygame.draw.rect(Surface, Green, (windowWidth-910+35, 8, 20, 20), 2)
+               Text("V", windowWidth-900+35, 19, 15, Green)
 
      def ReverbSlider(reverbSliderX, activeSlider2):
-          pygame.draw.rect(Surface, DarkGrey, (windowWidth-725, 16, 100, 5))
-          pygame.draw.rect(Surface, Green, (windowWidth-725, 16, reverbSliderX, 5))
-          pygame.draw.rect(Surface, (230, 230, 230), ((windowWidth-730)+reverbSliderX, 11, 10, 15))
+          pygame.draw.rect(Surface, DarkGrey, (windowWidth-725+35, 16, 100, 5))
+          pygame.draw.rect(Surface, Green, (windowWidth-725+35, 16, reverbSliderX, 5))
+          pygame.draw.rect(Surface, (230, 230, 230), ((windowWidth-730+35)+reverbSliderX, 11, 10, 15))
 
           if (activeSlider2 == False):
-               pygame.draw.rect(Surface, Black, (windowWidth-760, 8, 20, 20), 2)
-               Text("R", windowWidth-748.5, 18, 15, Black)
+               pygame.draw.rect(Surface, Black, (windowWidth-760+35, 8, 20, 20), 2)
+               Text("R", windowWidth-748.5+35, 18, 15, Black)
           elif (activeSlider2 == True):
-               pygame.draw.rect(Surface, Green, (windowWidth-760, 8, 20, 20), 2)
-               Text("R", windowWidth-748.5, 18, 15, Green)
+               pygame.draw.rect(Surface, Green, (windowWidth-760+35, 8, 20, 20), 2)
+               Text("R", windowWidth-748.5+35, 18, 15, Green)
 
 class Function():
      def ChangeVolume(sound, volume):
           sound.set_volume(volume)
-
-

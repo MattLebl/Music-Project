@@ -112,6 +112,7 @@ infoWindow = False;
 infoWindowX = windowWidth
 iButtonPressed = False;
 buttonPressed = False
+keyDown = False
 
 octaveWindow = False
 octaveWindowX = windowWidth/2
@@ -150,7 +151,7 @@ while True: #Game Loop
 
             iButtonPressed = True
             buttonPressed = True
-    else:
+    elif (keyDown == False):
         iButtonPressed = False
         buttonPressed = False
     
@@ -162,11 +163,6 @@ while True: #Game Loop
         if event.type == KEYDOWN:
             #Open info window
             if (event.key == K_i):
-                if (infoWindow == True):
-                    infoWindow = False
-                elif (infoWindow == False):
-                    infoWindow = True
-
                 iButtonPressed = True
 
             #Open octave window
@@ -177,6 +173,7 @@ while True: #Game Loop
                     octaveWindow = True
 
                 qButtonPressed = True
+                keyDown = True
             
             #Moves Octive down
             if (event.key == K_z):
@@ -365,9 +362,15 @@ while True: #Game Loop
                     DSharp4.play()
             
         if event.type == KEYUP:
-            #Release I button
+            #I button
             if (event.key == K_i):
+                if (infoWindow == True):
+                    infoWindow = False
+                elif (infoWindow == False):
+                    infoWindow = True
+                
                 iButtonPressed = False
+                keyDown = False
             
             #Notes Released
             if (event.key == K_a):
@@ -520,12 +523,12 @@ while True: #Game Loop
     mousePressed = Mouse.Pressed()
     mousePosition = Mouse.Position()
     
-    if (activeSlider2 == False and mousePressed[0] == 1 and mousePosition[0] <= (windowWidth-875)+100 and mousePosition[0] >= (windowWidth-875) and mousePosition[1] >= 16 and mousePosition[1] <= 21 or
-        activeSlider2 == False and mousePressed[0] == 1 and mousePosition[0] <= (windowWidth-880)+volumeSliderX+10 and mousePosition[0] >= (windowWidth-880)+volumeSliderX and mousePosition[1] >= 11 and mousePosition[1] <= 26):
+    if (activeSlider2 == False and mousePressed[0] == 1 and mousePosition[0] <= (windowWidth-875)+135 and mousePosition[0] >= (windowWidth-875+35) and mousePosition[1] >= 16 and mousePosition[1] <= 21 or
+        activeSlider2 == False and mousePressed[0] == 1 and mousePosition[0] <= (windowWidth-880)+volumeSliderX+45 and mousePosition[0] >= (windowWidth-880+35)+volumeSliderX and mousePosition[1] >= 11 and mousePosition[1] <= 26):
         activeSlider = True
 
     if (activeSlider):
-        volumeSliderX = mousePosition[0]-405
+        volumeSliderX = mousePosition[0]-440
         if (mousePressed[0] == 0):
             activeSlider = False
 
@@ -534,12 +537,12 @@ while True: #Game Loop
     elif (volumeSliderX < 0):
         volumeSliderX = 0
 
-    if (activeSlider == False and mousePressed[0] == 1 and mousePosition[0] <= (windowWidth-725)+reverbSliderX+10 and mousePosition[0] >= (windowWidth-725)+reverbSliderX and mousePosition[1] >= 11 and mousePosition[1] <= 26 or
-        activeSlider == False and mousePressed[0] == 1 and mousePosition[0] <= (windowWidth-725)+100 and mousePosition[0] >= (windowWidth-725) and mousePosition[1] >= 16 and mousePosition[1] <= 21):
+    if (activeSlider == False and mousePressed[0] == 1 and mousePosition[0] <= (windowWidth-725)+reverbSliderX+45 and mousePosition[0] >= (windowWidth-725+35)+reverbSliderX and mousePosition[1] >= 11 and mousePosition[1] <= 26 or
+        activeSlider == False and mousePressed[0] == 1 and mousePosition[0] <= (windowWidth-725)+135 and mousePosition[0] >= (windowWidth-725+35) and mousePosition[1] >= 16 and mousePosition[1] <= 21):
         activeSlider2 = True
 
     if (activeSlider2):
-        reverbSliderX = mousePosition[0]-(555)
+        reverbSliderX = mousePosition[0]-(555+35)
         if (mousePressed[0] == 0):
             activeSlider2 = False
 
@@ -566,6 +569,10 @@ while True: #Game Loop
     pygame.draw.line(Surface, Grey3, (windowWidth-(92*3)-3, 0), (windowWidth-(92*3)-3, windowHeight-247), 3)
     pygame.draw.line(Surface, Grey3, (windowWidth-(92*7)-3, 0), (windowWidth-(92*7)-3, windowHeight-247), 3)
     Draw.Background()
+    #for x in range(1, 10):
+        #pygame.draw.line(Surface, Grey2, (windowWidth-(92*x)-3, 0), (windowWidth-(92*x)-3, windowHeight-247), 3)
+        #pygame.draw.line(Surface, Grey3, (windowWidth-(92*3)-3, 0), (windowWidth-(92*3)-3, windowHeight-247), 3)
+        #pygame.draw.line(Surface, Grey3, (windowWidth-(92*7)-3, 0), (windowWidth-(92*7)-3, windowHeight-247), 3)
 
     #Delete Tiles
     Draw.DeleteTiles(pianoTilesA)

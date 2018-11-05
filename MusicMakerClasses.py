@@ -2,10 +2,6 @@ import pygame, sys, time, os, random, math, colorsys
 from pygame.locals import *
 from random import *
 
-pygame.mixer.pre_init(44100, -16, 1, 512)
-
-pygame.init()
-
 Black      = (0  , 0  , 0  )
 White      = (255, 255, 255)
 Red        = (255, 0  , 0  )
@@ -55,37 +51,37 @@ class Mouse():
         return p
 
 class Draw():
-    def WhiteKey(x, y, color):
+     def WhiteKey(x, y, color):
         pygame.draw.rect(Surface, color, (x, y, 90, 245))
         pygame.draw.rect(Surface, Black, (x-2, y-2, 92, 247), 3)
 
-    def BlackKey(x, y, color):
+     def BlackKey(x, y, color):
         pygame.draw.rect(Surface, color, (x, y, 45, (249/2)+20))
         pygame.draw.rect(Surface, Black, (x, y-2, 45, (249/2)+22), 3)
 
-    def DeleteTiles(tileList):
+     def DeleteTiles(tileList):
         for t in tileList[:]:
             if t[1]+t[2] <= 0:
                 tileList.remove(t)
                 break
 
-    def MoveTiles(tileList):
+     def MoveTiles(tileList):
         for t in tileList[:]:
             t[1] -= 8
             if t[3] == True:
                 t[2] += 8
 
-    def DrawTiles(tileList):
+     def DrawTiles(tileList):
         for t in tileList[:]:
             pygame.draw.rect(Surface, Green, (t[0], t[1], 90, t[2]-2))
             pygame.draw.rect(Surface, Black, (t[0]-2, t[1]-2, 92, t[2]), 3)
 
-    def DrawBlackTiles(tileList):
+     def DrawBlackTiles(tileList):
         for t in tileList[:]:
             pygame.draw.rect(Surface, DarkGreen, (t[0], t[1], 45, t[2]-2))
             pygame.draw.rect(Surface, Black, (t[0], t[1]-2, 45, t[2]), 3)
 
-    def Background():
+     def Background():
         pygame.draw.rect(Surface, LightGrey, (0, 0, windowWidth, windowHeight))
         pygame.draw.rect(Surface, Grey, (windowWidth-920, 0, 920, windowHeight))
         pygame.draw.line(Surface, Black, (windowWidth-922, windowHeight), (windowWidth-922, 0), 5)
@@ -95,16 +91,18 @@ class Draw():
             pygame.draw.line(Surface, Grey2, (windowWidth-(92*x)-3, 0), (windowWidth-(92*x)-3, windowHeight-247), 3)
         pygame.draw.line(Surface, Grey3, (windowWidth-(92*3)-3, 0), (windowWidth-(92*3)-3, windowHeight-247), 3)
         pygame.draw.line(Surface, Grey3, (windowWidth-(92*7)-3, 0), (windowWidth-(92*7)-3, windowHeight-247), 3)
+
+     def TopBar():
         pygame.draw.rect(Surface, (150, 150, 150), (windowWidth-918, 2, 918, 35))
         pygame.draw.rect(Surface, Black, (windowWidth-920, 0, 919, 37), 2)
 
-    def WhiteKeyText(buttonList):
+     def WhiteKeyText(buttonList):
         for i in range(1, 12):
             Text(buttonList[i], windowWidth-(92*i)+11, windowHeight-15, 20, Black)
             if i > 9:
                 break
 
-    def BlackKeyText(buttonList):
+     def BlackKeyText(buttonList):
         Text("P", windowWidth-104, windowHeight-112, 15, buttonList[0])
         Text("O", windowWidth-196, windowHeight-112, 15, buttonList[1])
         Text("U", windowWidth-380, windowHeight-112, 15, buttonList[2])
@@ -113,8 +111,32 @@ class Draw():
         Text("E", windowWidth-748, windowHeight-112, 15, buttonList[5])
         Text("W", windowWidth-840, windowHeight-112, 15, buttonList[6])
 
+     def VolumeSlider(volumeSliderX, activeSlider):
+          pygame.draw.rect(Surface, DarkGrey, (windowWidth-875, 16, 100, 5))
+          pygame.draw.rect(Surface, Green, (windowWidth-875, 16, volumeSliderX, 5))
+          pygame.draw.rect(Surface, (230, 230, 230), ((windowWidth-880)+volumeSliderX, 11, 10, 15))
+
+          if (activeSlider == False):
+               pygame.draw.rect(Surface, Black, (windowWidth-910, 8, 20, 20), 2)
+               Text("V", windowWidth-900, 19, 15, Black)
+          elif (activeSlider == True):
+               pygame.draw.rect(Surface, Green, (windowWidth-910, 8, 20, 20), 2)
+               Text("V", windowWidth-900, 19, 15, Green)
+
+     def ReverbSlider(reverbSliderX, activeSlider2):
+          pygame.draw.rect(Surface, DarkGrey, (windowWidth-725, 16, 100, 5))
+          pygame.draw.rect(Surface, Green, (windowWidth-725, 16, reverbSliderX, 5))
+          pygame.draw.rect(Surface, (230, 230, 230), ((windowWidth-730)+reverbSliderX, 11, 10, 15))
+
+          if (activeSlider2 == False):
+               pygame.draw.rect(Surface, Black, (windowWidth-760, 8, 20, 20), 2)
+               Text("R", windowWidth-748.5, 18, 15, Black)
+          elif (activeSlider2 == True):
+               pygame.draw.rect(Surface, Green, (windowWidth-760, 8, 20, 20), 2)
+               Text("R", windowWidth-748.5, 18, 15, Green)
+
 class Function():
-    def ChangeVolume(sound, volume):
-        sound.set_volume(volume)
+     def ChangeVolume(sound, volume):
+          sound.set_volume(volume)
 
 

@@ -2,10 +2,6 @@ import pygame, sys, time, os, random, math, colorsys
 from pygame.locals import *
 from random import *
 
-pygame.mixer.pre_init(44100, -16, 1, 512)
-
-pygame.init()
-
 Black      = (0  , 0  , 0  )
 White      = (255, 255, 255)
 Red        = (255, 0  , 0  )

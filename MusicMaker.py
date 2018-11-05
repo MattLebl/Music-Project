@@ -626,7 +626,6 @@ while True: #Game Loop
         reverbSliderX = 0
 
     #Background
-<<<<<<< HEAD
     pygame.draw.rect(Surface, LightGrey, (0, 0, windowWidth, windowHeight))
     pygame.draw.rect(Surface, Grey, (windowWidth-920, 0, 920, windowHeight))
     pygame.draw.line(Surface, Black, (windowWidth-922, windowHeight), (windowWidth-922, 0), 5)
@@ -641,9 +640,7 @@ while True: #Game Loop
         pygame.draw.line(Surface, Grey2, (windowWidth-(92*x)-3, 0), (windowWidth-(92*x)-3, windowHeight-247), 3)
     pygame.draw.line(Surface, Grey3, (windowWidth-(92*3)-3, 0), (windowWidth-(92*3)-3, windowHeight-247), 3)
     pygame.draw.line(Surface, Grey3, (windowWidth-(92*7)-3, 0), (windowWidth-(92*7)-3, windowHeight-247), 3)
-=======
     Draw.Background()
->>>>>>> 95fae0c85db088f6664372560cd472dc7665f467
 
     #Delete Tiles
     Draw.DeleteTiles(pianoTilesA)

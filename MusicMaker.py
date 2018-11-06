@@ -15,16 +15,6 @@ fpsClock=pygame.time.Clock()
 
 dir = os.path.dirname(__file__)
 
-#Music Code
-#[Variable] = pygame.mixer.Sound(FileLocation)
-#[Variable].play()
-#[Variable].stop()
-#[Variable].fadeout() This will stop playback of the sound after fading out over the time argument in milliseconds.
-#[Variable].get_length() Return the length of this Sound in seconds
-#[Variable].set_volume()
-#[Variable].get_volume()
-#https://www.pygame.org/docs/ref/mixer.html
-
 #Window Variables
 windowWidth  = 1280
 windowHeight = 720
@@ -119,12 +109,15 @@ octaveWindowX = windowWidth/3.55
 octaveWindowY = -75
 qButtonPressed = False
 
+<<<<<<< HEAD
 recordButton = False
 rButtonPressed = False
 
 #pygame.draw.rect(Surface, DarkSkyBlue, (windowWidth-30, 9, 20, 20))
 #pygame.draw.rect(Surface, Black, (windowWidth-30, 9, 20, 20), 1)
 
+=======
+>>>>>>> 1658fd1ede1ab053d7d3e6d6eea43313c514c62a
 #Mouse Variables
 mousePosition = pygame.mouse.get_pos()
 mousePressed  = pygame.mouse.get_pressed()
@@ -566,9 +559,9 @@ while True: #Game Loop
     #Background
     Draw.Background()
         
-    pygame.draw.rect(Surface, LightGrey, (0, 0, windowWidth, windowHeight))
-    pygame.draw.rect(Surface, Grey, (windowWidth-920, 0, 920, windowHeight))
-    pygame.draw.line(Surface, Black, (windowWidth-922, windowHeight), (windowWidth-922, 0), 5)
+    #pygame.draw.rect(Surface, LightGrey, (0, 0, windowWidth, windowHeight))
+    #pygame.draw.rect(Surface, Grey, (windowWidth-920, 0, 920, windowHeight))
+    #pygame.draw.line(Surface, Black, (windowWidth-922, windowHeight), (windowWidth-922, 0), 5)
 
     #Instrument tab
     pygame.draw.rect(Surface, Black, (0, 0, windowWidth/3.55, windowHeight/1.75), 3)
@@ -576,10 +569,6 @@ while True: #Game Loop
 
     pygame.draw.rect(Surface, Black, (0, windowHeight/1.75, windowWidth/3.55, windowHeight), 3)
 
-    for x in range(1, 10):
-        pygame.draw.line(Surface, Grey2, (windowWidth-(92*x)-3, 0), (windowWidth-(92*x)-3, windowHeight-247), 3)
-    pygame.draw.line(Surface, Grey3, (windowWidth-(92*3)-3, 0), (windowWidth-(92*3)-3, windowHeight-247), 3)
-    pygame.draw.line(Surface, Grey3, (windowWidth-(92*7)-3, 0), (windowWidth-(92*7)-3, windowHeight-247), 3)
     Draw.Background()
 
     #Delete Tiles

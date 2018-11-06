@@ -115,9 +115,12 @@ buttonPressed = False
 keyDown = False
 
 octaveWindow = False
-octaveWindowX = windowWidth/2
-octaveWindowY = -100
+octaveWindowX = windowWidth/3.55
+octaveWindowY = -75
 qButtonPressed = False
+
+recordButton = False
+rButtonPressed = False
 
 #pygame.draw.rect(Surface, DarkSkyBlue, (windowWidth-30, 9, 20, 20))
 #pygame.draw.rect(Surface, Black, (windowWidth-30, 9, 20, 20), 1)
@@ -173,6 +176,15 @@ while True: #Game Loop
                     octaveWindow = True
 
                 qButtonPressed = True
+                keyDown = True
+
+            if (event.key == K_r):
+                if (octaveWindow == True):
+                    octaveWindow = False
+                elif (octaveWindow == False):
+                    octaveWindow = True
+
+                rButtonPressed = True
                 keyDown = True
             
             #Moves Octive down
@@ -569,10 +581,6 @@ while True: #Game Loop
     pygame.draw.line(Surface, Grey3, (windowWidth-(92*3)-3, 0), (windowWidth-(92*3)-3, windowHeight-247), 3)
     pygame.draw.line(Surface, Grey3, (windowWidth-(92*7)-3, 0), (windowWidth-(92*7)-3, windowHeight-247), 3)
     Draw.Background()
-    #for x in range(1, 10):
-        #pygame.draw.line(Surface, Grey2, (windowWidth-(92*x)-3, 0), (windowWidth-(92*x)-3, windowHeight-247), 3)
-        #pygame.draw.line(Surface, Grey3, (windowWidth-(92*3)-3, 0), (windowWidth-(92*3)-3, windowHeight-247), 3)
-        #pygame.draw.line(Surface, Grey3, (windowWidth-(92*7)-3, 0), (windowWidth-(92*7)-3, windowHeight-247), 3)
 
     #Delete Tiles
     Draw.DeleteTiles(pianoTilesA)
@@ -631,31 +639,41 @@ while True: #Game Loop
     Draw.DrawBlackTiles(pianoTilesO)
     Draw.DrawBlackTiles(pianoTilesP)
 
-    #Octave Button
-    if (qButtonPressed):
-        pygame.draw.rect(Surface, DarkSkyBlue, (windowWidth-910, 8, 20, 20))
-        pygame.draw.rect(Surface, Black, (windowWidth-910, 8, 20, 20), 1)
-    else:
-        pygame.draw.rect(Surface, SkyBlue, (windowWidth-910, 8, 20, 20))
-        pygame.draw.rect(Surface, Black, (windowWidth-910, 8, 20, 20), 1)
-    Text("Q", windowWidth-900, 19, 15, Green)
+##    #Octave Button
+##    if (qButtonPressed):
+##        pygame.draw.rect(Surface, DarkSkyBlue, (windowWidth-910, 8, 20, 20))
+##        pygame.draw.rect(Surface, Black, (windowWidth-910, 8, 20, 20), 1)
+##    else:
+##        pygame.draw.rect(Surface, SkyBlue, (windowWidth-910, 8, 20, 20))
+##        pygame.draw.rect(Surface, Black, (windowWidth-910, 8, 20, 20), 1)
+##    Text("Q", windowWidth-900, 19, 15, Green)
     
     #Octave Window
-    if (octaveWindow):
-        octaveWindowY += 75
-        if (octaveWindowY <= windowHeight + 50):
-            octaveWindowX = windowHeight+ 50
-    else:
-        octaveWindowY -= 75
-        if (octaveWindowY >= 50):
-            octaveWIndowY = 50
+##    if (octaveWindow):
+##        octaveWindowY += 75
+##        if (octaveWindowY <= windowHeight + 50):
+##            octaveWindowX = windowHeight+ 50
+##    else:
+##        octaveWindowY -= 75
+##        if (octaveWindowY >= 50):
+##            octaveWIndowY = 50
 
-    pygame.draw.rect(Surface, LightGrey, (octaveWindowX, octaveWindowY, 500, 200))
-    pygame.draw.rect(Surface, Black, (octaveWindowX, octaveWindowY, 500, 200))
+##    pygame.draw.rect(Surface, LightGrey, (octaveWindowX, octaveWindowY, 500, 200))
+##    pygame.draw.rect(Surface, Black, (octaveWindowX, octaveWindowY, 500, 200))
     
     #Top Bar
     Draw.TopBar()
 
+    #Record Button
+    if (rButtonPressed):
+        pygame.draw.rect(Surface, Green, (windowWidth-459, 8, 20, 20))
+        pygame.draw.rect(Surface, Black, (windowWidth-459, 8, 20, 20), 1)
+    else:
+        pygame.draw.rect(Surface, Red, (windowWidth-459, 8, 20, 20))
+        pygame.draw.rect(Surface, Black, (windowWidth-459, 8, 20, 20), 1)
+    Text("•", windowWidth-449, 17, 35, Black)
+
+    
     #Draw Piano
     Draw.WhiteKey(windowWidth-92 , windowHeight-247, noteColorsWhite[9])
     Draw.WhiteKey(windowWidth-184, windowHeight-247, noteColorsWhite[8])
@@ -686,14 +704,7 @@ while True: #Game Loop
     #Reverb Slider
     Draw.ReverbSlider(reverbSliderX, activeSlider2)
     #pygame.draw.rect(Surface, DarkGrey, (windowWidth-875, 16, 100, 5))
-            
-    if (activeSlider2 == False):
-        pygame.draw.rect(Surface, Black, (windowWidth-760, 8, 20, 20), 2)
-        Text("R", windowWidth-748.5, 18, 15, Black)
-    elif (activeSlider2 == True):
-        pygame.draw.rect(Surface, Green, (windowWidth-760, 8, 20, 20), 2)
-        Text("R", windowWidth-748.5, 18, 15, Green)
-
+    
     #Info Icon
     if (iButtonPressed):
         pygame.draw.rect(Surface, DarkSkyBlue, (windowWidth-30, 9, 20, 20))
@@ -703,6 +714,27 @@ while True: #Game Loop
         pygame.draw.rect(Surface, Black, (windowWidth-30, 9, 20, 20), 1)
     Text("i", windowWidth-20, 19, 18, Black)
 
+    #Octave Button
+    if (qButtonPressed):
+        pygame.draw.rect(Surface, DarkSkyBlue, (windowWidth-905, 8, 20, 20))
+        pygame.draw.rect(Surface, Black, (windowWidth-905, 8, 20, 20), 1)
+    else:
+        pygame.draw.rect(Surface, SkyBlue, (windowWidth-905, 8, 20, 20))
+        pygame.draw.rect(Surface, Black, (windowWidth-905, 8, 20, 20), 1)
+    Text("Q", windowWidth-895, 17, 15, Black)
+
+    if (octaveWindow):
+        octaveWindowY += 75
+        if (octaveWindowY <= windowHeight - 680):
+            octaveWindowY = windowHeight - 680
+    else:
+        octaveWindowY -= 75
+        if (octaveWindowY >= windowHeight -680):
+            octaveWindowY = windowHeight*0 - 75
+
+    pygame.draw.rect(Surface, LightGrey, (windowWidth/3.4, octaveWindowY, windowWidth/3.2, 300))
+    pygame.draw.rect(Surface, Black, (windowWidth/3.4, octaveWindowY, windowWidth/3.2, 300), 2)
+    
     #Draw Info Window
     if (infoWindow):
         infoWindowX -= 75

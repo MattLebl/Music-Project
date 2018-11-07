@@ -109,15 +109,12 @@ octaveWindowX = windowWidth/3.55
 octaveWindowY = -75
 qButtonPressed = False
 
-<<<<<<< HEAD
 recordButton = False
 rButtonPressed = False
 
 #pygame.draw.rect(Surface, DarkSkyBlue, (windowWidth-30, 9, 20, 20))
 #pygame.draw.rect(Surface, Black, (windowWidth-30, 9, 20, 20), 1)
 
-=======
->>>>>>> 1658fd1ede1ab053d7d3e6d6eea43313c514c62a
 #Mouse Variables
 mousePosition = pygame.mouse.get_pos()
 mousePressed  = pygame.mouse.get_pressed()

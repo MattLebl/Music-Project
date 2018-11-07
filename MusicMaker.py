@@ -52,6 +52,20 @@ E4 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/E4.wav'))
 CSharp4 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/CSharp4.wav'))
 DSharp4 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/DSharp4.wav'))
 
+#Bass
+bassA2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Bass/A2.wav'))
+bassB2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/B2.wav'))
+bassC2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/C2.wav'))
+bassD2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/D2.wav'))
+bassE2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/E2.wav'))
+bassF2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/F2.wav'))
+bassG2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/G2.wav'))
+bassCSharp2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/C#2.wav'))
+bassDSharp2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/D#2.wav'))
+bassFSharp2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/F#2.wav'))
+bassGSharp2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/G#2.wav'))
+bassASharp2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/A#2.wav'))
+
 blackNoteKeys = []
 for x in range(0, 8):
     blackNoteKeys.append((255, 255, 255))
@@ -65,8 +79,10 @@ for i in range(0, 7):
     noteColorsBlack.append((0  , 0  , 0  ))
 noteButtonList  = ["", ";", "L", "K", "J", "H", "G", "F", "D", "S", "A"]
 currentOctive   = [False, True, False]
+instruments = [True, False]
+piano = True
 
-#Paino Tiles Lists
+#Piano Tiles Lists
 pianoTilesA = []
 pianoTilesS = []
 pianoTilesD = []
@@ -111,10 +127,6 @@ octaveWindowHeight = 10
 qButtonPressed = False
 
 recordButton = False
-rButtonPressed = False
-
-#pygame.draw.rect(Surface, DarkSkyBlue, (windowWidth-30, 9, 20, 20))
-#pygame.draw.rect(Surface, Black, (windowWidth-30, 9, 20, 20), 1)
 
 #Mouse Variables
 mousePosition = pygame.mouse.get_pos()
@@ -161,8 +173,13 @@ while True: #Game Loop
             #Open octive window
             if (event.key == K_q):
                 qButtonPressed = True
-                keyDown2 = True
-            
+                keyDown = True
+
+            #Instrument change
+##            if (event.key == K_m):
+##                qButtonPressed = True
+##                keyDown = True
+                
             #Moves Octive down
             if (event.key == K_z):
                 if (currentOctive[1] == True):
@@ -369,15 +386,6 @@ while True: #Game Loop
 
                 qButtonPressed = False
                 keyDown2 = False
-
-            #if (event.key == K_r):
-            #    if (octaveWindow == True):
-            #        octaveWindow = False
-            #    elif (octaveWindow == False):
-            #        octaveWindow = True
-            #
-            #    rButtonPressed = False
-            #    keyDown2 = False
             
             #Notes Released
             if (event.key == K_a):

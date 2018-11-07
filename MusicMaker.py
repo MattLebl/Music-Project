@@ -1,14 +1,7 @@
 #https://stackoverflow.com/questions/9770073/sound-generation-synthesis-with-python
 #https://soledadpenades.com/posts/2009/fastest-way-to-generate-wav-files-in-python-using-the-wave-module/
 
-import pygame, sys, time, os, random, math, colorsys
-from pygame.locals import *
-from random import *
 from MusicMakerClasses import *
-
-pygame.mixer.pre_init(44100, -16, 1, 512)
-
-pygame.init()
 
 FPS=30
 fpsClock=pygame.time.Clock()
@@ -107,6 +100,8 @@ Surface    = pygame.display.set_mode((windowWidth, windowHeight))
 pygame.display.set_caption('Music Maker')
 
 #Variables
+record = False
+
 volumeSliderX = 50
 volume = 1
 activeSlider = False;
@@ -144,6 +139,8 @@ def Text(Text, xPos, yPos, Size, Colour):
 
      Surface.blit(TextSurf, TextRect)
 
+rButtonPressed = False
+
 while True: #Game Loop
     #Mouse Pressed info button
     if (Mouse.Pressed()[0] and Mouse.Position()[0] >= windowWidth-30 and Mouse.Position()[0] <= windowWidth-10 and Mouse.Position()[1] >= 9 and Mouse.Position()[1] <= 29):
@@ -165,6 +162,10 @@ while True: #Game Loop
             sys.exit()
 
         if event.type == KEYDOWN:
+            #Record Button
+            if (event.key == K_r):
+                keyDown2 = True
+            
             #Open info window
             if (event.key == K_i):
                 iButtonPressed = True
@@ -180,6 +181,8 @@ while True: #Game Loop
 ##                qButtonPressed = True
 ##                keyDown = True
                 
+                keyDown2 = True
+            
             #Moves Octive down
             if (event.key == K_z):
                 if (currentOctive[1] == True):
@@ -386,6 +389,15 @@ while True: #Game Loop
 
                 qButtonPressed = False
                 keyDown2 = False
+
+            #Record Button
+            if (event.key == K_r):
+                if (record == True):
+                    record = False
+                elif (record == False):
+                    record = True
+                    
+                keyDown2 = False
             
             #Notes Released
             if (event.key == K_a):
@@ -500,7 +512,7 @@ while True: #Game Loop
     
     #Change Volume
     volume = volumeSliderX/50
-    
+
     Function.ChangeVolume(A2, volume)
     Function.ChangeVolume(B2, volume)
     Function.ChangeVolume(C2, volume)
@@ -647,10 +659,10 @@ while True: #Game Loop
     Draw.TopBar()
 
     #Record Button
-    if (rButtonPressed):
+    if (record):
         pygame.draw.rect(Surface, Grey2, (windowWidth-459, 8, 20, 20))
-        pygame.draw.rect(Surface, Red, (windowWidth-459, 8, 20, 20), 1)
-        Text("•", windowWidth-449, 18, 35, Red)
+        pygame.draw.rect(Surface, Green, (windowWidth-459, 8, 20, 20), 1)
+        Text("•", windowWidth-449, 18, 35, Green)
     else:
         pygame.draw.rect(Surface, Grey2, (windowWidth-459, 8, 20, 20))
         pygame.draw.rect(Surface, Red, (windowWidth-459, 8, 20, 20), 1)
@@ -697,12 +709,11 @@ while True: #Game Loop
 
     #Octive Icon
     if (qButtonPressed):
-        pygame.draw.rect(Surface, DarkSkyBlue, (windowWidth-905, 8, 20, 20))
-        pygame.draw.rect(Surface, Black, (windowWidth-905, 8, 20, 20), 1)
+        pygame.draw.rect(Surface, DarkSkyBlue, (windowWidth-906, 9, 20, 20))
     else:
-        pygame.draw.rect(Surface, SkyBlue, (windowWidth-905, 8, 20, 20))
-        pygame.draw.rect(Surface, Black, (windowWidth-905, 8, 20, 20), 1)
-    Text("Q", windowWidth-895, 17, 15, Black)
+        pygame.draw.rect(Surface, SkyBlue, (windowWidth-906, 9, 20, 20))
+    pygame.draw.rect(Surface, Black, (windowWidth-906, 9, 20, 20), 1)
+    Text("Q", windowWidth-895, 18, 15, Black)
     
     #Draw Info Window
     if (infoWindow):

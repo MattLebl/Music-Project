@@ -2,6 +2,12 @@ import pygame, sys, time, os, random, math, colorsys
 from pygame.locals import *
 from random import *
 
+pygame.mixer.pre_init(44100, -16, 1, 512)
+
+pygame.init()
+
+dir = os.path.dirname(__file__)
+
 windowWidth  = 1280
 windowHeight = 720
 Surface      = pygame.display.set_mode((windowWidth, windowHeight))
@@ -39,19 +45,16 @@ Grey3      = (75 , 75 , 75 )
 LightGrey  = (125, 125, 125)
 DarkGrey   = (50 , 50 , 50 )
 
-#class Color():
-     #def
-
 class Mouse():
-    def Position():
-        p = pygame.mouse.get_pos()
+     def Position():
+          p = pygame.mouse.get_pos()
 
-        return p
+          return p
 
-    def Pressed():
-        p = pygame.mouse.get_pressed()
+     def Pressed():
+          p = pygame.mouse.get_pressed()
 
-        return p
+          return p
 
 class Draw():
      def WhiteKey(x, y, color):
@@ -91,6 +94,8 @@ class Draw():
         pygame.draw.rect(Surface, Black, (0, 0, windowWidth/3.55, windowHeight/1.75), 3)
         pygame.draw.rect(Surface, Black, (0, windowHeight/1.75, windowWidth/3.55, windowHeight), 3)
         pygame.draw.rect(Surface, Black, (windowWidth, windowHeight/2, windowWidth/3.55, windowHeight), 3)
+        pygame.draw.line(Surface, Black, (0, 35), (400, 35), 4)
+        Text("Recordings", 20, 10, 40, 5)
         for x in range(1, 10):
             pygame.draw.line(Surface, Grey2, (windowWidth-(92*x)-3, 0), (windowWidth-(92*x)-3, windowHeight-247), 3)
         pygame.draw.line(Surface, Grey3, (windowWidth-(92*3)-3, 0), (windowWidth-(92*3)-3, windowHeight-247), 3)
@@ -142,3 +147,36 @@ class Draw():
 class Function():
      def ChangeVolume(sound, volume):
           sound.set_volume(volume)
+
+#Piano Variables
+A2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/A2.wav'))
+B2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/B2.wav'))
+C2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/C2.wav'))
+D2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/D2.wav'))
+E2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/E2.wav'))
+F2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/F2.wav'))
+G2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/G2.wav'))
+CSharp2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/CSharp2.wav'))
+DSharp2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/DSharp2.wav'))
+FSharp2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/FSharp2.wav'))
+GSharp2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/GSharp2.wav'))
+ASharp2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/ASharp2.wav'))
+
+A3 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/A3.wav'))
+B3 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/B3.wav'))
+C3 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/C3.wav'))
+D3 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/D3.wav'))
+E3 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/E3.wav'))
+F3 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/F3.wav'))
+G3 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/G3.wav'))
+CSharp3 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/CSharp3.wav'))
+DSharp3 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/DSharp3.wav'))
+FSharp3 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/FSharp3.wav'))
+GSharp3 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/GSharp3.wav'))
+ASharp3 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/ASharp3.wav'))
+
+C4 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/C4.wav'))
+D4 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/D4.wav'))
+E4 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/E4.wav'))
+CSharp4 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/CSharp4.wav'))
+DSharp4 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/DSharp4.wav'))

@@ -39,19 +39,16 @@ Grey3      = (75 , 75 , 75 )
 LightGrey  = (125, 125, 125)
 DarkGrey   = (50 , 50 , 50 )
 
-#class Color():
-     #def
-
 class Mouse():
-    def Position():
-        p = pygame.mouse.get_pos()
+     def Position():
+          p = pygame.mouse.get_pos()
 
-        return p
+          return p
 
-    def Pressed():
-        p = pygame.mouse.get_pressed()
+     def Pressed():
+          p = pygame.mouse.get_pressed()
 
-        return p
+          return p
 
 class Draw():
      def WhiteKey(x, y, color):

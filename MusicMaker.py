@@ -1,9 +1,6 @@
 #https://stackoverflow.com/questions/9770073/sound-generation-synthesis-with-python
 #https://soledadpenades.com/posts/2009/fastest-way-to-generate-wav-files-in-python-using-the-wave-module/
 
-import pygame, sys, time, os, random, math, colorsys
-from pygame.locals import *
-from random import *
 from MusicMakerClasses import *
 
 pygame.mixer.pre_init(44100, -16, 1, 512)
@@ -19,7 +16,7 @@ dir = os.path.dirname(__file__)
 windowWidth  = 1280
 windowHeight = 720
 
-#Sound Variables
+#Piano Variables
 A2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/A2.wav'))
 B2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/B2.wav'))
 C2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/C2.wav'))
@@ -51,6 +48,9 @@ D4 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/D4.wav'))
 E4 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/E4.wav'))
 CSharp4 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/CSharp4.wav'))
 DSharp4 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/DSharp4.wav'))
+
+#Bass Variables
+#
 
 blackNoteKeys = []
 for x in range(0, 8):
@@ -112,13 +112,6 @@ qButtonPressed = False
 
 recordButton = False
 rButtonPressed = False
-
-#pygame.draw.rect(Surface, DarkSkyBlue, (windowWidth-30, 9, 20, 20))
-#pygame.draw.rect(Surface, Black, (windowWidth-30, 9, 20, 20), 1)
-
-#Mouse Variables
-mousePosition = pygame.mouse.get_pos()
-mousePressed  = pygame.mouse.get_pressed()
 
 #Text Functions
 def text_objects(Text, font, colour):
@@ -492,7 +485,7 @@ while True: #Game Loop
     
     #Change Volume
     volume = volumeSliderX/50
-    
+
     Function.ChangeVolume(A2, volume)
     Function.ChangeVolume(B2, volume)
     Function.ChangeVolume(C2, volume)

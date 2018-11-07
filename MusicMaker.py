@@ -3,54 +3,8 @@
 
 from MusicMakerClasses import *
 
-pygame.mixer.pre_init(44100, -16, 1, 512)
-
-pygame.init()
-
 FPS=30
 fpsClock=pygame.time.Clock()
-
-dir = os.path.dirname(__file__)
-
-#Window Variables
-windowWidth  = 1280
-windowHeight = 720
-
-#Piano Variables
-A2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/A2.wav'))
-B2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/B2.wav'))
-C2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/C2.wav'))
-D2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/D2.wav'))
-E2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/E2.wav'))
-F2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/F2.wav'))
-G2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/G2.wav'))
-CSharp2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/CSharp2.wav'))
-DSharp2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/DSharp2.wav'))
-FSharp2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/FSharp2.wav'))
-GSharp2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/GSharp2.wav'))
-ASharp2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/ASharp2.wav'))
-
-A3 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/A3.wav'))
-B3 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/B3.wav'))
-C3 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/C3.wav'))
-D3 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/D3.wav'))
-E3 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/E3.wav'))
-F3 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/F3.wav'))
-G3 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/G3.wav'))
-CSharp3 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/CSharp3.wav'))
-DSharp3 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/DSharp3.wav'))
-FSharp3 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/FSharp3.wav'))
-GSharp3 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/GSharp3.wav'))
-ASharp3 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/ASharp3.wav'))
-
-C4 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/C4.wav'))
-D4 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/D4.wav'))
-E4 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/E4.wav'))
-CSharp4 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/CSharp4.wav'))
-DSharp4 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/DSharp4.wav'))
-
-#Bass Variables
-#
 
 blackNoteKeys = []
 for x in range(0, 8):
@@ -91,6 +45,8 @@ Surface    = pygame.display.set_mode((windowWidth, windowHeight))
 pygame.display.set_caption('Music Maker')
 
 #Variables
+record = False
+
 volumeSliderX = 50
 volume = 1
 activeSlider = False;
@@ -113,18 +69,6 @@ qButtonPressed = False
 recordButton = False
 rButtonPressed = False
 
-#Text Functions
-def text_objects(Text, font, colour):
-     textSurface = font.render(Text, True, colour)
-     return textSurface, textSurface.get_rect()
-
-def Text(Text, xPos, yPos, Size, Colour):
-     largeText          = pygame.font.Font('Fonts/Times_New_Roman_Normal.ttf', Size)
-     TextSurf, TextRect = text_objects(Text, largeText, Colour)
-     TextRect.center    = (xPos, yPos)
-
-     Surface.blit(TextSurf, TextRect)
-
 while True: #Game Loop
     #Mouse Pressed info button
     if (Mouse.Pressed()[0] and Mouse.Position()[0] >= windowWidth-30 and Mouse.Position()[0] <= windowWidth-10 and Mouse.Position()[1] >= 9 and Mouse.Position()[1] <= 29):
@@ -146,6 +90,10 @@ while True: #Game Loop
             sys.exit()
 
         if event.type == KEYDOWN:
+            #Record Button
+            if (event.key == K_r):
+                keyDown2 = True
+            
             #Open info window
             if (event.key == K_i):
                 iButtonPressed = True
@@ -153,7 +101,6 @@ while True: #Game Loop
 
             #Open octive window
             if (event.key == K_q):
-                qButtonPressed = True
                 keyDown2 = True
             
             #Moves Octive down
@@ -363,14 +310,14 @@ while True: #Game Loop
                 qButtonPressed = False
                 keyDown2 = False
 
-            #if (event.key == K_r):
-            #    if (octaveWindow == True):
-            #        octaveWindow = False
-            #    elif (octaveWindow == False):
-            #        octaveWindow = True
-            #
-            #    rButtonPressed = False
-            #    keyDown2 = False
+            #Record Button
+            if (event.key == K_r):
+                if (record == True):
+                    record = False
+                elif (record == False):
+                    record = True
+                    
+                keyDown2 = False
             
             #Notes Released
             if (event.key == K_a):
@@ -632,10 +579,10 @@ while True: #Game Loop
     Draw.TopBar()
 
     #Record Button
-    if (rButtonPressed):
+    if (record):
         pygame.draw.rect(Surface, Grey2, (windowWidth-459, 8, 20, 20))
-        pygame.draw.rect(Surface, Red, (windowWidth-459, 8, 20, 20), 1)
-        Text("•", windowWidth-449, 18, 35, Red)
+        pygame.draw.rect(Surface, Green, (windowWidth-459, 8, 20, 20), 1)
+        Text("•", windowWidth-449, 18, 35, Green)
     else:
         pygame.draw.rect(Surface, Grey2, (windowWidth-459, 8, 20, 20))
         pygame.draw.rect(Surface, Red, (windowWidth-459, 8, 20, 20), 1)
@@ -682,12 +629,11 @@ while True: #Game Loop
 
     #Octive Icon
     if (qButtonPressed):
-        pygame.draw.rect(Surface, DarkSkyBlue, (windowWidth-905, 8, 20, 20))
-        pygame.draw.rect(Surface, Black, (windowWidth-905, 8, 20, 20), 1)
+        pygame.draw.rect(Surface, DarkSkyBlue, (windowWidth-906, 9, 20, 20))
     else:
-        pygame.draw.rect(Surface, SkyBlue, (windowWidth-905, 8, 20, 20))
-        pygame.draw.rect(Surface, Black, (windowWidth-905, 8, 20, 20), 1)
-    Text("Q", windowWidth-895, 17, 15, Black)
+        pygame.draw.rect(Surface, SkyBlue, (windowWidth-906, 9, 20, 20))
+    pygame.draw.rect(Surface, Black, (windowWidth-906, 9, 20, 20), 1)
+    Text("Q", windowWidth-895, 18, 15, Black)
     
     #Draw Info Window
     if (infoWindow):

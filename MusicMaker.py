@@ -58,6 +58,7 @@ infoWindow = False;
 infoWindowX = windowWidth
 iButtonPressed = False;
 buttonPressed = False
+buttonPressed2 = False
 keyDown = False
 keyDown2 = False
 
@@ -83,17 +84,28 @@ while True: #Game Loop
     elif (keyDown == False):
         iButtonPressed = False
         buttonPressed = False
+
+    #pygame.draw.rect(Surface, SkyBlue, (windowWidth-906, 9, 20, 20))
+    
+    if (Mouse.Pressed()[0] and Mouse.Position()[0] >= windowWidth-906 and Mouse.Position()[0] <= windowWidth-906+20 and Mouse.Position()[1] >= 9 and Mouse.Position()[1] <= 29):
+        if (buttonPressed2 == False):
+            if (octaveWindow == True):
+                octaveWindow = False
+            elif (octaveWindow == False):
+                octaveWindow = True
+
+            qButtonPressed = True
+            buttonPressed2 = True
+    elif (keyDown2 == False):
+        qButtonPressed = False
+        buttonPressed2 = False
     
     for event in pygame.event.get():
         if event.type == QUIT:
             pygame.quit()
             sys.exit()
 
-        if event.type == KEYDOWN:
-            #Record Button
-            if (event.key == K_r):
-                keyDown2 = True
-            
+        if event.type == KEYDOWN:        
             #Open info window
             if (event.key == K_i):
                 iButtonPressed = True
@@ -101,6 +113,7 @@ while True: #Game Loop
 
             #Open octive window
             if (event.key == K_q):
+                qButtonPressed = True
                 keyDown2 = True
             
             #Moves Octive down
@@ -316,8 +329,6 @@ while True: #Game Loop
                     record = False
                 elif (record == False):
                     record = True
-                    
-                keyDown2 = False
             
             #Notes Released
             if (event.key == K_a):
@@ -621,10 +632,9 @@ while True: #Game Loop
     #Info Icon
     if (iButtonPressed):
         pygame.draw.rect(Surface, DarkSkyBlue, (windowWidth-30, 9, 20, 20))
-        pygame.draw.rect(Surface, Black, (windowWidth-30, 9, 20, 20), 1)
     else:
         pygame.draw.rect(Surface, SkyBlue, (windowWidth-30, 9, 20, 20))
-        pygame.draw.rect(Surface, Black, (windowWidth-30, 9, 20, 20), 1)
+    pygame.draw.rect(Surface, Black, (windowWidth-30, 9, 20, 20), 1)
     Text("i", windowWidth-20, 19, 18, Black)
 
     #Octive Icon

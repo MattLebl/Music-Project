@@ -6,6 +6,59 @@ from MusicMakerClasses import *
 FPS=30
 fpsClock=pygame.time.Clock()
 
+dir = os.path.dirname(__file__)
+
+#Window Variables
+windowWidth  = 1280
+windowHeight = 720
+
+#Sound Variables
+A2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/A2.wav'))
+B2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/B2.wav'))
+C2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/C2.wav'))
+D2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/D2.wav'))
+E2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/E2.wav'))
+F2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/F2.wav'))
+G2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/G2.wav'))
+CSharp2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/CSharp2.wav'))
+DSharp2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/DSharp2.wav'))
+FSharp2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/FSharp2.wav'))
+GSharp2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/GSharp2.wav'))
+ASharp2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/ASharp2.wav'))
+
+A3 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/A3.wav'))
+B3 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/B3.wav'))
+C3 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/C3.wav'))
+D3 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/D3.wav'))
+E3 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/E3.wav'))
+F3 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/F3.wav'))
+G3 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/G3.wav'))
+CSharp3 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/CSharp3.wav'))
+DSharp3 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/DSharp3.wav'))
+FSharp3 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/FSharp3.wav'))
+GSharp3 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/GSharp3.wav'))
+ASharp3 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/ASharp3.wav'))
+
+C4 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/C4.wav'))
+D4 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/D4.wav'))
+E4 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/E4.wav'))
+CSharp4 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/CSharp4.wav'))
+DSharp4 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/DSharp4.wav'))
+
+#Bass
+bassA2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Bass/A2.wav'))
+bassB2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/B2.wav'))
+bassC2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/C2.wav'))
+bassD2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/D2.wav'))
+bassE2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/E2.wav'))
+bassF2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/F2.wav'))
+bassG2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/G2.wav'))
+bassCSharp2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/C#2.wav'))
+bassDSharp2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/D#2.wav'))
+bassFSharp2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/F#2.wav'))
+bassGSharp2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/G#2.wav'))
+bassASharp2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/A#2.wav'))
+
 blackNoteKeys = []
 for x in range(0, 8):
     blackNoteKeys.append((255, 255, 255))
@@ -19,8 +72,10 @@ for i in range(0, 7):
     noteColorsBlack.append((0  , 0  , 0  ))
 noteButtonList  = ["", ";", "L", "K", "J", "H", "G", "F", "D", "S", "A"]
 currentOctive   = [False, True, False]
+instruments = [True, False]
+piano = True
 
-#Paino Tiles Lists
+#Piano Tiles Lists
 pianoTilesA = []
 pianoTilesS = []
 pianoTilesD = []
@@ -68,6 +123,23 @@ octaveWindowHeight = 10
 qButtonPressed = False
 
 recordButton = False
+
+#Mouse Variables
+mousePosition = pygame.mouse.get_pos()
+mousePressed  = pygame.mouse.get_pressed()
+
+#Text Functions
+def text_objects(Text, font, colour):
+     textSurface = font.render(Text, True, colour)
+     return textSurface, textSurface.get_rect()
+
+def Text(Text, xPos, yPos, Size, Colour):
+     largeText          = pygame.font.Font('Fonts/Times_New_Roman_Normal.ttf', Size)
+     TextSurf, TextRect = text_objects(Text, largeText, Colour)
+     TextRect.center    = (xPos, yPos)
+
+     Surface.blit(TextSurf, TextRect)
+
 rButtonPressed = False
 
 while True: #Game Loop
@@ -114,6 +186,16 @@ while True: #Game Loop
             #Open octive window
             if (event.key == K_q):
                 qButtonPressed = True
+<<<<<<< HEAD
+=======
+                keyDown = True
+
+            #Instrument change
+##            if (event.key == K_m):
+##                qButtonPressed = True
+##                keyDown = True
+                
+>>>>>>> 855292da16da3138e2d8e4f5dc062f4406c26229
                 keyDown2 = True
             
             #Moves Octive down

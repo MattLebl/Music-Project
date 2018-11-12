@@ -46,18 +46,18 @@ CSharp4 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/CSharp4.wa
 DSharp4 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/DSharp4.wav'))
 
 #Bass
-bassA2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Bass/A2.wav'))
-bassB2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/B2.wav'))
-bassC2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/C2.wav'))
-bassD2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/D2.wav'))
-bassE2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/E2.wav'))
-bassF2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/F2.wav'))
-bassG2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/G2.wav'))
-bassCSharp2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/C#2.wav'))
-bassDSharp2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/D#2.wav'))
-bassFSharp2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/F#2.wav'))
-bassGSharp2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/G#2.wav'))
-bassASharp2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/A#2.wav'))
+#bassA2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Bass/A2.wav'))
+#bassB2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/B2.wav'))
+#bassC2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/C2.wav'))
+#bassD2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/D2.wav'))
+#bassE2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/E2.wav'))
+#bassF2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/F2.wav'))
+#bassG2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/G2.wav'))
+#bassCSharp2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/C#2.wav'))
+#bassDSharp2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/D#2.wav'))
+#bassFSharp2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/F#2.wav'))
+#bassGSharp2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/G#2.wav'))
+#bassASharp2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/A#2.wav'))
 
 blackNoteKeys = []
 for x in range(0, 8):
@@ -186,16 +186,6 @@ while True: #Game Loop
             #Open octive window
             if (event.key == K_q):
                 qButtonPressed = True
-<<<<<<< HEAD
-=======
-                keyDown = True
-
-            #Instrument change
-##            if (event.key == K_m):
-##                qButtonPressed = True
-##                keyDown = True
-                
->>>>>>> 855292da16da3138e2d8e4f5dc062f4406c26229
                 keyDown2 = True
             
             #Moves Octive down

@@ -95,7 +95,7 @@ class Draw():
         pygame.draw.rect(Surface, Black, (0, windowHeight/1.75, windowWidth/3.55, windowHeight), 3)
         pygame.draw.rect(Surface, Black, (windowWidth, windowHeight/2, windowWidth/3.55, windowHeight), 3)
         pygame.draw.line(Surface, Black, (0, 35), (400, 35), 4)
-        Text("Recordings", 20, 10, 40, 5)
+        Text("Recordings", 72, 16, 28, Black)
         for x in range(1, 10):
             pygame.draw.line(Surface, Grey2, (windowWidth-(92*x)-3, 0), (windowWidth-(92*x)-3, windowHeight-247), 3)
         pygame.draw.line(Surface, Grey3, (windowWidth-(92*3)-3, 0), (windowWidth-(92*3)-3, windowHeight-247), 3)

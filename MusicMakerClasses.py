@@ -96,10 +96,28 @@ class Draw():
         pygame.draw.rect(Surface, Black, (windowWidth, windowHeight/2, windowWidth/3.55, windowHeight), 3)
         pygame.draw.line(Surface, Black, (0, 35), (400, 35), 4)
         Text("Recordings", 72, 16, 28, Black)
+        Text("Instruments", 77, windowHeight-292, 28, Black)
         for x in range(1, 10):
             pygame.draw.line(Surface, Grey2, (windowWidth-(92*x)-3, 0), (windowWidth-(92*x)-3, windowHeight-247), 3)
         pygame.draw.line(Surface, Grey3, (windowWidth-(92*3)-3, 0), (windowWidth-(92*3)-3, windowHeight-247), 3)
         pygame.draw.line(Surface, Grey3, (windowWidth-(92*7)-3, 0), (windowWidth-(92*7)-3, windowHeight-247), 3)
+
+     def InfoWindow(iButtonPressed):
+          if (iButtonPressed):
+               pygame.draw.rect(Surface, DarkSkyBlue, (windowWidth-30, 9, 20, 20))
+          else:
+               pygame.draw.rect(Surface, SkyBlue, (windowWidth-30, 9, 20, 20))
+          pygame.draw.rect(Surface, Black, (windowWidth-30, 9, 20, 20), 1)
+          Text("I", windowWidth-20, 19, 18, Black)
+
+     def OctaveWindow(qButtonPressed):
+          pygame.draw.rect(Surface, Black, (windowWidth-906, 9, 20, 20), 1)
+          Text("O", windowWidth-895, 19, 15, Black)
+
+          if (qButtonPressed):
+               pygame.draw.rect(Surface, DarkSkyBlue, (windowWidth-906, 9, 20, 20))
+          else:
+               pygame.draw.rect(Surface, SkyBlue, (windowWidth-906, 9, 20, 20))
 
      def TopBar():
         pygame.draw.rect(Surface, (150, 150, 150), (windowWidth-918, 2, 918, 35))
@@ -149,6 +167,19 @@ class Function():
           sound.set_volume(volume)
 
 #Piano Variables
+A1 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/A1.wav'))
+B1 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/B1.wav'))
+C1 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/C1.wav'))
+D1 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/D1.wav'))
+E1 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/E1.wav'))
+F1 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/F1.wav'))
+G1 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/G1.wav'))
+CSharp1 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/CSharp1.wav'))
+DSharp1 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/DSharp1.wav'))
+FSharp1 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/FSharp1.wav'))
+GSharp1 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/GSharp1.wav'))
+ASharp1 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/ASharp1.wav'))
+
 A2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/A2.wav'))
 B2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/B2.wav'))
 C2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/C2.wav'))

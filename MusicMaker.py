@@ -12,52 +12,6 @@ dir = os.path.dirname(__file__)
 windowWidth  = 1280
 windowHeight = 720
 
-#Sound Variables
-A1 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/A1.wav'))
-B1 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/B1.wav'))
-C1 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/C1.wav'))
-D1 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/D1.wav'))
-E1 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/E1.wav'))
-F1 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/F1.wav'))
-G1 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/G1.wav'))
-CSharp1 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/CSharp1.wav'))
-DSharp1 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/DSharp1.wav'))
-FSharp1 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/FSharp1.wav'))
-GSharp1 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/GSharp1.wav'))
-ASharp1 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/ASharp1.wav'))
-
-A2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/A2.wav'))
-B2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/B2.wav'))
-C2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/C2.wav'))
-D2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/D2.wav'))
-E2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/E2.wav'))
-F2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/F2.wav'))
-G2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/G2.wav'))
-CSharp2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/CSharp2.wav'))
-DSharp2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/DSharp2.wav'))
-FSharp2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/FSharp2.wav'))
-GSharp2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/GSharp2.wav'))
-ASharp2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/ASharp2.wav'))
-
-A3 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/A3.wav'))
-B3 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/B3.wav'))
-C3 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/C3.wav'))
-D3 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/D3.wav'))
-E3 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/E3.wav'))
-F3 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/F3.wav'))
-G3 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/G3.wav'))
-CSharp3 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/CSharp3.wav'))
-DSharp3 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/DSharp3.wav'))
-FSharp3 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/FSharp3.wav'))
-GSharp3 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/GSharp3.wav'))
-ASharp3 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/ASharp3.wav'))
-
-C4 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/C4.wav'))
-D4 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/D4.wav'))
-E4 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/E4.wav'))
-CSharp4 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/CSharp4.wav'))
-DSharp4 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/DSharp4.wav'))
-
 #Bass
 #bassA2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Bass/A2.wav'))
 #bassB2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/B2.wav'))
@@ -614,10 +568,6 @@ while True: #Game Loop
     #Background
     Draw.Background()
 
-    #Instrument tab
-    pygame.draw.rect(Surface, Black, (0, 0, windowWidth/3.55, windowHeight/1.75), 3)
-    Text("Instruments", windowWidth-100, 18, 15, Black)
-
     #Delete Tiles
     Draw.DeleteTiles(pianoTilesA)
     Draw.DeleteTiles(pianoTilesS)
@@ -732,20 +682,21 @@ while True: #Game Loop
     Draw.ReverbSlider(reverbSliderX, activeSlider2)
     
     #Info Icon
-    if (iButtonPressed):
-        pygame.draw.rect(Surface, DarkSkyBlue, (windowWidth-30, 9, 20, 20))
-    else:
-        pygame.draw.rect(Surface, SkyBlue, (windowWidth-30, 9, 20, 20))
-    pygame.draw.rect(Surface, Black, (windowWidth-30, 9, 20, 20), 1)
-    Text("i", windowWidth-20, 19, 18, Black)
-
-    #Octive Icon
-    if (qButtonPressed):
-        pygame.draw.rect(Surface, DarkSkyBlue, (windowWidth-906, 9, 20, 20))
-    else:
-        pygame.draw.rect(Surface, SkyBlue, (windowWidth-906, 9, 20, 20))
-    pygame.draw.rect(Surface, Black, (windowWidth-906, 9, 20, 20), 1)
-    Text("Q", windowWidth-895, 18, 15, Black)
+    Draw.InfoWindow(iButtonPressed)
+##    if (iButtonPressed):
+##        pygame.draw.rect(Surface, DarkSkyBlue, (windowWidth-30, 9, 20, 20))
+##    else:
+##        pygame.draw.rect(Surface, SkyBlue, (windowWidth-30, 9, 20, 20))
+##    pygame.draw.rect(Surface, Black, (windowWidth-30, 9, 20, 20), 1)
+##    Text("I", windowWidth-20, 19, 18, Black)
+##
+##    #Octive Icon
+##    if (qButtonPressed):
+##        pygame.draw.rect(Surface, DarkSkyBlue, (windowWidth-906, 9, 20, 20))
+##    else:
+##        pygame.draw.rect(Surface, SkyBlue, (windowWidth-906, 9, 20, 20))
+##    pygame.draw.rect(Surface, Black, (windowWidth-906, 9, 20, 20), 1)
+##    Text("O", windowWidth-895, 19, 15, Black)
     
     #Draw Info Window
     if (infoWindow):

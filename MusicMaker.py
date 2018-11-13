@@ -13,6 +13,19 @@ windowWidth  = 1280
 windowHeight = 720
 
 #Sound Variables
+A1 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/A1.wav'))
+B1 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/B1.wav'))
+C1 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/C1.wav'))
+D1 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/D1.wav'))
+E1 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/E1.wav'))
+F1 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/F1.wav'))
+G1 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/G1.wav'))
+CSharp1 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/CSharp1.wav'))
+DSharp1 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/DSharp1.wav'))
+FSharp1 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/FSharp1.wav'))
+GSharp1 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/GSharp1.wav'))
+ASharp1 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/ASharp1.wav'))
+
 A2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/A2.wav'))
 B2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/B2.wav'))
 C2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/C2.wav'))
@@ -216,7 +229,7 @@ while True: #Game Loop
                 noteColorsWhite[0] = (0, 255, 0)
                 pianoTilesA.append([windowWidth-920, windowHeight-247, 0, True])
                 if (currentOctive[0] == True):
-                    print("First Octive Note")
+                    C1.play()
                 elif (currentOctive[1] == True):
                     C2.play()
                 elif (currentOctive[2] == True):
@@ -225,7 +238,7 @@ while True: #Game Loop
                 noteColorsWhite[1] = (0, 255, 0)
                 pianoTilesS.append([windowWidth-828, windowHeight-247, 0, True])
                 if (currentOctive[0] == True):
-                    print("First Octive Note")
+                    D1.play()
                 elif (currentOctive[1] == True):
                     D2.play()
                 elif (currentOctive[2] == True):
@@ -234,7 +247,7 @@ while True: #Game Loop
                 noteColorsWhite[2] = (0, 255, 0)
                 pianoTilesD.append([windowWidth-736, windowHeight-247, 0, True])
                 if (currentOctive[0] == True):
-                    print("First Octive Note")
+                    E1.play()
                 elif (currentOctive[1] == True):
                     E2.play()
                 elif (currentOctive[2] == True):
@@ -243,7 +256,7 @@ while True: #Game Loop
                 noteColorsWhite[3] = (0, 255, 0)
                 pianoTilesF.append([windowWidth-644, windowHeight-247, 0, True])
                 if (currentOctive[0] == True):
-                    print("First Octive Note")
+                    F1.play()
                 elif (currentOctive[1] == True):
                     F2.play()
                 elif (currentOctive[2] == True):
@@ -252,7 +265,7 @@ while True: #Game Loop
                 noteColorsWhite[4] = (0, 255, 0)
                 pianoTilesG.append([windowWidth-552, windowHeight-247, 0, True])
                 if (currentOctive[0] == True):
-                    print("First Octive Note")
+                    G1.play()
                 elif (currentOctive[1] == True):
                     G2.play()
                 elif (currentOctive[2] == True):
@@ -261,7 +274,7 @@ while True: #Game Loop
                 noteColorsWhite[5] = (0, 255, 0)
                 pianoTilesH.append([windowWidth-460, windowHeight-247, 0, True])
                 if (currentOctive[0] == True):
-                    print("First Octive Note")
+                    A1.play()
                 elif (currentOctive[1] == True):
                     A2.play()
                 elif (currentOctive[2] == True):
@@ -270,7 +283,7 @@ while True: #Game Loop
                 noteColorsWhite[6] = (0, 255, 0)
                 pianoTilesJ.append([windowWidth-368, windowHeight-247, 0, True])
                 if (currentOctive[0] == True):
-                    print("First Octive Note")
+                    B1.play()
                 elif (currentOctive[1] == True):
                     B2.play()
                 elif (currentOctive[2] == True):
@@ -279,7 +292,7 @@ while True: #Game Loop
                 noteColorsWhite[7] = (0, 255, 0)
                 pianoTilesK.append([windowWidth-276, windowHeight-247, 0, True])
                 if (currentOctive[0] == True):
-                    print("First Octive Note")
+                    C2.play()
                 elif (currentOctive[1] == True):
                     C3.play()
                 elif (currentOctive[2] == True):
@@ -288,7 +301,7 @@ while True: #Game Loop
                 noteColorsWhite[8] = (0, 255, 0)
                 pianoTilesL.append([windowWidth-184, windowHeight-247, 0, True])
                 if (currentOctive[0] == True):
-                    print("First Octive Note")
+                    D2.play()
                 elif (currentOctive[1] == True):
                     D3.play()
                 elif (currentOctive[2] == True):
@@ -297,7 +310,7 @@ while True: #Game Loop
                 noteColorsWhite[9] = (0, 255, 0)
                 pianoTilesSEMI.append([windowWidth-92, windowHeight-247, 0, True])
                 if (currentOctive[0] == True):
-                    print("First Octive Note")
+                    E2.play()
                 elif (currentOctive[1] == True):
                     E3.play()
                 elif (currentOctive[2] == True):
@@ -308,7 +321,7 @@ while True: #Game Loop
                 blackNoteKeys[6]   = (0, 0, 0)
                 pianoTilesW.append([windowWidth-853, windowHeight-247, 0, True])
                 if (currentOctive[0] == True):
-                    print("First Octive Note")
+                    CSharp1.play()
                 elif (currentOctive[1] == True):
                     CSharp2.play()
                 elif (currentOctive[2] == True):
@@ -318,7 +331,7 @@ while True: #Game Loop
                 blackNoteKeys[5]   = (0, 0, 0)
                 pianoTilesE.append([windowWidth-761, windowHeight-247, 0, True])
                 if (currentOctive[0] == True):
-                    print("First Octive Note")
+                    DSharp1.play()
                 elif (currentOctive[1] == True):
                     DSharp2.play()
                 elif (currentOctive[2] == True):
@@ -328,7 +341,7 @@ while True: #Game Loop
                 blackNoteKeys[4]   = (0, 0, 0)
                 pianoTilesT.append([windowWidth-577, windowHeight-247, 0, True])
                 if (currentOctive[0] == True):
-                    print("First Octive Note")
+                    FSharp1.play()
                 elif (currentOctive[1] == True):
                     FSharp2.play()
                 elif (currentOctive[2] == True):
@@ -338,7 +351,7 @@ while True: #Game Loop
                 blackNoteKeys[3]   = (0, 0, 0)
                 pianoTilesY.append([windowWidth-484, windowHeight-247, 0, True])
                 if (currentOctive[0] == True):
-                    print("First Octive Note")
+                    GSharp1.play()
                 elif (currentOctive[1] == True):
                     GSharp2.play()
                 elif (currentOctive[2] == True):
@@ -348,7 +361,7 @@ while True: #Game Loop
                 blackNoteKeys[2]   = (0, 0, 0)
                 pianoTilesU.append([windowWidth-392, windowHeight-247, 0, True])
                 if (currentOctive[0] == True):
-                    print("First Octive Note")
+                    ASharp1.play()
                 elif (currentOctive[1] == True):
                     ASharp2.play()
                 elif (currentOctive[2] == True):
@@ -358,7 +371,7 @@ while True: #Game Loop
                 blackNoteKeys[1]   = (0, 0, 0)
                 pianoTilesO.append([windowWidth-208, windowHeight-247, 0, True])
                 if (currentOctive[0] == True):
-                    print("First Octive Note")
+                    CSharp2.play()
                 elif (currentOctive[1] == True):
                     CSharp3.play()
                 elif (currentOctive[2] == True):
@@ -368,7 +381,7 @@ while True: #Game Loop
                 blackNoteKeys[0]   = (0, 0, 0)
                 pianoTilesP.append([windowWidth-116, windowHeight-247, 0, True])
                 if (currentOctive[0] == True):
-                    print("First Octive Note")
+                    DSharp2.play()
                 elif (currentOctive[1] == True):
                     DSharp3.play()
                 elif (currentOctive[2] == True):
@@ -406,82 +419,95 @@ while True: #Game Loop
             if (event.key == K_a):
                 noteColorsWhite[0] = (255, 255, 255)
                 pianoTilesA[len(pianoTilesA)-1][3] = False
-                
+
+                C1.fadeout(reverb)
                 C2.fadeout(reverb)
                 C3.fadeout(reverb)
             if (event.key == K_s):
                 noteColorsWhite[1] = (255, 255, 255)
                 pianoTilesS[len(pianoTilesS)-1][3] = False
-                
+
+                D1.fadeout(reverb)
                 D2.fadeout(reverb)
                 D3.fadeout(reverb)
             if (event.key == K_d):
                 noteColorsWhite[2] = (255, 255, 255)
                 pianoTilesD[len(pianoTilesD)-1][3] = False
-                
+
+                E1.fadeout(reverb)
                 E2.fadeout(reverb)
                 E3.fadeout(reverb)
             if (event.key == K_f):
                 noteColorsWhite[3] = (255, 255, 255)
                 pianoTilesF[len(pianoTilesF)-1][3] = False
-                
+
+                F1.fadeout(reverb)
                 F2.fadeout(reverb)
                 F3.fadeout(reverb)
             if (event.key == K_g):
                 noteColorsWhite[4] = (255, 255, 255)
                 pianoTilesG[len(pianoTilesG)-1][3] = False
-                
+
+                G1.fadeout(reverb)
                 G2.fadeout(reverb)
                 G3.fadeout(reverb)
             if (event.key == K_h):
                 noteColorsWhite[5] = (255, 255, 255)
                 pianoTilesH[len(pianoTilesH)-1][3] = False
 
+                A1.fadeout(reverb)
                 A2.fadeout(reverb)
                 A3.fadeout(reverb)
             if (event.key == K_j):
                 noteColorsWhite[6] = (255, 255, 255)
                 pianoTilesJ[len(pianoTilesJ)-1][3] = False
-                
+
+                B1.fadeout(reverb)
                 B2.fadeout(reverb)
                 B3.fadeout(reverb)
             if (event.key == K_k):
                 noteColorsWhite[7] = (255, 255, 255)
                 pianoTilesK[len(pianoTilesK)-1][3] = False
-                
+
+                C2.fadeout(reverb)
                 C3.fadeout(reverb)
                 C4.fadeout(reverb)
             if (event.key == K_l):
                 noteColorsWhite[8] = (255, 255, 255)
                 pianoTilesL[len(pianoTilesL)-1][3] = False
 
+                D2.fadeout(reverb)
                 D3.fadeout(reverb)
                 D4.fadeout(reverb)
             if (event.key == K_SEMICOLON):
                 noteColorsWhite[9] = (255, 255, 255)
                 pianoTilesSEMI[len(pianoTilesSEMI)-1][3] = False
-                
+
+                E2.fadeout(reverb)
                 E3.fadeout(reverb)
                 E4.fadeout(reverb)
             if (event.key == K_w):
                 noteColorsBlack[0] = (0, 0, 0)
                 blackNoteKeys[6]   = (255, 255, 255)
                 pianoTilesW[len(pianoTilesW)-1][3] = False
-                
+
+                CSharp1.fadeout(reverb)
                 CSharp2.fadeout(reverb)
                 CSharp3.fadeout(reverb)
             if (event.key == K_e):
                 noteColorsBlack[1] = (0, 0, 0)
                 blackNoteKeys[5]   = (255, 255, 255)
                 pianoTilesE[len(pianoTilesE)-1][3] = False
-                
+
+                DSharp1.fadeout(reverb)
                 DSharp2.fadeout(reverb)
                 DSharp3.fadeout(reverb)
             if (event.key == K_t):
                 noteColorsBlack[2] = (0, 0, 0)
                 blackNoteKeys[4]   = (255, 255, 255)
                 pianoTilesT[len(pianoTilesT)-1][3] = False
-                
+
+                FSharp1.fadeout(reverb)
                 FSharp2.fadeout(reverb)
                 FSharp3.fadeout(reverb)
             if (event.key == K_y):
@@ -489,6 +515,7 @@ while True: #Game Loop
                 blackNoteKeys[3]   = (255, 255, 255)
                 pianoTilesY[len(pianoTilesY)-1][3] = False
 
+                GSharp1.fadeout(reverb)
                 GSharp2.fadeout(reverb)
                 GSharp3.fadeout(reverb)
             if (event.key == K_u):
@@ -496,6 +523,7 @@ while True: #Game Loop
                 blackNoteKeys[2]   = (255, 255, 255)
                 pianoTilesU[len(pianoTilesU)-1][3] = False
 
+                ASharp1.fadeout(reverb)
                 ASharp2.fadeout(reverb)
                 ASharp3.fadeout(reverb)
             if (event.key == K_o):
@@ -503,13 +531,15 @@ while True: #Game Loop
                 blackNoteKeys[1]   = (255, 255, 255)
                 pianoTilesO[len(pianoTilesO)-1][3] = False
 
+                CSharp2.fadeout(reverb)
                 CSharp3.fadeout(reverb)
                 CSharp4.fadeout(reverb)
             if (event.key == K_p):
                 noteColorsBlack[6] = (0, 0, 0)
                 blackNoteKeys[0]   = (255, 255, 255)
                 pianoTilesP[len(pianoTilesP)-1][3] = False
-                
+
+                DSharp2.fadeout(reverb)
                 DSharp3.fadeout(reverb)
                 DSharp4.fadeout(reverb)
     

@@ -683,20 +683,9 @@ while True: #Game Loop
     
     #Info Icon
     Draw.InfoWindow(iButtonPressed)
-##    if (iButtonPressed):
-##        pygame.draw.rect(Surface, DarkSkyBlue, (windowWidth-30, 9, 20, 20))
-##    else:
-##        pygame.draw.rect(Surface, SkyBlue, (windowWidth-30, 9, 20, 20))
-##    pygame.draw.rect(Surface, Black, (windowWidth-30, 9, 20, 20), 1)
-##    Text("I", windowWidth-20, 19, 18, Black)
-##
-##    #Octive Icon
-##    if (qButtonPressed):
-##        pygame.draw.rect(Surface, DarkSkyBlue, (windowWidth-906, 9, 20, 20))
-##    else:
-##        pygame.draw.rect(Surface, SkyBlue, (windowWidth-906, 9, 20, 20))
-##    pygame.draw.rect(Surface, Black, (windowWidth-906, 9, 20, 20), 1)
-##    Text("O", windowWidth-895, 19, 15, Black)
+
+    #Octave Icon
+    Draw.OctaveWindow(qButtonPressed)
     
     #Draw Info Window
     if (infoWindow):
@@ -713,5 +702,3 @@ while True: #Game Loop
     
     pygame.display.flip()
     fpsClock.tick(FPS)
-    
-pygame.quit()

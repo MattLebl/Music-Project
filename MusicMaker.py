@@ -730,3 +730,5 @@ while True: #Game Loop
     
     pygame.display.flip()
     fpsClock.tick(FPS)
+    
+pygame.quit()

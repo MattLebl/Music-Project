@@ -111,13 +111,12 @@ class Draw():
           Text("I", windowWidth-20, 19, 18, Black)
 
      def OctaveWindow(qButtonPressed):
-          pygame.draw.rect(Surface, Black, (windowWidth-906, 9, 20, 20), 1)
-          Text("O", windowWidth-895, 19, 15, Black)
-
           if (qButtonPressed):
                pygame.draw.rect(Surface, DarkSkyBlue, (windowWidth-906, 9, 20, 20))
           else:
                pygame.draw.rect(Surface, SkyBlue, (windowWidth-906, 9, 20, 20))
+          pygame.draw.rect(Surface, Black, (windowWidth-906, 9, 20, 20), 1)
+          Text("O", windowWidth-895, 19, 15, Black)
 
      def TopBar():
         pygame.draw.rect(Surface, (150, 150, 150), (windowWidth-918, 2, 918, 35))

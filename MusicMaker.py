@@ -12,6 +12,17 @@ dir = os.path.dirname(__file__)
 windowWidth  = 1280
 windowHeight = 720
 
+#Data that must be stored for playback:
+#Length of playback
+#Note: Start, length, type
+
+recordList = []
+recordButton = None
+recordNoteStart = 0
+recordLength = 0
+recordNoteLength = 0
+startLength = False
+
 #Bass
 #bassA2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Bass/A2.wav'))
 #bassB2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/B2.wav'))
@@ -144,7 +155,15 @@ while True: #Game Loop
             pygame.quit()
             sys.exit()
 
-        if event.type == KEYDOWN:        
+        if event.type == KEYDOWN:
+            print(pygame.key.get_pressed())
+            
+            #Record
+            if (record and event.key != K_r):
+                recordButton = event.key
+                startLength = True
+                recordNoteStart = recordLength
+            
             #Open info window
             if (event.key == K_i):
                 iButtonPressed = True
@@ -342,6 +361,14 @@ while True: #Game Loop
                     DSharp4.play()
             
         if event.type == KEYUP:
+            #Record
+            if (record and event.key != K_r):
+                recordList.append((recordNoteStart, recordNoteLength, recordButton))
+                recordButton = None
+                startLength = False
+                recordNoteStart = 0
+                recordNoteLength = 0
+            
             #I button
             if (event.key == K_i):
                 if (infoWindow == True):
@@ -366,6 +393,9 @@ while True: #Game Loop
             if (event.key == K_r):
                 if (record == True):
                     record = False
+                    print(recordLength, recordList)
+                    recordLength = 0
+                    recordList = []
                 elif (record == False):
                     record = True
             
@@ -496,7 +526,12 @@ while True: #Game Loop
                 DSharp2.fadeout(reverb)
                 DSharp3.fadeout(reverb)
                 DSharp4.fadeout(reverb)
-    
+
+    if (record):
+        recordLength += 1;
+    if (startLength):
+        recordNoteLength += 1;
+        
     #Change Volume
     volume = volumeSliderX/50
 

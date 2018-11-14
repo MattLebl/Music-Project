@@ -1,3 +1,14 @@
+#Data that must be stored for playback:
+#Length of playback
+#Note: Start, length, type
+
+#recordList = []
+#recordButton = None
+#recordNoteStart = None
+#recordLength = None
+#recordNoteLength = None
+#startLength = False
+
 import pygame, sys, time, os, random, math, colorsys
 from pygame.locals import *
 from random import *

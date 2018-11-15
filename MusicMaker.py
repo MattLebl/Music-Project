@@ -17,7 +17,7 @@ windowHeight = 720
 #Note: Start, length, type
 
 recordList = []
-recordButton = None
+recordButton = []
 recordNoteStart = 0
 recordLength = 0
 recordNoteLength = 0
@@ -100,8 +100,6 @@ octaveWindowX = windowWidth/3.55
 octaveWindowHeight = 10
 qButtonPressed = False
 
-recordButton = False
-
 #Mouse Variables
 mousePosition = pygame.mouse.get_pos()
 mousePressed  = pygame.mouse.get_pressed()
@@ -134,8 +132,6 @@ while True: #Game Loop
     elif (keyDown == False):
         iButtonPressed = False
         buttonPressed = False
-
-    #pygame.draw.rect(Surface, SkyBlue, (windowWidth-906, 9, 20, 20))
     
     if (Mouse.Pressed()[0] and Mouse.Position()[0] >= windowWidth-906 and Mouse.Position()[0] <= windowWidth-906+20 and Mouse.Position()[1] >= 9 and Mouse.Position()[1] <= 29):
         if (buttonPressed2 == False):
@@ -156,11 +152,8 @@ while True: #Game Loop
             sys.exit()
 
         if event.type == KEYDOWN:
-            print(pygame.key.get_pressed())
-            
             #Record
             if (record and event.key != K_r):
-                recordButton = event.key
                 startLength = True
                 recordNoteStart = recordLength
             
@@ -199,6 +192,7 @@ while True: #Game Loop
                 currentOctive[2] = False
             
             if (event.key == K_a):
+                recordButton.append("A")
                 noteColorsWhite[0] = (0, 255, 0)
                 pianoTilesA.append([windowWidth-920, windowHeight-247, 0, True])
                 if (currentOctive[0] == True):
@@ -208,6 +202,7 @@ while True: #Game Loop
                 elif (currentOctive[2] == True):
                     C3.play()
             if (event.key == K_s):
+                recordButton.append("S")
                 noteColorsWhite[1] = (0, 255, 0)
                 pianoTilesS.append([windowWidth-828, windowHeight-247, 0, True])
                 if (currentOctive[0] == True):
@@ -217,6 +212,7 @@ while True: #Game Loop
                 elif (currentOctive[2] == True):
                     D3.play()
             if (event.key == K_d):
+                recordButton.append("D")
                 noteColorsWhite[2] = (0, 255, 0)
                 pianoTilesD.append([windowWidth-736, windowHeight-247, 0, True])
                 if (currentOctive[0] == True):
@@ -226,6 +222,7 @@ while True: #Game Loop
                 elif (currentOctive[2] == True):
                     E3.play()
             if (event.key == K_f):
+                recordButton.append("F")
                 noteColorsWhite[3] = (0, 255, 0)
                 pianoTilesF.append([windowWidth-644, windowHeight-247, 0, True])
                 if (currentOctive[0] == True):
@@ -235,6 +232,7 @@ while True: #Game Loop
                 elif (currentOctive[2] == True):
                     F3.play()
             if (event.key == K_g):
+                recordButton.append("G")
                 noteColorsWhite[4] = (0, 255, 0)
                 pianoTilesG.append([windowWidth-552, windowHeight-247, 0, True])
                 if (currentOctive[0] == True):
@@ -244,6 +242,7 @@ while True: #Game Loop
                 elif (currentOctive[2] == True):
                     G3.play()
             if (event.key == K_h):
+                recordButton.append("H")
                 noteColorsWhite[5] = (0, 255, 0)
                 pianoTilesH.append([windowWidth-460, windowHeight-247, 0, True])
                 if (currentOctive[0] == True):
@@ -253,6 +252,7 @@ while True: #Game Loop
                 elif (currentOctive[2] == True):
                     A3.play()
             if (event.key == K_j):
+                recordButton.append("J")
                 noteColorsWhite[6] = (0, 255, 0)
                 pianoTilesJ.append([windowWidth-368, windowHeight-247, 0, True])
                 if (currentOctive[0] == True):
@@ -262,6 +262,7 @@ while True: #Game Loop
                 elif (currentOctive[2] == True):
                     B3.play()
             if (event.key == K_k):
+                recordButton.append("K")
                 noteColorsWhite[7] = (0, 255, 0)
                 pianoTilesK.append([windowWidth-276, windowHeight-247, 0, True])
                 if (currentOctive[0] == True):
@@ -271,6 +272,7 @@ while True: #Game Loop
                 elif (currentOctive[2] == True):
                     C4.play()
             if (event.key == K_l):
+                recordButton.append("L")
                 noteColorsWhite[8] = (0, 255, 0)
                 pianoTilesL.append([windowWidth-184, windowHeight-247, 0, True])
                 if (currentOctive[0] == True):
@@ -280,6 +282,7 @@ while True: #Game Loop
                 elif (currentOctive[2] == True):
                     D4.play()
             if (event.key == K_SEMICOLON):
+                recordButton.append("SEMI")
                 noteColorsWhite[9] = (0, 255, 0)
                 pianoTilesSEMI.append([windowWidth-92, windowHeight-247, 0, True])
                 if (currentOctive[0] == True):
@@ -290,6 +293,7 @@ while True: #Game Loop
                     E4.play()
 
             if (event.key == K_w):
+                recordButton.append("W")
                 noteColorsBlack[0] = (0  , 150, 0  )
                 blackNoteKeys[6]   = (0, 0, 0)
                 pianoTilesW.append([windowWidth-853, windowHeight-247, 0, True])
@@ -300,6 +304,7 @@ while True: #Game Loop
                 elif (currentOctive[2] == True):
                     CSharp3.play()
             if (event.key == K_e):
+                recordButton.append("E")
                 noteColorsBlack[1] = (0  , 150, 0  )
                 blackNoteKeys[5]   = (0, 0, 0)
                 pianoTilesE.append([windowWidth-761, windowHeight-247, 0, True])
@@ -310,6 +315,7 @@ while True: #Game Loop
                 elif (currentOctive[2] == True):
                     DSharp3.play()
             if (event.key == K_t):
+                recordButton.append("T")
                 noteColorsBlack[2] = (0  , 150, 0  )
                 blackNoteKeys[4]   = (0, 0, 0)
                 pianoTilesT.append([windowWidth-577, windowHeight-247, 0, True])
@@ -320,6 +326,7 @@ while True: #Game Loop
                 elif (currentOctive[2] == True):
                     FSharp3.play()
             if (event.key == K_y):
+                recordButton.append("Y")
                 noteColorsBlack[3] = (0  , 150, 0  )
                 blackNoteKeys[3]   = (0, 0, 0)
                 pianoTilesY.append([windowWidth-484, windowHeight-247, 0, True])
@@ -330,6 +337,7 @@ while True: #Game Loop
                 elif (currentOctive[2] == True):
                     GSharp3.play()
             if (event.key == K_u):
+                recordButton.append("U")
                 noteColorsBlack[4] = (0  , 150, 0  )
                 blackNoteKeys[2]   = (0, 0, 0)
                 pianoTilesU.append([windowWidth-392, windowHeight-247, 0, True])
@@ -340,6 +348,7 @@ while True: #Game Loop
                 elif (currentOctive[2] == True):
                     ASharp3.play()
             if (event.key == K_o):
+                recordButton.append("O")
                 noteColorsBlack[5] = (0  , 150, 0  )
                 blackNoteKeys[1]   = (0, 0, 0)
                 pianoTilesO.append([windowWidth-208, windowHeight-247, 0, True])
@@ -350,6 +359,7 @@ while True: #Game Loop
                 elif (currentOctive[2] == True):
                     CSharp4.play()
             if (event.key == K_p):
+                recordButton.append("P")
                 noteColorsBlack[6] = (0  , 150, 0  )
                 blackNoteKeys[0]   = (0, 0, 0)
                 pianoTilesP.append([windowWidth-116, windowHeight-247, 0, True])
@@ -363,11 +373,13 @@ while True: #Game Loop
         if event.type == KEYUP:
             #Record
             if (record and event.key != K_r):
-                recordList.append((recordNoteStart, recordNoteLength, recordButton))
+                for i in range(len(recordButton)):    
+                    recordList.append((recordNoteStart, recordNoteLength, recordButton[i]))
                 recordButton = None
                 startLength = False
                 recordNoteStart = 0
                 recordNoteLength = 0
+                recordButton = []
             
             #I button
             if (event.key == K_i):

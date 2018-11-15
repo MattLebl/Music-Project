@@ -106,6 +106,7 @@ class Draw():
         pygame.draw.rect(Surface, Black, (0, windowHeight/1.75, windowWidth/3.55, windowHeight), 3)
         pygame.draw.rect(Surface, Black, (windowWidth, windowHeight/2, windowWidth/3.55, windowHeight), 3)
         pygame.draw.line(Surface, Black, (0, 35), (400, 35), 4)
+        pygame.draw.line(Surface, Black, (0, 448), (360, 448), 4)
         Text("Recordings", 72, 16, 28, Black)
         Text("Instruments", 77, windowHeight-292, 28, Black)
         for x in range(1, 10):

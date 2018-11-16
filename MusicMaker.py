@@ -95,6 +95,9 @@ octaveWindowX = windowWidth/3.55
 octaveWindowHeight = 10
 qButtonPressed = False
 
+noPressed = False
+yesPressed = False
+
 #Mouse Variables
 mousePosition = pygame.mouse.get_pos()
 mousePressed  = pygame.mouse.get_pressed()
@@ -141,10 +144,11 @@ while True: #Game Loop
         buttonPressed2 = False
 
     
-    if (recordWindow == False and Mouse.Pressed()[0] and Mouse.Position()[0] >= windowWidth-459 and Mouse.Position()[0] <= windowWidth-459+20 and Mouse.Position()[1] >= 8 and Mouse.Position()[1] <= 28):
+    if (recordWindow == False and Mouse.Pressed()[0] and Mouse.Position()[0] >= windowWidth-459-14 and Mouse.Position()[0] <= windowWidth-459-14+20 and Mouse.Position()[1] >= 9 and Mouse.Position()[1] <= 29):
         if (buttonPressed3 == False):
             if (record == True):
-                recordWindow = True
+                if (len(recordList) > 0):
+                    recordWindow = True
                 length = round(time.time() - recordBeginTime, 3)
                 record = False
                 print(length, recordList)
@@ -520,7 +524,8 @@ while True: #Game Loop
             #Record Button
             if (event.key == K_r):
                 if (record == True):
-                    recordWindow = True
+                    if (len(recordList) > 0):
+                        recordWindow = True
                     length = round(time.time() - recordBeginTime, 3)
                     record = False
                     print(length, recordList)
@@ -859,6 +864,44 @@ while True: #Game Loop
     if (recordWindow):
         pygame.draw.rect(Surface, LightGrey, (windowWidth/2+25, windowHeight/2-200, 300, 200))
         pygame.draw.rect(Surface, Black, (windowWidth/2+25, windowHeight/2-200, 300, 200), 2)
+
+        Text("Would you like to save", windowWidth/2+175, windowHeight/2-150, 25, Black)
+        Text("this recording?"       , windowWidth/2+175, windowHeight/2-125, 25, Black)
+
+        if (Mouse.Pressed()[0] and Mouse.Position()[0] >= windowWidth/2+50 and Mouse.Position()[0] <= windowWidth/2+160 and Mouse.Position()[1] >= windowHeight/2-70 and Mouse.Position()[1] <= windowHeight/2-20):
+            pygame.draw.rect(Surface, Grey3, (windowWidth/2+50, windowHeight/2-70, 110, 50))
+            pygame.draw.rect(Surface, Black, (windowWidth/2+50, windowHeight/2-70, 110, 50), 2)
+            yesPressed = True
+        elif (Mouse.Pressed()[0] == False and Mouse.Position()[0] >= windowWidth/2+50 and Mouse.Position()[0] <= windowWidth/2+160 and Mouse.Position()[1] >= windowHeight/2-70 and Mouse.Position()[1] <= windowHeight/2-20):
+            pygame.draw.rect(Surface, LightGrey3, (windowWidth/2+50, windowHeight/2-70, 110, 50))
+            pygame.draw.rect(Surface, Black, (windowWidth/2+50, windowHeight/2-70, 110, 50), 2)
+        else:
+            pygame.draw.rect(Surface, LightGrey2, (windowWidth/2+50, windowHeight/2-70, 110, 50))
+            pygame.draw.rect(Surface, Black, (windowWidth/2+50, windowHeight/2-70, 110, 50), 2)
+            yesPressed = False
+
+        if (Mouse.Pressed()[0] and Mouse.Position()[0] >= windowWidth/2+190 and Mouse.Position()[0] <= windowWidth/2+300 and Mouse.Position()[1] >= windowHeight/2-70 and Mouse.Position()[1] <= windowHeight/2-20):
+            pygame.draw.rect(Surface, Grey3, (windowWidth/2+190, windowHeight/2-70, 110, 50))
+            pygame.draw.rect(Surface, Black, (windowWidth/2+190, windowHeight/2-70, 110, 50), 2)
+            noPressed = True
+        elif (Mouse.Pressed()[0] == False and Mouse.Position()[0] >= windowWidth/2+190 and Mouse.Position()[0] <= windowWidth/2+300 and Mouse.Position()[1] >= windowHeight/2-70 and Mouse.Position()[1] <= windowHeight/2-20):
+            pygame.draw.rect(Surface, LightGrey3, (windowWidth/2+190, windowHeight/2-70, 110, 50))
+            pygame.draw.rect(Surface, Black, (windowWidth/2+190, windowHeight/2-70, 110, 50), 2)
+        else:
+            pygame.draw.rect(Surface, LightGrey2, (windowWidth/2+190, windowHeight/2-70, 110, 50))
+            pygame.draw.rect(Surface, Black, (windowWidth/2+190, windowHeight/2-70, 110, 50), 2)
+            noPressed = False
+        Text("Yes", windowWidth/2+105, windowHeight/2-45, 25, Black)
+        Text("No" , windowWidth/2+245, windowHeight/2-45, 25, Black)
+
+        if (noPressed):
+            if (Mouse.Pressed()[0] == False):
+                recordWindow = False
+                noPressed = False
+        if (yesPressed):
+            if (Mouse.Pressed()[0] == False):
+                recordWindow = False
+                yesPressed = False
     
     pygame.display.flip()
     fpsClock.tick(FPS)

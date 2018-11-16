@@ -52,6 +52,8 @@ Grey       = (60 , 60 , 60 )
 Grey2      = (65 , 65 , 65 )
 Grey3      = (75 , 75 , 75 )
 LightGrey  = (125, 125, 125)
+LightGrey2 = (160, 160, 160)
+LightGrey3 = (140, 140, 140)
 DarkGrey   = (50 , 50 , 50 )
 
 class Mouse():
@@ -130,17 +132,17 @@ class Draw():
 
      def RecordButton(record):
           if (record):
-               pygame.draw.rect(Surface, Grey2, (windowWidth-459, 8, 20, 20))
-               pygame.draw.rect(Surface, Green, (windowWidth-459, 8, 20, 20), 1)
-               Text("•", windowWidth-449, 18, 35, Green)
+               pygame.draw.rect(Surface, Grey2, (windowWidth-459-14, 9, 20, 20))
+               pygame.draw.rect(Surface, Green, (windowWidth-459-14, 9, 20, 20), 1)
+               Text("•", windowWidth-449-14, 19, 35, Green)
           else:
-               pygame.draw.rect(Surface, Grey2, (windowWidth-459, 8, 20, 20))
-               pygame.draw.rect(Surface, Red, (windowWidth-459, 8, 20, 20), 1)
-               Text("•", windowWidth-449, 18, 35, Red)
+               pygame.draw.rect(Surface, Grey2, (windowWidth-459-14, 9, 20, 20))
+               pygame.draw.rect(Surface, Red  , (windowWidth-459-14, 9, 20, 20), 1)
+               Text("•", windowWidth-449-14, 19, 35, Red)
 
           #Mouse Pressed record button
-          #x is windowWidth-459
-          #y is 8, height and width is 20
+          #x is windowWidth-459-14
+          #y is 9, height and width is 20
 
      def TopBar():
         pygame.draw.rect(Surface, (150, 150, 150), (windowWidth-918, 2, 918, 35))

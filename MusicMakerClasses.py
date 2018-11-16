@@ -3,11 +3,9 @@
 #Note: Start, length, type
 
 #recordList = []
-#recordButton = None
-#recordNoteStart = None
-#recordLength = None
-#recordNoteLength = None
-#startLength = False
+#recordButton = []
+#recordNoteStart = []
+#recordNoteLength = []
 
 import pygame, sys, time, os, random, math, colorsys
 from pygame.locals import *
@@ -114,7 +112,7 @@ class Draw():
         pygame.draw.line(Surface, Grey3, (windowWidth-(92*3)-3, 0), (windowWidth-(92*3)-3, windowHeight-247), 3)
         pygame.draw.line(Surface, Grey3, (windowWidth-(92*7)-3, 0), (windowWidth-(92*7)-3, windowHeight-247), 3)
 
-     def InfoWindow(iButtonPressed):
+     def InfoButton(iButtonPressed):
           if (iButtonPressed):
                pygame.draw.rect(Surface, DarkSkyBlue, (windowWidth-30, 9, 20, 20))
           else:
@@ -122,13 +120,27 @@ class Draw():
           pygame.draw.rect(Surface, Black, (windowWidth-30, 9, 20, 20), 1)
           Text("I", windowWidth-20, 19, 18, Black)
 
-     def OctaveWindow(qButtonPressed):
+     def OctaveButton(qButtonPressed):
           if (qButtonPressed):
                pygame.draw.rect(Surface, DarkSkyBlue, (windowWidth-906, 9, 20, 20))
           else:
                pygame.draw.rect(Surface, SkyBlue, (windowWidth-906, 9, 20, 20))
           pygame.draw.rect(Surface, Black, (windowWidth-906, 9, 20, 20), 1)
           Text("O", windowWidth-895, 19, 15, Black)
+
+     def RecordButton(record):
+          if (record):
+               pygame.draw.rect(Surface, Grey2, (windowWidth-459, 8, 20, 20))
+               pygame.draw.rect(Surface, Green, (windowWidth-459, 8, 20, 20), 1)
+               Text("•", windowWidth-449, 18, 35, Green)
+          else:
+               pygame.draw.rect(Surface, Grey2, (windowWidth-459, 8, 20, 20))
+               pygame.draw.rect(Surface, Red, (windowWidth-459, 8, 20, 20), 1)
+               Text("•", windowWidth-449, 18, 35, Red)
+
+          #Mouse Pressed record button
+          #x is windowWidth-459
+          #y is 8, height and width is 20
 
      def TopBar():
         pygame.draw.rect(Surface, (150, 150, 150), (windowWidth-918, 2, 918, 35))

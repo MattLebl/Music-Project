@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import pygame, sys, time, os, random, math, colorsys
 from pygame.locals import *
 from random import *
@@ -202,7 +201,6 @@ D4 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/D4.wav'))
 E4 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/E4.wav'))
 CSharp4 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/CSharp4.wav'))
 DSharp4 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/DSharp4.wav'))
-=======
 #Data that must be stored for playback:
 #Length of playback
 #Note: Start, length, type
@@ -441,4 +439,3 @@ D4 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/D4.wav'))
 E4 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/E4.wav'))
 CSharp4 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/CSharp4.wav'))
 DSharp4 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/DSharp4.wav'))
->>>>>>> 36e1fdae80a4db635567d643dc9fd3f7911a2d27

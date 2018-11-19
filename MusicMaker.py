@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 #https://stackoverflow.com/questions/9770073/sound-generation-synthesis-with-python
 #https://soledadpenades.com/posts/2009/fastest-way-to-generate-wav-files-in-python-using-the-wave-module/
 
@@ -727,7 +726,7 @@ while True: #Game Loop
 
     pygame.display.flip()
     fpsClock.tick(FPS)
-=======
+
 #https://stackoverflow.com/questions/9770073/sound-generation-synthesis-with-python
 #https://soledadpenades.com/posts/2009/fastest-way-to-generate-wav-files-in-python-using-the-wave-module/
 
@@ -1635,4 +1634,3 @@ while True: #Game Loop
     
     pygame.display.flip()
     fpsClock.tick(FPS)
->>>>>>> 36e1fdae80a4db635567d643dc9fd3f7911a2d27

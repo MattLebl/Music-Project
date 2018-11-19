@@ -111,6 +111,21 @@ class Draw():
             if i > 9:
                 break
 
+     def Icon(iButtonPressed, qButtonPressed):
+          if (iButtonPressed):
+               pygame.draw.rect(Surface, DarkSkyBlue, (windowWidth-30, 9, 20, 20))
+          else:
+               pygame.draw.rect(Surface, SkyBlue, (windowWidth-30, 9, 20, 20))
+          pygame.draw.rect(Surface, Black, (windowWidth-30, 9, 20, 20), 1)
+          Text("I", windowWidth-20, 19, 18, Black)
+
+          if (qButtonPressed):
+               pygame.draw.rect(Surface, DarkSkyBlue, (windowWidth-906, 9, 20, 20))
+          else:
+               pygame.draw.rect(Surface, SkyBlue, (windowWidth-906, 9, 20, 20))
+          pygame.draw.rect(Surface, Black, (windowWidth-906, 9, 20, 20), 1)
+          Text("O", windowWidth-896, 19, 15, Black)
+
      def BlackKeyText(buttonList):
         Text("P", windowWidth-104, windowHeight-112, 15, buttonList[0])
         Text("O", windowWidth-196, windowHeight-112, 15, buttonList[1])
@@ -143,6 +158,12 @@ class Draw():
           elif (activeSlider2 == True):
                pygame.draw.rect(Surface, Green, (windowWidth-760+35, 8, 20, 20), 2)
                Text("R", windowWidth-748.5+35, 18, 15, Green)
+
+     def PianoButton(instruments):
+          if (instruments == [True, False]):
+               pygame.draw.rect(Surface, Red, (10, 456, 200, 80))
+          else:
+               pygame.draw.rect(Surface, Green, (10, 456, 200, 80))
 
 class Function():
      def ChangeVolume(sound, volume):

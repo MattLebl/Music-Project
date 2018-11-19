@@ -13,51 +13,20 @@ windowWidth  = 1280
 windowHeight = 720
 
 #Sound Variables
-A2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/A2.wav'))
-B2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/B2.wav'))
-C2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/C2.wav'))
-D2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/D2.wav'))
-E2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/E2.wav'))
-F2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/F2.wav'))
-G2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/G2.wav'))
-CSharp2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/CSharp2.wav'))
-DSharp2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/DSharp2.wav'))
-FSharp2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/FSharp2.wav'))
-GSharp2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/GSharp2.wav'))
-ASharp2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/ASharp2.wav'))
-
-A3 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/A3.wav'))
-B3 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/B3.wav'))
-C3 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/C3.wav'))
-D3 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/D3.wav'))
-E3 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/E3.wav'))
-F3 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/F3.wav'))
-G3 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/G3.wav'))
-CSharp3 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/CSharp3.wav'))
-DSharp3 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/DSharp3.wav'))
-FSharp3 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/FSharp3.wav'))
-GSharp3 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/GSharp3.wav'))
-ASharp3 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/ASharp3.wav'))
-
-C4 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/C4.wav'))
-D4 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/D4.wav'))
-E4 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/E4.wav'))
-CSharp4 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/CSharp4.wav'))
-DSharp4 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/DSharp4.wav'))
 
 #Bass
-bassA2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Bass/A2.wav'))
-bassB2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/B2.wav'))
-bassC2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/C2.wav'))
-bassD2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/D2.wav'))
-bassE2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/E2.wav'))
-bassF2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/F2.wav'))
-bassG2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/G2.wav'))
-bassCSharp2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/C#2.wav'))
-bassDSharp2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/D#2.wav'))
-bassFSharp2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/F#2.wav'))
-bassGSharp2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/G#2.wav'))
-bassASharp2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/A#2.wav'))
+##bassA2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Bass/A2.wav'))
+##bassB2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Bass/B2.wav'))
+##bassC2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Bass/C2.wav'))
+##bassD2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Bass/D2.wav'))
+##bassE2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Bass/E2.wav'))
+##bassF2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Bass/F2.wav'))
+##bassG2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Bass/G2.wav'))
+##bassCSharp2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Bass/C#2.wav'))
+##bassDSharp2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Bass/D#2.wav'))
+##bassFSharp2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Bass/F#2.wav'))
+##bassGSharp2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Bass/G#2.wav'))
+##bassASharp2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Bass/A#2.wav'))
 
 blackNoteKeys = []
 for x in range(0, 8):
@@ -124,6 +93,8 @@ qButtonPressed = False
 
 recordButton = False
 
+octave = 0
+
 #Mouse Variables
 mousePosition = pygame.mouse.get_pos()
 mousePressed  = pygame.mouse.get_pressed()
@@ -156,8 +127,6 @@ while True: #Game Loop
     elif (keyDown == False):
         iButtonPressed = False
         buttonPressed = False
-
-    #pygame.draw.rect(Surface, SkyBlue, (windowWidth-906, 9, 20, 20))
     
     if (Mouse.Pressed()[0] and Mouse.Position()[0] >= windowWidth-906 and Mouse.Position()[0] <= windowWidth-906+20 and Mouse.Position()[1] >= 9 and Mouse.Position()[1] <= 29):
         if (buttonPressed2 == False):
@@ -186,16 +155,6 @@ while True: #Game Loop
             #Open octive window
             if (event.key == K_q):
                 qButtonPressed = True
-<<<<<<< HEAD
-=======
-                keyDown = True
-
-            #Instrument change
-##            if (event.key == K_m):
-##                qButtonPressed = True
-##                keyDown = True
-                
->>>>>>> 855292da16da3138e2d8e4f5dc062f4406c26229
                 keyDown2 = True
             
             #Moves Octive down
@@ -203,18 +162,22 @@ while True: #Game Loop
                 if (currentOctive[1] == True):
                     currentOctive[1] = False
                     currentOctive[0] = True
+                    octave = -1
                 if (currentOctive[2] == True):
                     currentOctive[2] = False
                     currentOctive[1] = True
+                    octave = 0
 
             #Moves Octive up
             if (event.key == K_x):
                 if (currentOctive[1] == True):
                     currentOctive[1] = False
                     currentOctive[2] = True
+                    octave = 1
                 if (currentOctive[0] == True):
                     currentOctive[0] = False
                     currentOctive[1] = True
+                    octave = 0
 
             #Resets octive to base
             if (event.key == K_c):
@@ -240,6 +203,7 @@ while True: #Game Loop
                     D2.play()
                 elif (currentOctive[2] == True):
                     D3.play()
+
             if (event.key == K_d):
                 noteColorsWhite[2] = (0, 255, 0)
                 pianoTilesD.append([windowWidth-736, windowHeight-247, 0, True])
@@ -249,6 +213,7 @@ while True: #Game Loop
                     E2.play()
                 elif (currentOctive[2] == True):
                     E3.play()
+
             if (event.key == K_f):
                 noteColorsWhite[3] = (0, 255, 0)
                 pianoTilesF.append([windowWidth-644, windowHeight-247, 0, True])
@@ -258,6 +223,7 @@ while True: #Game Loop
                     F2.play()
                 elif (currentOctive[2] == True):
                     F3.play()
+
             if (event.key == K_g):
                 noteColorsWhite[4] = (0, 255, 0)
                 pianoTilesG.append([windowWidth-552, windowHeight-247, 0, True])
@@ -267,6 +233,7 @@ while True: #Game Loop
                     G2.play()
                 elif (currentOctive[2] == True):
                     G3.play()
+
             if (event.key == K_h):
                 noteColorsWhite[5] = (0, 255, 0)
                 pianoTilesH.append([windowWidth-460, windowHeight-247, 0, True])
@@ -276,6 +243,7 @@ while True: #Game Loop
                     A2.play()
                 elif (currentOctive[2] == True):
                     A3.play()
+
             if (event.key == K_j):
                 noteColorsWhite[6] = (0, 255, 0)
                 pianoTilesJ.append([windowWidth-368, windowHeight-247, 0, True])
@@ -285,6 +253,7 @@ while True: #Game Loop
                     B2.play()
                 elif (currentOctive[2] == True):
                     B3.play()
+
             if (event.key == K_k):
                 noteColorsWhite[7] = (0, 255, 0)
                 pianoTilesK.append([windowWidth-276, windowHeight-247, 0, True])
@@ -294,6 +263,7 @@ while True: #Game Loop
                     C3.play()
                 elif (currentOctive[2] == True):
                     C4.play()
+
             if (event.key == K_l):
                 noteColorsWhite[8] = (0, 255, 0)
                 pianoTilesL.append([windowWidth-184, windowHeight-247, 0, True])
@@ -303,6 +273,7 @@ while True: #Game Loop
                     D3.play()
                 elif (currentOctive[2] == True):
                     D4.play()
+
             if (event.key == K_SEMICOLON):
                 noteColorsWhite[9] = (0, 255, 0)
                 pianoTilesSEMI.append([windowWidth-92, windowHeight-247, 0, True])
@@ -323,6 +294,7 @@ while True: #Game Loop
                     CSharp2.play()
                 elif (currentOctive[2] == True):
                     CSharp3.play()
+
             if (event.key == K_e):
                 noteColorsBlack[1] = (0  , 150, 0  )
                 blackNoteKeys[5]   = (0, 0, 0)
@@ -333,6 +305,7 @@ while True: #Game Loop
                     DSharp2.play()
                 elif (currentOctive[2] == True):
                     DSharp3.play()
+
             if (event.key == K_t):
                 noteColorsBlack[2] = (0  , 150, 0  )
                 blackNoteKeys[4]   = (0, 0, 0)
@@ -343,6 +316,7 @@ while True: #Game Loop
                     FSharp2.play()
                 elif (currentOctive[2] == True):
                     FSharp3.play()
+
             if (event.key == K_y):
                 noteColorsBlack[3] = (0  , 150, 0  )
                 blackNoteKeys[3]   = (0, 0, 0)
@@ -353,6 +327,7 @@ while True: #Game Loop
                     GSharp2.play()
                 elif (currentOctive[2] == True):
                     GSharp3.play()
+
             if (event.key == K_u):
                 noteColorsBlack[4] = (0  , 150, 0  )
                 blackNoteKeys[2]   = (0, 0, 0)
@@ -363,6 +338,7 @@ while True: #Game Loop
                     ASharp2.play()
                 elif (currentOctive[2] == True):
                     ASharp3.play()
+
             if (event.key == K_o):
                 noteColorsBlack[5] = (0  , 150, 0  )
                 blackNoteKeys[1]   = (0, 0, 0)
@@ -373,6 +349,7 @@ while True: #Game Loop
                     CSharp3.play()
                 elif (currentOctive[2] == True):
                     CSharp4.play()
+
             if (event.key == K_p):
                 noteColorsBlack[6] = (0  , 150, 0  )
                 blackNoteKeys[0]   = (0, 0, 0)
@@ -405,6 +382,13 @@ while True: #Game Loop
                 qButtonPressed = False
                 keyDown2 = False
 
+            #Piano Button
+            if (event.key == K_1):
+                if (instruments == [True, False]):
+                    instruments = [False, True]
+                else:
+                    instruments = [True, False]
+                
             #Record Button
             if (event.key == K_r):
                 if (record == True):
@@ -415,16 +399,16 @@ while True: #Game Loop
             #Notes Released
             if (event.key == K_a):
                 noteColorsWhite[0] = (255, 255, 255)
-                pianoTilesA[len(pianoTilesA)-1][3] = False
-                
+                pianoTilesA[len(pianoTilesA)-1][3] = False                
                 C2.fadeout(reverb)
                 C3.fadeout(reverb)
+                
             if (event.key == K_s):
                 noteColorsWhite[1] = (255, 255, 255)
                 pianoTilesS[len(pianoTilesS)-1][3] = False
-                
                 D2.fadeout(reverb)
                 D3.fadeout(reverb)
+                
             if (event.key == K_d):
                 noteColorsWhite[2] = (255, 255, 255)
                 pianoTilesD[len(pianoTilesD)-1][3] = False
@@ -434,92 +418,91 @@ while True: #Game Loop
             if (event.key == K_f):
                 noteColorsWhite[3] = (255, 255, 255)
                 pianoTilesF[len(pianoTilesF)-1][3] = False
-                
                 F2.fadeout(reverb)
                 F3.fadeout(reverb)
+                
             if (event.key == K_g):
                 noteColorsWhite[4] = (255, 255, 255)
                 pianoTilesG[len(pianoTilesG)-1][3] = False
-                
                 G2.fadeout(reverb)
                 G3.fadeout(reverb)
+                
             if (event.key == K_h):
                 noteColorsWhite[5] = (255, 255, 255)
                 pianoTilesH[len(pianoTilesH)-1][3] = False
-
                 A2.fadeout(reverb)
                 A3.fadeout(reverb)
+                
             if (event.key == K_j):
                 noteColorsWhite[6] = (255, 255, 255)
                 pianoTilesJ[len(pianoTilesJ)-1][3] = False
-                
                 B2.fadeout(reverb)
                 B3.fadeout(reverb)
+                
             if (event.key == K_k):
                 noteColorsWhite[7] = (255, 255, 255)
                 pianoTilesK[len(pianoTilesK)-1][3] = False
-                
                 C3.fadeout(reverb)
                 C4.fadeout(reverb)
+                
             if (event.key == K_l):
                 noteColorsWhite[8] = (255, 255, 255)
                 pianoTilesL[len(pianoTilesL)-1][3] = False
-
                 D3.fadeout(reverb)
                 D4.fadeout(reverb)
+                
             if (event.key == K_SEMICOLON):
                 noteColorsWhite[9] = (255, 255, 255)
                 pianoTilesSEMI[len(pianoTilesSEMI)-1][3] = False
-                
                 E3.fadeout(reverb)
                 E4.fadeout(reverb)
+                
             if (event.key == K_w):
                 noteColorsBlack[0] = (0, 0, 0)
                 blackNoteKeys[6]   = (255, 255, 255)
                 pianoTilesW[len(pianoTilesW)-1][3] = False
-                
                 CSharp2.fadeout(reverb)
                 CSharp3.fadeout(reverb)
+                
             if (event.key == K_e):
                 noteColorsBlack[1] = (0, 0, 0)
                 blackNoteKeys[5]   = (255, 255, 255)
                 pianoTilesE[len(pianoTilesE)-1][3] = False
-                
                 DSharp2.fadeout(reverb)
                 DSharp3.fadeout(reverb)
+                
             if (event.key == K_t):
                 noteColorsBlack[2] = (0, 0, 0)
                 blackNoteKeys[4]   = (255, 255, 255)
                 pianoTilesT[len(pianoTilesT)-1][3] = False
-                
                 FSharp2.fadeout(reverb)
                 FSharp3.fadeout(reverb)
+                
             if (event.key == K_y):
                 noteColorsBlack[3] = (0, 0, 0)
                 blackNoteKeys[3]   = (255, 255, 255)
                 pianoTilesY[len(pianoTilesY)-1][3] = False
-
                 GSharp2.fadeout(reverb)
                 GSharp3.fadeout(reverb)
+                
             if (event.key == K_u):
                 noteColorsBlack[4] = (0, 0, 0)
                 blackNoteKeys[2]   = (255, 255, 255)
                 pianoTilesU[len(pianoTilesU)-1][3] = False
-
                 ASharp2.fadeout(reverb)
                 ASharp3.fadeout(reverb)
+                
             if (event.key == K_o):
                 noteColorsBlack[5] = (0, 0, 0)
                 blackNoteKeys[1]   = (255, 255, 255)
                 pianoTilesO[len(pianoTilesO)-1][3] = False
-
                 CSharp3.fadeout(reverb)
                 CSharp4.fadeout(reverb)
+                
             if (event.key == K_p):
                 noteColorsBlack[6] = (0, 0, 0)
                 blackNoteKeys[0]   = (255, 255, 255)
                 pianoTilesP[len(pianoTilesP)-1][3] = False
-                
                 DSharp3.fadeout(reverb)
                 DSharp4.fadeout(reverb)
     
@@ -594,10 +577,6 @@ while True: #Game Loop
     #Background
     Draw.Background()
 
-    #Instrument tab
-    pygame.draw.rect(Surface, Black, (0, 0, windowWidth/3.55, windowHeight/1.75), 3)
-    Text("Instruments", windowWidth-100, 18, 15, Black)
-
     #Delete Tiles
     Draw.DeleteTiles(pianoTilesA)
     Draw.DeleteTiles(pianoTilesS)
@@ -667,6 +646,11 @@ while True: #Game Loop
 
     pygame.draw.rect(Surface, LightGrey, (windowWidth/3.4, 10, windowWidth/3.2, octaveWindowHeight))
     pygame.draw.rect(Surface, Black, (windowWidth/3.4, 10, windowWidth/3.2, octaveWindowHeight), 2)
+
+    #Octave Window Text
+    Text("Press Z to lower octave", windowWidth/2.45, octaveWindowHeight - 200, 27, Black)
+    Text("Press X to raise octave", windowWidth/2.46, octaveWindowHeight - 140, 27, Black)
+    Text("Current octave is " + str(octave), windowWidth/2.57, octaveWindowHeight - 80, 27, Black)
     
     #Top Bar
     Draw.TopBar()
@@ -674,12 +658,12 @@ while True: #Game Loop
     #Record Button
     if (record):
         pygame.draw.rect(Surface, Grey2, (windowWidth-459, 8, 20, 20))
-        pygame.draw.rect(Surface, Green, (windowWidth-459, 8, 20, 20), 1)
-        Text("•", windowWidth-449, 18, 35, Green)
-    else:
-        pygame.draw.rect(Surface, Grey2, (windowWidth-459, 8, 20, 20))
         pygame.draw.rect(Surface, Red, (windowWidth-459, 8, 20, 20), 1)
         Text("•", windowWidth-449, 18, 35, Red)
+    else:
+        pygame.draw.rect(Surface, Grey2, (windowWidth-459, 8, 20, 20))
+        pygame.draw.rect(Surface, Green, (windowWidth-459, 8, 20, 20), 1)
+        Text("•", windowWidth-449, 18, 35, Green)
     
     #Draw Piano
     Draw.WhiteKey(windowWidth-92 , windowHeight-247, noteColorsWhite[9])
@@ -711,22 +695,8 @@ while True: #Game Loop
     #Reverb Slider
     Draw.ReverbSlider(reverbSliderX, activeSlider2)
     
-    #Info Icon
-    if (iButtonPressed):
-        pygame.draw.rect(Surface, DarkSkyBlue, (windowWidth-30, 9, 20, 20))
-    else:
-        pygame.draw.rect(Surface, SkyBlue, (windowWidth-30, 9, 20, 20))
-    pygame.draw.rect(Surface, Black, (windowWidth-30, 9, 20, 20), 1)
-    Text("i", windowWidth-20, 19, 18, Black)
+    Draw.Icon(iButtonPressed, qButtonPressed)
 
-    #Octive Icon
-    if (qButtonPressed):
-        pygame.draw.rect(Surface, DarkSkyBlue, (windowWidth-906, 9, 20, 20))
-    else:
-        pygame.draw.rect(Surface, SkyBlue, (windowWidth-906, 9, 20, 20))
-    pygame.draw.rect(Surface, Black, (windowWidth-906, 9, 20, 20), 1)
-    Text("Q", windowWidth-895, 18, 15, Black)
-    
     #Draw Info Window
     if (infoWindow):
         infoWindowX -= 75
@@ -739,6 +709,20 @@ while True: #Game Loop
 
     pygame.draw.rect(Surface, LightGrey, (infoWindowX, 50, 500, 200))
     pygame.draw.rect(Surface, Black, (infoWindowX, 50, 500, 200), 2)
-    
+
+    #Info Window Text
+    Text("Press Q to open OCTAVE WINDOW", infoWindowX + 240, 75, 27, Black)
+    Text("Press I to open INFO WINDOW", infoWindowX + 211, 110, 27, Black)
+    Text("Press R to open RECORD", infoWindowX + 174, 145, 27, Black)
+    Text("Change instruments in bottom left", infoWindowX + 215, 180, 27, Black)
+    Text("Change recordings in top left", infoWindowX + 185, 215, 27, Black)
+
+    #Instrument tab
+    pygame.draw.rect(Surface, Black, (0, 0, 0, windowHeight/2), 3)
+    Text("Instruments", 76, windowHeight/1.68, 28, Black)
+    pygame.draw.line(Surface, Black, (0, windowHeight/1.62), (360, windowHeight/1.62), 4)    
+
+    Draw.PianoButton(instruments)
+
     pygame.display.flip()
     fpsClock.tick(FPS)

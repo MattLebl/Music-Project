@@ -1,12 +1,3 @@
-#Data that must be stored for playback:
-#Length of playback
-#Note: Start, length, type
-
-#recordList = []
-#recordButton = []
-#recordNoteStart = []
-#recordNoteLength = []
-
 import pygame, sys, time, os, random, math, colorsys
 from pygame.locals import *
 from random import *
@@ -52,9 +43,12 @@ Grey       = (60 , 60 , 60 )
 Grey2      = (65 , 65 , 65 )
 Grey3      = (75 , 75 , 75 )
 LightGrey  = (125, 125, 125)
-LightGrey2 = (160, 160, 160)
-LightGrey3 = (140, 140, 140)
+LightGrey2 = (110, 110, 110)
+LightGrey3 = (80 , 80 , 80 )
 DarkGrey   = (50 , 50 , 50 )
+
+#Other Variables
+noteButtonList  = ["", ";", "L", "K", "J", "H", "G", "F", "D", "S", "A"]
 
 class Mouse():
      def Position():
@@ -102,33 +96,17 @@ class Draw():
         pygame.draw.rect(Surface, LightGrey, (0, 0, windowWidth, windowHeight))
         pygame.draw.rect(Surface, Grey, (windowWidth-920, 0, 920, windowHeight))
         pygame.draw.line(Surface, Black, (windowWidth-922, windowHeight), (windowWidth-922, 0), 5)
-        pygame.draw.rect(Surface, Black, (0, 0, windowWidth/3.55, windowHeight/1.75), 3)
-        pygame.draw.rect(Surface, Black, (0, windowHeight/1.75, windowWidth/3.55, windowHeight), 3)
+        pygame.draw.rect(Surface, Black, (0, 0, windowWidth/3.55, windowHeight/1.75+100), 3)
+        pygame.draw.rect(Surface, Black, (0, windowHeight/1.75+100, windowWidth/3.55, windowHeight), 3)
         pygame.draw.rect(Surface, Black, (windowWidth, windowHeight/2, windowWidth/3.55, windowHeight), 3)
         pygame.draw.line(Surface, Black, (0, 35), (400, 35), 4)
-        pygame.draw.line(Surface, Black, (0, 448), (360, 448), 4)
+        pygame.draw.line(Surface, Black, (0, windowHeight-248), (360, windowHeight-248), 4)
         Text("Recordings", 72, 16, 28, Black)
-        Text("Instruments", 77, windowHeight-292, 28, Black)
+        Text("Instruments", 77, windowHeight-248+20, 28, Black)
         for x in range(1, 10):
             pygame.draw.line(Surface, Grey2, (windowWidth-(92*x)-3, 0), (windowWidth-(92*x)-3, windowHeight-247), 3)
         pygame.draw.line(Surface, Grey3, (windowWidth-(92*3)-3, 0), (windowWidth-(92*3)-3, windowHeight-247), 3)
         pygame.draw.line(Surface, Grey3, (windowWidth-(92*7)-3, 0), (windowWidth-(92*7)-3, windowHeight-247), 3)
-
-     def InfoButton(iButtonPressed):
-          if (iButtonPressed):
-               pygame.draw.rect(Surface, DarkSkyBlue, (windowWidth-30, 9, 20, 20))
-          else:
-               pygame.draw.rect(Surface, SkyBlue, (windowWidth-30, 9, 20, 20))
-          pygame.draw.rect(Surface, Black, (windowWidth-30, 9, 20, 20), 1)
-          Text("I", windowWidth-20, 19, 18, Black)
-
-     def OctaveButton(qButtonPressed):
-          if (qButtonPressed):
-               pygame.draw.rect(Surface, DarkSkyBlue, (windowWidth-906, 9, 20, 20))
-          else:
-               pygame.draw.rect(Surface, SkyBlue, (windowWidth-906, 9, 20, 20))
-          pygame.draw.rect(Surface, Black, (windowWidth-906, 9, 20, 20), 1)
-          Text("O", windowWidth-895, 19, 15, Black)
 
      def RecordButton(record):
           if (record):
@@ -140,10 +118,6 @@ class Draw():
                pygame.draw.rect(Surface, Red  , (windowWidth-459-14, 9, 20, 20), 1)
                Text("•", windowWidth-449-14, 19, 35, Red)
 
-          #Mouse Pressed record button
-          #x is windowWidth-459-14
-          #y is 9, height and width is 20
-
      def TopBar():
         pygame.draw.rect(Surface, (150, 150, 150), (windowWidth-918, 2, 918, 35))
         pygame.draw.rect(Surface, Black, (windowWidth-920, 0, 919, 37), 2)
@@ -153,6 +127,21 @@ class Draw():
             Text(buttonList[i], windowWidth-(92*i)+11, windowHeight-15, 20, Black)
             if i > 9:
                 break
+
+     def Icon(iButtonPressed, qButtonPressed):
+          if (iButtonPressed):
+               pygame.draw.rect(Surface, DarkSkyBlue, (windowWidth-30, 9, 20, 20))
+          else:
+               pygame.draw.rect(Surface, SkyBlue, (windowWidth-30, 9, 20, 20))
+          pygame.draw.rect(Surface, Black, (windowWidth-30, 9, 20, 20), 1)
+          Text("I", windowWidth-20, 19, 18, Black)
+
+          if (qButtonPressed):
+               pygame.draw.rect(Surface, DarkSkyBlue, (windowWidth-906, 9, 20, 20))
+          else:
+               pygame.draw.rect(Surface, SkyBlue, (windowWidth-906, 9, 20, 20))
+          pygame.draw.rect(Surface, Black, (windowWidth-906, 9, 20, 20), 1)
+          Text("O", windowWidth-895, 19, 15, Black)
 
      def BlackKeyText(buttonList):
         Text("P", windowWidth-104, windowHeight-112, 15, buttonList[0])
@@ -187,6 +176,12 @@ class Draw():
                pygame.draw.rect(Surface, Green, (windowWidth-760+35, 8, 20, 20), 2)
                Text("R", windowWidth-748.5+35, 18, 15, Green)
 
+     def PianoButton(instruments):
+          if (instruments == [True, False]):
+               pygame.draw.rect(Surface, Red, (10, 456, 200, 80))
+          else:
+               pygame.draw.rect(Surface, Green, (10, 456, 200, 80))
+
 class Function():
      def ChangeVolume(sound, volume):
           sound.set_volume(volume)
@@ -204,7 +199,7 @@ DSharp1 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/DSharp1.wa
 FSharp1 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/FSharp1.wav'))
 GSharp1 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/GSharp1.wav'))
 ASharp1 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/ASharp1.wav'))
-
+          
 A2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/A2.wav'))
 B2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/B2.wav'))
 C2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/C2.wav'))
@@ -236,3 +231,5 @@ D4 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/D4.wav'))
 E4 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/E4.wav'))
 CSharp4 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/CSharp4.wav'))
 DSharp4 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/DSharp4.wav'))
+
+#Bass Variables (There are none, fuck my life)

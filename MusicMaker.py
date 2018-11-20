@@ -6,30 +6,10 @@ from MusicMakerClasses import *
 FPS=30
 fpsClock=pygame.time.Clock()
 
-dir = os.path.dirname(__file__)
-
-#Window Variables
-windowWidth  = 1280
-windowHeight = 720
-
 recordList = []
 recordButton = []
 recordNoteStart = []
 recordNoteLength = []
-
-#Bass
-#bassA2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Bass/A2.wav'))
-#bassB2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/B2.wav'))
-#bassC2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/C2.wav'))
-#bassD2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/D2.wav'))
-#bassE2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/E2.wav'))
-#bassF2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/F2.wav'))
-#bassG2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/G2.wav'))
-#bassCSharp2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/C#2.wav'))
-#bassDSharp2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/D#2.wav'))
-#bassFSharp2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/F#2.wav'))
-#bassGSharp2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/G#2.wav'))
-#bassASharp2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/A#2.wav'))
 
 blackNoteKeys = []
 for x in range(0, 8):
@@ -42,7 +22,6 @@ for i in range(0, 10):
 noteColorsBlack = []
 for i in range(0, 7):
     noteColorsBlack.append((0  , 0  , 0  ))
-noteButtonList  = ["", ";", "L", "K", "J", "H", "G", "F", "D", "S", "A"]
 currentOctive   = [False, True, False]
 instruments = [True, False]
 
@@ -97,6 +76,8 @@ qButtonPressed = False
 
 noPressed = False
 yesPressed = False
+
+octave = 0
 
 #Mouse Variables
 mousePosition = pygame.mouse.get_pos()
@@ -188,18 +169,22 @@ while True: #Game Loop
                 if (currentOctive[1] == True):
                     currentOctive[1] = False
                     currentOctive[0] = True
+                    octave = -1
                 if (currentOctive[2] == True):
                     currentOctive[2] = False
                     currentOctive[1] = True
+                    octave = 0
 
             #Moves Octive up
             if (event.key == K_x):
                 if (currentOctive[1] == True):
                     currentOctive[1] = False
                     currentOctive[2] = True
+                    octave = 1
                 if (currentOctive[0] == True):
                     currentOctive[0] = False
                     currentOctive[1] = True
+                    octave = 0
 
             #Resets octive to base
             if (event.key == K_c):
@@ -805,6 +790,11 @@ while True: #Game Loop
 
     pygame.draw.rect(Surface, LightGrey, (windowWidth/3.4, 10, windowWidth/3.2, octaveWindowHeight))
     pygame.draw.rect(Surface, Black, (windowWidth/3.4, 10, windowWidth/3.2, octaveWindowHeight), 2)
+
+    #Octave Window Text
+    Text("Press Z to lower octave", windowWidth/2.45, octaveWindowHeight - 200, 27, Black)
+    Text("Press X to raise octave", windowWidth/2.46, octaveWindowHeight - 140, 27, Black)
+    Text("Current octave is " + str(octave), windowWidth/2.57, octaveWindowHeight - 80, 27, Black)
     
     #Top Bar
     Draw.TopBar()
@@ -843,10 +833,7 @@ while True: #Game Loop
     Draw.ReverbSlider(reverbSliderX, activeSlider2)
     
     #Info Icon
-    Draw.InfoButton(iButtonPressed)
-
-    #Octave Icon
-    Draw.OctaveButton(qButtonPressed)
+    Draw.Icon(iButtonPressed, qButtonPressed)
     
     #Draw Info Window
     if (infoWindow):
@@ -860,6 +847,13 @@ while True: #Game Loop
 
     pygame.draw.rect(Surface, LightGrey, (infoWindowX, 50, 500, 200))
     pygame.draw.rect(Surface, Black, (infoWindowX, 50, 500, 200), 2)
+
+    #Info Window Text
+    Text("Press Q to open OCTAVE WINDOW", infoWindowX + 240, 75, 27, Black)
+    Text("Press I to open INFO WINDOW", infoWindowX + 211, 110, 27, Black)
+    Text("Press R to open RECORD", infoWindowX + 174, 145, 27, Black)
+    Text("Change instruments in bottom left", infoWindowX + 215, 180, 27, Black)
+    Text("Change recordings in top left", infoWindowX + 185, 215, 27, Black)
 
     if (recordWindow):
         pygame.draw.rect(Surface, LightGrey, (windowWidth/2+25, windowHeight/2-200, 300, 200))
@@ -902,6 +896,8 @@ while True: #Game Loop
             if (Mouse.Pressed()[0] == False):
                 recordWindow = False
                 yesPressed = False
+
+    #Draw.PianoButton(instruments)
     
     pygame.display.flip()
     fpsClock.tick(FPS)

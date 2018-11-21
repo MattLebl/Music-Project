@@ -24,6 +24,7 @@ def Text(Text, xPos, yPos, Size, Colour):
 
      Surface.blit(TextSurf, TextRect)
 
+#Colors
 Black      = (0  , 0  , 0  )
 White      = (255, 255, 255)
 Red        = (255, 0  , 0  )
@@ -47,8 +48,29 @@ LightGrey2 = (110, 110, 110)
 LightGrey3 = (80 , 80 , 80 )
 DarkGrey   = (50 , 50 , 50 )
 
+#Piano Tiles Lists
+pianoTilesA = []
+pianoTilesS = []
+pianoTilesD = []
+pianoTilesF = []
+pianoTilesG = []
+pianoTilesH = []
+pianoTilesJ = []
+pianoTilesK = []
+pianoTilesL = []
+pianoTilesSEMI = []
+
+pianoTilesW = []
+pianoTilesE = []
+pianoTilesT = []
+pianoTilesY = []
+pianoTilesU = []
+pianoTilesO = []
+pianoTilesP = []
+
 #Other Variables
 noteButtonList  = ["", ";", "L", "K", "J", "H", "G", "F", "D", "S", "A"]
+keyboardIdle = True
 
 class Mouse():
      def Position():
@@ -109,7 +131,7 @@ class Draw():
         pygame.draw.line(Surface, Grey3, (windowWidth-(92*7)-3, 0), (windowWidth-(92*7)-3, windowHeight-247), 3)
 
      def RecordButton(record):
-          if (record):
+          if (record == False):
                pygame.draw.rect(Surface, Grey2, (windowWidth-459-14, 9, 20, 20))
                pygame.draw.rect(Surface, Green, (windowWidth-459-14, 9, 20, 20), 1)
                Text("•", windowWidth-449-14, 19, 35, Green)

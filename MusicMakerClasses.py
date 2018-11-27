@@ -26,6 +26,7 @@ def Text(Text, xPos, yPos, Size, Colour):
 
      Surface.blit(TextSurf, TextRect)
 
+#Colors
 Black      = (0  , 0  , 0  )
 White      = (255, 255, 255)
 Red        = (255, 0  , 0  )
@@ -45,8 +46,37 @@ Grey       = (60 , 60 , 60 )
 Grey2      = (65 , 65 , 65 )
 Grey3      = (75 , 75 , 75 )
 LightGrey  = (125, 125, 125)
+<<<<<<< HEAD
 LightGrey2 = (100, 100, 100)
+=======
+LightGrey2 = (110, 110, 110)
+LightGrey3 = (80 , 80 , 80 )
+>>>>>>> 42e1c7830a162dd66456a5e6ea54a8f5db10d4df
 DarkGrey   = (50 , 50 , 50 )
+
+#Piano Tiles Lists
+pianoTilesA = []
+pianoTilesS = []
+pianoTilesD = []
+pianoTilesF = []
+pianoTilesG = []
+pianoTilesH = []
+pianoTilesJ = []
+pianoTilesK = []
+pianoTilesL = []
+pianoTilesSEMI = []
+
+pianoTilesW = []
+pianoTilesE = []
+pianoTilesT = []
+pianoTilesY = []
+pianoTilesU = []
+pianoTilesO = []
+pianoTilesP = []
+
+#Other Variables
+noteButtonList  = ["", ";", "L", "K", "J", "H", "G", "F", "D", "S", "A"]
+keyboardIdle = True
 
 class Mouse():
      def Position():
@@ -94,20 +124,21 @@ class Draw():
         pygame.draw.rect(Surface, LightGrey, (0, 0, windowWidth, windowHeight))
         pygame.draw.rect(Surface, Grey, (windowWidth-920, 0, 920, windowHeight))
         pygame.draw.line(Surface, Black, (windowWidth-922, windowHeight), (windowWidth-922, 0), 5)
-        pygame.draw.rect(Surface, Black, (0, 0, windowWidth/3.55, windowHeight/1.75), 3)
-        pygame.draw.rect(Surface, Black, (0, windowHeight/1.75, windowWidth/3.55, windowHeight), 3)
+        pygame.draw.rect(Surface, Black, (0, 0, windowWidth/3.55, windowHeight/1.75+100), 3)
+        pygame.draw.rect(Surface, Black, (0, windowHeight/1.75+100, windowWidth/3.55, windowHeight), 3)
         pygame.draw.rect(Surface, Black, (windowWidth, windowHeight/2, windowWidth/3.55, windowHeight), 3)
         pygame.draw.line(Surface, Black, (0, 35), (400, 35), 4)
         pygame.draw.line(Surface, Black, (0, 445), (360, 445), 4)
+        pygame.draw.line(Surface, Black, (0, windowHeight-248), (360, windowHeight-248), 4)
         Text("Recordings", 72, 16, 28, Black)
-        Text("Instruments", 77, windowHeight-292, 28, Black)
+        Text("Instruments", 77, windowHeight-248+20, 28, Black)
         for x in range(1, 10):
             pygame.draw.line(Surface, Grey2, (windowWidth-(92*x)-3, 0), (windowWidth-(92*x)-3, windowHeight-247), 3)
         pygame.draw.line(Surface, Grey3, (windowWidth-(92*3)-3, 0), (windowWidth-(92*3)-3, windowHeight-247), 3)
         pygame.draw.line(Surface, Grey3, (windowWidth-(92*7)-3, 0), (windowWidth-(92*7)-3, windowHeight-247), 3)
 
      def RecordButton(record):
-          if (record):
+          if (record == False):
                pygame.draw.rect(Surface, Grey2, (windowWidth-459-14, 9, 20, 20))
                pygame.draw.rect(Surface, Red, (windowWidth-459-14, 9, 20, 20), 1)
                Text("•", windowWidth-449-14, 19, 35, Red)
@@ -115,6 +146,8 @@ class Draw():
                pygame.draw.rect(Surface, Grey2, (windowWidth-459-14, 9, 20, 20))
                pygame.draw.rect(Surface, Green  , (windowWidth-459-14, 9, 20, 20), 1)
                Text("•", windowWidth-449-14, 19, 35, Green)
+               pygame.draw.rect(Surface, Red  , (windowWidth-459-14, 9, 20, 20), 1)
+               Text("•", windowWidth-449-14, 19, 35, Red)
 
      def TopBar():
         pygame.draw.rect(Surface, (150, 150, 150), (windowWidth-918, 2, 918, 35))
@@ -140,6 +173,7 @@ class Draw():
                pygame.draw.rect(Surface, SkyBlue, (windowWidth-906, 9, 20, 20))
           pygame.draw.rect(Surface, Black, (windowWidth-906, 9, 20, 20), 1)
           Text("O", windowWidth-896, 19, 15, Black)
+          Text("O", windowWidth-895, 19, 15, Black)
 
      def BlackKeyText(buttonList):
         Text("P", windowWidth-104, windowHeight-112, 15, buttonList[0])
@@ -200,8 +234,6 @@ class Draw():
           Text("Press X to raise octave", windowWidth/2.46, octaveWindowHeight - 140, 27, Black)
           Text("Current octave is " + str(octave), windowWidth/2.57, octaveWindowHeight - 80, 27, Black)
 
-
-
 class Function():
      def ChangeVolume(sound, volume):
           sound.set_volume(volume)
@@ -251,3 +283,5 @@ D4 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/D4.wav'))
 E4 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/E4.wav'))
 CSharp4 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/CSharp4.wav'))
 DSharp4 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/DSharp4.wav'))
+
+#Bass Variables (There are none, fuck my life)

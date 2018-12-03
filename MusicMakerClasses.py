@@ -46,12 +46,9 @@ Grey       = (60 , 60 , 60 )
 Grey2      = (65 , 65 , 65 )
 Grey3      = (75 , 75 , 75 )
 LightGrey  = (125, 125, 125)
-<<<<<<< HEAD
 LightGrey2 = (100, 100, 100)
-=======
 LightGrey2 = (110, 110, 110)
 LightGrey3 = (80 , 80 , 80 )
->>>>>>> 42e1c7830a162dd66456a5e6ea54a8f5db10d4df
 DarkGrey   = (50 , 50 , 50 )
 
 #Piano Tiles Lists
@@ -128,7 +125,6 @@ class Draw():
         pygame.draw.rect(Surface, Black, (0, windowHeight/1.75+100, windowWidth/3.55, windowHeight), 3)
         pygame.draw.rect(Surface, Black, (windowWidth, windowHeight/2, windowWidth/3.55, windowHeight), 3)
         pygame.draw.line(Surface, Black, (0, 35), (400, 35), 4)
-        pygame.draw.line(Surface, Black, (0, 445), (360, 445), 4)
         pygame.draw.line(Surface, Black, (0, windowHeight-248), (360, windowHeight-248), 4)
         Text("Recordings", 72, 16, 28, Black)
         Text("Instruments", 77, windowHeight-248+20, 28, Black)
@@ -140,13 +136,11 @@ class Draw():
      def RecordButton(record):
           if (record == False):
                pygame.draw.rect(Surface, Grey2, (windowWidth-459-14, 9, 20, 20))
-               pygame.draw.rect(Surface, Red, (windowWidth-459-14, 9, 20, 20), 1)
-               Text("•", windowWidth-449-14, 19, 35, Red)
-          else:
-               pygame.draw.rect(Surface, Grey2, (windowWidth-459-14, 9, 20, 20))
                pygame.draw.rect(Surface, Green  , (windowWidth-459-14, 9, 20, 20), 1)
                Text("•", windowWidth-449-14, 19, 35, Green)
-               pygame.draw.rect(Surface, Red  , (windowWidth-459-14, 9, 20, 20), 1)
+          else:
+               pygame.draw.rect(Surface, Grey2, (windowWidth-459-14, 9, 20, 20))
+               pygame.draw.rect(Surface, Red, (windowWidth-459-14, 9, 20, 20), 1)
                Text("•", windowWidth-449-14, 19, 35, Red)
 
      def TopBar():
@@ -172,7 +166,6 @@ class Draw():
           else:
                pygame.draw.rect(Surface, SkyBlue, (windowWidth-906, 9, 20, 20))
           pygame.draw.rect(Surface, Black, (windowWidth-906, 9, 20, 20), 1)
-          Text("O", windowWidth-896, 19, 15, Black)
           Text("O", windowWidth-895, 19, 15, Black)
 
      def BlackKeyText(buttonList):
@@ -210,22 +203,28 @@ class Draw():
 
      def PianoButton(instruments):
           if (instruments[0] == True):
-               pygame.draw.rect(Surface, Black, (10, 456, 100, 50), 2)
-               Text("Piano", 55, 480, 30, Black)
+               pygame.draw.rect(Surface, Black, (10, 520, 100, 50), 2)
+               Text("Piano", 55, 545, 30, Black)
+               Text("1", 105, 560, 15, Black)
           else:
-               Text("Piano", 55, 480, 30, Black)
+               pygame.draw.rect(Surface, Grey3, (10, 520, 100, 50), 2)
+               Text("Piano", 55, 545, 30, Grey3)
+               Text("1", 105, 560, 15, Grey3)
 
      def BassButton(instruments):
           if (instruments[1] == True):
-               pygame.draw.rect(Surface, Black, (10, 505, 100, 50), 2)
-               Text("Bass", 50, 530, 30, Black)
+               pygame.draw.rect(Surface, Black, (10, 570, 100, 50), 2)
+               Text("Bass", 46, 595, 30, Black)
+               Text("2", 103, 610, 15, Black)
           else:
-               Text("Bass", 50, 530, 30, Black)
+               pygame.draw.rect(Surface, Grey3, (10, 570, 100, 50), 2)
+               Text("Bass", 46, 595, 30, Grey3)
+               Text("2", 103, 610, 15, Grey3)
 
      def InfoWindowText(infoWindowX):
           Text("Press Q to open OCTAVE WINDOW", infoWindowX + 240, 75, 27, Black)
           Text("Press I to open INFO WINDOW", infoWindowX + 211, 110, 27, Black)
-          Text("Press R to open RECORD", infoWindowX + 174, 145, 27, Black)
+          Text("Press R to RECORD", infoWindowX + 141, 145, 27, Black)
           Text("Change instruments in bottom left", infoWindowX + 215, 180, 27, Black)
           Text("Change recordings in top left", infoWindowX + 185, 215, 27, Black)
 
@@ -233,6 +232,9 @@ class Draw():
           Text("Press Z to lower octave", windowWidth/2.45, octaveWindowHeight - 200, 27, Black)
           Text("Press X to raise octave", windowWidth/2.46, octaveWindowHeight - 140, 27, Black)
           Text("Current octave is " + str(octave), windowWidth/2.57, octaveWindowHeight - 80, 27, Black)
+     def recordingBox(yPos):
+          pygame.draw.rect(Surface, Grey3, (10, yPos, 337, 95))
+          pygame.draw.rect(Surface, Black, (9, yPos-1, 339, 97), 2)
 
 class Function():
      def ChangeVolume(sound, volume):
@@ -284,4 +286,16 @@ E4 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/E4.wav'))
 CSharp4 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/CSharp4.wav'))
 DSharp4 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Piano/DSharp4.wav'))
 
-#Bass Variables (There are none, fuck my life)
+#Bass Variables
+#bassA2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Bass/A2.wav'))
+#bassB2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Bass/B2.wav'))
+#bassC2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Bass/C2.wav'))
+#bassD2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Bass/D2.wav'))
+#bassE2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Bass/E2.wav'))
+#bassF2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Bass/F2.wav'))
+#bassG2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Bass/G2.wav'))
+#bassCSharp2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Bass/C#2.wav'))
+#bassDSharp2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Bass/D#2.wav'))
+#bassFSharp2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Bass/F#2.wav'))
+#bassGSharp2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Bass/G#2.wav'))
+#bassASharp2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Bass/A#2.wav'))

@@ -11,19 +11,11 @@ recordButton = []
 recordNoteStart = []
 recordNoteLength = []
 
-#Bass
-#bassA2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Bass/A2.wav'))
-#bassB2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Bass/B2.wav'))
-bassC2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Bass/C2.wav'))
-#bassD2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Bass/D2.wav'))
-#bassE2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Bass/E2.wav'))
-#bassF2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Bass/F2.wav'))
-#bassG2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Bass/G2.wav'))
-#bassCSharp2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Bass/C#2.wav'))
-#bassDSharp2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Bass/D#2.wav'))
-#bassFSharp2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Bass/F#2.wav'))
-#bassGSharp2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Bass/G#2.wav'))
-#bassASharp2 = pygame.mixer.Sound(os.path.join(dir, './Sound Effects/Bass/A#2.wav'))
+recordingNotes = []
+recordingTime = []
+notes = []
+recordingNames = []
+highestRecording = 0
 
 blackNoteKeys = []
 for x in range(0, 8):
@@ -44,19 +36,21 @@ Surface = pygame.display.set_mode((windowWidth, windowHeight))
 pygame.display.set_caption('Music Maker')
 
 #Variables
+recordingY = 48
+
 record = False
 recordWindow = False
 
 volumeSliderX = 50
 volume = 1
-activeSlider = False;
+activeSlider = False
 reverbSliderX = 25
 reverb = 500
-activeSlider2 = False;
+activeSlider2 = False
 
-infoWindow = False;
+infoWindow = False
 infoWindowX = windowWidth
-iButtonPressed = False;
+iButtonPressed = False
 buttonPressed = False
 buttonPressed2 = False
 buttonPressed3 = False
@@ -78,21 +72,53 @@ currentKeys = 0
 mousePosition = pygame.mouse.get_pos()
 mousePressed  = pygame.mouse.get_pressed()
 
-#Text Functions
-def text_objects(Text, font, colour):
-     textSurface = font.render(Text, True, colour)
-     return textSurface, textSurface.get_rect()
+#Functions
+def findRecordings():
+    recordingNames.clear()
+    recordingNotes.clear()
+    notes = []
+    
+    for i in os.listdir("./Recordings"):
+        if (i[0] != "."):
+            recordingNames.append(i)     
 
-def Text(Text, xPos, yPos, Size, Colour):
-     largeText          = pygame.font.Font('Fonts/Times_New_Roman_Normal.ttf', Size)
-     TextSurf, TextRect = text_objects(Text, largeText, Colour)
-     TextRect.center    = (xPos, yPos)
+    for recording in recordingNames:
+        file = open("./Recordings/" + str(recording), "r")
 
-     Surface.blit(TextSurf, TextRect)
+        numNotes = 0
+        noteLines = 0
+        line = file.readline()
+        line = file.readline()
+        while (line != ""):
+            noteLines += 1
+            line = file.readline()
+            if (noteLines == 5):
+                numNotes += 1
+                noteLines = 0
+        file.close()
 
-while True: #Game Loop
+        file = open("./Recordings/" + str(recording), "r")
+        recordingTime = file.readline()
+        for i in range(numNotes):
+            noteStartTime = file.readline()
+            noteLength = file.readline()
+            typeOfNote = file.readline()
+            noteKeyPressed = file.readline()
+            noteOctive = file.readline()
+
+            notes.append((noteStartTime.rstrip(), noteLength.rstrip(), typeOfNote.rstrip(), noteKeyPressed.rstrip(), noteOctive.rstrip()))
+
+            if (i == numNotes-1):
+                for note in notes:
+                    tempRecordNotes = []
+                    tempRecordNotes.append((note[0], note[1], note[2], note[3], note[4]))
+
+                recordingNotes.append(tempRecordNotes)
+                tempRecordNotes = []
+
+while True: #Loop
     #Mouse Pressed info button
-    if (recordWindow == False and Mouse.Pressed()[0] and Mouse.Position()[0] >= windowWidth-30 and Mouse.Position()[0] <= windowWidth-10 and Mouse.Position()[1] >= 9 and Mouse.Position()[1] <= 29):
+    if (record == False and recordWindow == False and Mouse.Pressed()[0] and Mouse.Position()[0] >= windowWidth-30 and Mouse.Position()[0] <= windowWidth-10 and Mouse.Position()[1] >= 9 and Mouse.Position()[1] <= 29):
         if (buttonPressed == False):
             if (infoWindow == True):
                 infoWindow = False
@@ -106,7 +132,7 @@ while True: #Game Loop
         buttonPressed = False
 
     #Mouse Pressed octive button
-    if (recordWindow == False and Mouse.Pressed()[0] and Mouse.Position()[0] >= windowWidth-906 and Mouse.Position()[0] <= windowWidth-906+20 and Mouse.Position()[1] >= 9 and Mouse.Position()[1] <= 29):
+    if (record == False and recordWindow == False and Mouse.Pressed()[0] and Mouse.Position()[0] >= windowWidth-906 and Mouse.Position()[0] <= windowWidth-906+20 and Mouse.Position()[1] >= 9 and Mouse.Position()[1] <= 29):
         if (buttonPressed2 == False):
             if (octaveWindow == True):
                 octaveWindow = False
@@ -119,8 +145,16 @@ while True: #Game Loop
         qButtonPressed = False
         buttonPressed2 = False
 
-    
-    if (recordWindow == False and Mouse.Pressed()[0] and Mouse.Position()[0] >= windowWidth-459-14 and Mouse.Position()[0] <= windowWidth-459-14+20 and Mouse.Position()[1] >= 9 and Mouse.Position()[1] <= 29):
+    #Mouse Pressed the instruments
+    if (instruments[0] == False and Mouse.Pressed()[0] and Mouse.Position()[0] >= 10 and Mouse.Position()[0] < 100 and Mouse.Position()[1] >= 520 and Mouse.Position()[1] <= 570):
+        instruments[0] = True
+        instruments[1] = False
+
+    if (instruments[1] == False and Mouse.Pressed()[0] and Mouse.Position()[0] >= 10 and Mouse.Position()[0] < 100 and Mouse.Position()[1] >= 570 and Mouse.Position()[1] <= 620):
+        instruments[0] = False
+        instruments[1] = True
+  
+    if (record == False and recordWindow == False and Mouse.Pressed()[0] and Mouse.Position()[0] >= windowWidth-459-14 and Mouse.Position()[0] <= windowWidth-459-14+20 and Mouse.Position()[1] >= 9 and Mouse.Position()[1] <= 29):
         if (buttonPressed3 == False):
             if (record == True):
                 if (len(recordList) > 0):
@@ -186,6 +220,7 @@ while True: #Game Loop
                 currentOctive[1] = True
                 currentOctive[0] = False
                 currentOctive[2] = False
+                octave = 0
 
             #Piano button
             if (event.key == K_1):
@@ -206,12 +241,20 @@ while True: #Game Loop
                 noteColorsWhite[0] = (0, 255, 0)
                 pianoTilesA.append([windowWidth-920, windowHeight-247, 0, True])
                 currentKeys += 1
-                if (currentOctive[0] == True):
-                    C1.play()
-                elif (currentOctive[1] == True):
-                    C2.play()
-                elif (currentOctive[2] == True):
-                    C3.play()
+                if (instruments[0]):
+                    if (currentOctive[0] == True):
+                        C1.play()
+                    elif (currentOctive[1] == True):
+                        C2.play()
+                    elif (currentOctive[2] == True):
+                        C3.play()
+                if (instruments[1]):
+                    if (currentOctive[0] == True):
+                        print("bass note")
+                    elif (currentOctive[1] == True):
+                        print("bass note")
+                    elif (currentOctive[2] == True):
+                        print("bass note")
             if (event.key == K_s):
                 if (record):
                     if (currentOctive[1]):
@@ -223,12 +266,20 @@ while True: #Game Loop
                 noteColorsWhite[1] = (0, 255, 0)
                 pianoTilesS.append([windowWidth-828, windowHeight-247, 0, True])
                 currentKeys += 1
-                if (currentOctive[0] == True):
-                    D1.play()
-                elif (currentOctive[1] == True):
-                    D2.play()
-                elif (currentOctive[2] == True):
-                    D3.play()
+                if (instruments[0]):
+                    if (currentOctive[0] == True):
+                        D1.play()
+                    elif (currentOctive[1] == True):
+                        D2.play()
+                    elif (currentOctive[2] == True):
+                        D3.play()
+                if (instruments[1]):
+                    if (currentOctive[0] == True):
+                        print("bass note")
+                    elif (currentOctive[1] == True):
+                        print("bass note")
+                    elif (currentOctive[2] == True):
+                        print("bass note")
             if (event.key == K_d):
                 if (record):
                     if (currentOctive[1]):
@@ -240,12 +291,20 @@ while True: #Game Loop
                 noteColorsWhite[2] = (0, 255, 0)
                 pianoTilesD.append([windowWidth-736, windowHeight-247, 0, True])
                 currentKeys += 1
-                if (currentOctive[0] == True):
-                    E1.play()
-                elif (currentOctive[1] == True):
-                    E2.play()
-                elif (currentOctive[2] == True):
-                    E3.play()
+                if (instruments[0]):
+                    if (currentOctive[0] == True):
+                        E1.play()
+                    elif (currentOctive[1] == True):
+                        E2.play()
+                    elif (currentOctive[2] == True):
+                        E3.play()
+                if (instruments[1]):
+                    if (currentOctive[0] == True):
+                        print("bass note")
+                    elif (currentOctive[1] == True):
+                        print("bass note")
+                    elif (currentOctive[2] == True):
+                        print("bass note")
             if (event.key == K_f):
                 if (record):
                     if (currentOctive[1]):
@@ -257,12 +316,20 @@ while True: #Game Loop
                 noteColorsWhite[3] = (0, 255, 0)
                 pianoTilesF.append([windowWidth-644, windowHeight-247, 0, True])
                 currentKeys += 1
-                if (currentOctive[0] == True):
-                    F1.play()
-                elif (currentOctive[1] == True):
-                    F2.play()
-                elif (currentOctive[2] == True):
-                    F3.play()
+                if (instruments[0]):
+                    if (currentOctive[0] == True):
+                        F1.play()
+                    elif (currentOctive[1] == True):
+                        F2.play()
+                    elif (currentOctive[2] == True):
+                        F3.play()
+                if (instruments[1]):
+                    if (currentOctive[0] == True):
+                        print("bass note")
+                    elif (currentOctive[1] == True):
+                        print("bass note")
+                    elif (currentOctive[2] == True):
+                        print("bass note")
             if (event.key == K_g):
                 if (record):
                     if (currentOctive[1]):
@@ -274,12 +341,20 @@ while True: #Game Loop
                 noteColorsWhite[4] = (0, 255, 0)
                 pianoTilesG.append([windowWidth-552, windowHeight-247, 0, True])
                 currentKeys += 1
-                if (currentOctive[0] == True):
-                    G1.play()
-                elif (currentOctive[1] == True):
-                    G2.play()
-                elif (currentOctive[2] == True):
-                    G3.play()
+                if (instruments[0]):
+                    if (currentOctive[0] == True):
+                        G1.play()
+                    elif (currentOctive[1] == True):
+                        G2.play()
+                    elif (currentOctive[2] == True):
+                        G3.play()
+                if (instruments[1]):
+                    if (currentOctive[0] == True):
+                        print("bass note")
+                    elif (currentOctive[1] == True):
+                        print("bass note")
+                    elif (currentOctive[2] == True):
+                        print("bass note")
             if (event.key == K_h):
                 if (record):
                     if (currentOctive[1]):
@@ -291,12 +366,20 @@ while True: #Game Loop
                 noteColorsWhite[5] = (0, 255, 0)
                 pianoTilesH.append([windowWidth-460, windowHeight-247, 0, True])
                 currentKeys += 1
-                if (currentOctive[0] == True):
-                    A1.play()
-                elif (currentOctive[1] == True):
-                    A2.play()
-                elif (currentOctive[2] == True):
-                    A3.play()
+                if (instruments[0]):
+                    if (currentOctive[0] == True):
+                        A1.play()
+                    elif (currentOctive[1] == True):
+                        A2.play()
+                    elif (currentOctive[2] == True):
+                        A3.play()
+                if (instruments[1]):
+                    if (currentOctive[0] == True):
+                        print("bass note")
+                    elif (currentOctive[1] == True):
+                        print("bass note")
+                    elif (currentOctive[2] == True):
+                        print("bass note")
             if (event.key == K_j):
                 if (record):
                     if (currentOctive[1]):
@@ -308,12 +391,20 @@ while True: #Game Loop
                 noteColorsWhite[6] = (0, 255, 0)
                 pianoTilesJ.append([windowWidth-368, windowHeight-247, 0, True])
                 currentKeys += 1
-                if (currentOctive[0] == True):
-                    B1.play()
-                elif (currentOctive[1] == True):
-                    B2.play()
-                elif (currentOctive[2] == True):
-                    B3.play()
+                if (instruments[0]):
+                    if (currentOctive[0] == True):
+                        B1.play()
+                    elif (currentOctive[1] == True):
+                        B2.play()
+                    elif (currentOctive[2] == True):
+                        B3.play()
+                if (instruments[1]):
+                    if (currentOctive[0] == True):
+                        print("bass note")
+                    elif (currentOctive[1] == True):
+                        print("bass note")
+                    elif (currentOctive[2] == True):
+                        print("bass note")
             if (event.key == K_k):
                 if (record):
                     if (currentOctive[1]):
@@ -325,12 +416,20 @@ while True: #Game Loop
                 noteColorsWhite[7] = (0, 255, 0)
                 pianoTilesK.append([windowWidth-276, windowHeight-247, 0, True])
                 currentKeys += 1
-                if (currentOctive[0] == True):
-                    C2.play()
-                elif (currentOctive[1] == True):
-                    C3.play()
-                elif (currentOctive[2] == True):
-                    C4.play()
+                if (instruments[0]):
+                    if (currentOctive[0] == True):
+                        C2.play()
+                    elif (currentOctive[1] == True):
+                        C3.play()
+                    elif (currentOctive[2] == True):
+                        C4.play()
+                if (instruments[1]):
+                    if (currentOctive[0] == True):
+                        print("bass note")
+                    elif (currentOctive[1] == True):
+                        print("bass note")
+                    elif (currentOctive[2] == True):
+                        print("bass note")
             if (event.key == K_l):
                 if (record):
                     if (currentOctive[1]):
@@ -342,12 +441,20 @@ while True: #Game Loop
                 noteColorsWhite[8] = (0, 255, 0)
                 pianoTilesL.append([windowWidth-184, windowHeight-247, 0, True])
                 currentKeys += 1
-                if (currentOctive[0] == True):
-                    D2.play()
-                elif (currentOctive[1] == True):
-                    D3.play()
-                elif (currentOctive[2] == True):
-                    D4.play()
+                if (instruments[0]):
+                    if (currentOctive[0] == True):
+                        D2.play()
+                    elif (currentOctive[1] == True):
+                        D3.play()
+                    elif (currentOctive[2] == True):
+                        D4.play()
+                if (instruments[1]):
+                    if (currentOctive[0] == True):
+                        print("bass note")
+                    elif (currentOctive[1] == True):
+                        print("bass note")
+                    elif (currentOctive[2] == True):
+                        print("bass note")
             if (event.key == K_SEMICOLON):
                 if (record):
                     if (currentOctive[1]):
@@ -359,13 +466,20 @@ while True: #Game Loop
                 noteColorsWhite[9] = (0, 255, 0)
                 pianoTilesSEMI.append([windowWidth-92, windowHeight-247, 0, True])
                 currentKeys += 1
-                if (currentOctive[0] == True):
-                    E2.play()
-                elif (currentOctive[1] == True):
-                    E3.play()
-                elif (currentOctive[2] == True):
-                    E4.play()
-
+                if (instruments[0]):
+                    if (currentOctive[0] == True):
+                        E2.play()
+                    elif (currentOctive[1] == True):
+                        E3.play()
+                    elif (currentOctive[2] == True):
+                        E4.play()
+                if (instruments[1]):
+                    if (currentOctive[0] == True):
+                        print("bass note")
+                    elif (currentOctive[1] == True):
+                        print("bass note")
+                    elif (currentOctive[2] == True):
+                        print("bass note")
             if (event.key == K_w):
                 if (record):
                     if (currentOctive[1]):
@@ -378,12 +492,20 @@ while True: #Game Loop
                 blackNoteKeys[6]   = (0, 0, 0)
                 pianoTilesW.append([windowWidth-853, windowHeight-247, 0, True])
                 currentKeys += 1
-                if (currentOctive[0] == True):
-                    CSharp1.play()
-                elif (currentOctive[1] == True):
-                    CSharp2.play()
-                elif (currentOctive[2] == True):
-                    CSharp3.play()
+                if (instruments[0]):
+                    if (currentOctive[0] == True):
+                        CSharp1.play()
+                    elif (currentOctive[1] == True):
+                        CSharp2.play()
+                    elif (currentOctive[2] == True):
+                        CSharp3.play()
+                elif (instruments[1]):
+                    if (currentOctive[0] == True):
+                        print("bass note")
+                    elif (currentOctive[1] == True):
+                        print("bass note")
+                    elif (currentOctive[2] == True):
+                        print("bass note")
             if (event.key == K_e):
                 if (record):
                     if (currentOctive[1]):
@@ -396,12 +518,20 @@ while True: #Game Loop
                 blackNoteKeys[5]   = (0, 0, 0)
                 pianoTilesE.append([windowWidth-761, windowHeight-247, 0, True])
                 currentKeys += 1
-                if (currentOctive[0] == True):
-                    DSharp1.play()
-                elif (currentOctive[1] == True):
-                    DSharp2.play()
-                elif (currentOctive[2] == True):
-                    DSharp3.play()
+                if (instruments[0]):
+                    if (currentOctive[0] == True):
+                        DSharp1.play()
+                    elif (currentOctive[1] == True):
+                        DSharp2.play()
+                    elif (currentOctive[2] == True):
+                        DSharp3.play()
+                elif (instruments[1]):
+                    if (currentOctive[0] == True):
+                        print("bass note")
+                    elif (currentOctive[1] == True):
+                        print("bass note")
+                    elif (currentOctive[2] == True):
+                        print("bass note")
             if (event.key == K_t):
                 if (record):
                     if (currentOctive[1]):
@@ -414,12 +544,20 @@ while True: #Game Loop
                 blackNoteKeys[4]   = (0, 0, 0)
                 pianoTilesT.append([windowWidth-577, windowHeight-247, 0, True])
                 currentKeys += 1
-                if (currentOctive[0] == True):
-                    FSharp1.play()
-                elif (currentOctive[1] == True):
-                    FSharp2.play()
-                elif (currentOctive[2] == True):
-                    FSharp3.play()
+                if (instruments[0]):
+                    if (currentOctive[0] == True):
+                        FSharp1.play()
+                    elif (currentOctive[1] == True):
+                        FSharp2.play()
+                    elif (currentOctive[2] == True):
+                        FSharp3.play()
+                elif (instruments[1]):
+                    if (currentOctive[0] == True):
+                        print("bass note")
+                    elif (currentOctive[1] == True):
+                        print("bass note")
+                    elif (currentOctive[2] == True):
+                        print("bass note")
             if (event.key == K_y):
                 if (record):
                     if (currentOctive[1]):
@@ -432,12 +570,20 @@ while True: #Game Loop
                 blackNoteKeys[3]   = (0, 0, 0)
                 pianoTilesY.append([windowWidth-484, windowHeight-247, 0, True])
                 currentKeys += 1
-                if (currentOctive[0] == True):
-                    GSharp1.play()
-                elif (currentOctive[1] == True):
-                    GSharp2.play()
-                elif (currentOctive[2] == True):
-                    GSharp3.play()
+                if (instruments[0]):
+                    if (currentOctive[0] == True):
+                        GSharp1.play()
+                    elif (currentOctive[1] == True):
+                        GSharp2.play()
+                    elif (currentOctive[2] == True):
+                        GSharp3.play()
+                elif (instruments[1]):
+                    if (currentOctive[0] == True):
+                        print("bass note")
+                    elif (currentOctive[1] == True):
+                        print("bass note")
+                    elif (currentOctive[2] == True):
+                        print("bass note")
             if (event.key == K_u):
                 if (record):
                     if (currentOctive[1]):
@@ -450,12 +596,20 @@ while True: #Game Loop
                 blackNoteKeys[2]   = (0, 0, 0)
                 pianoTilesU.append([windowWidth-392, windowHeight-247, 0, True])
                 currentKeys += 1
-                if (currentOctive[0] == True):
-                    ASharp1.play()
-                elif (currentOctive[1] == True):
-                    ASharp2.play()
-                elif (currentOctive[2] == True):
-                    ASharp3.play()
+                if (instruments[0]):
+                    if (currentOctive[0] == True):
+                        ASharp1.play()
+                    elif (currentOctive[1] == True):
+                        ASharp2.play()
+                    elif (currentOctive[2] == True):
+                        ASharp3.play()
+                elif (instruments[1]):
+                    if (currentOctive[0] == True):
+                        print("bass note")
+                    elif (currentOctive[1] == True):
+                        print("bass note")
+                    elif (currentOctive[2] == True):
+                        print("bass note")
             if (event.key == K_o):
                 if (record):
                     if (currentOctive[1]):
@@ -468,12 +622,20 @@ while True: #Game Loop
                 blackNoteKeys[1]   = (0, 0, 0)
                 pianoTilesO.append([windowWidth-208, windowHeight-247, 0, True])
                 currentKeys += 1
-                if (currentOctive[0] == True):
-                    CSharp2.play()
-                elif (currentOctive[1] == True):
-                    CSharp3.play()
-                elif (currentOctive[2] == True):
-                    CSharp4.play()
+                if (instruments[0]):
+                    if (currentOctive[0] == True):
+                        CSharp2.play()
+                    elif (currentOctive[1] == True):
+                        CSharp3.play()
+                    elif (currentOctive[2] == True):
+                        CSharp4.play()
+                elif (instruments[1]):
+                    if (currentOctive[0] == True):
+                        print("bass note")
+                    elif (currentOctive[1] == True):
+                        print("bass note")
+                    elif (currentOctive[2] == True):
+                        print("bass note")
             if (event.key == K_p):
                 if (record):
                     if (currentOctive[1]):
@@ -486,12 +648,20 @@ while True: #Game Loop
                 blackNoteKeys[0]   = (0, 0, 0)
                 pianoTilesP.append([windowWidth-116, windowHeight-247, 0, True])
                 currentKeys += 1
-                if (currentOctive[0] == True):
-                    DSharp2.play()
-                elif (currentOctive[1] == True):
-                    DSharp3.play()
-                elif (currentOctive[2] == True):
-                    DSharp4.play()
+                if (instruments[0]):
+                    if (currentOctive[0] == True):
+                        DSharp1.play()
+                    elif (currentOctive[1] == True):
+                        DSharp2.play()
+                    elif (currentOctive[2] == True):
+                        DSharp3.play()
+                elif (instruments[1]):
+                    if (currentOctive[0] == True):
+                        print("bass note")
+                    elif (currentOctive[1] == True):
+                        print("bass note")
+                    elif (currentOctive[2] == True):
+                        print("bass note")
             
         if event.type == KEYUP and recordWindow == False:
             #Record Notes
@@ -532,12 +702,9 @@ while True: #Game Loop
                 if (record == True and keyboardIdle == True):
                     if (len(recordList) > 0):
                         recordWindow = True
-                    length = round(time.time() - recordBeginTime, 3)
                     record = False
-                    print(length, recordList)
-                    recordBeginTime = 0
-                    recordLength = 0
-                    recordList = []
+                    endTime = round(time.time() - recordBeginTime, 3)
+                    length = round(time.time() - recordBeginTime, 3)
                 elif (record == False):
                     record = True
                     recordBeginTime = time.time()
@@ -687,6 +854,10 @@ while True: #Game Loop
                 DSharp3.fadeout(reverb)
                 DSharp4.fadeout(reverb)
 
+    #Find Recordings
+    findRecordings()
+    
+    #check if keyboard is currently in use
     if(currentKeys < 1):
         keyboardIdle = True
     else:
@@ -764,6 +935,12 @@ while True: #Game Loop
     #Background
     Draw.Background()
 
+    #Draw Recording Boxes
+    for recording in recordingNames:
+        Draw.recordingBox(recordingY)
+        recordingY += 105
+    recordingY = 48
+
     #Delete Tiles
     Draw.DeleteTiles(pianoTilesA)
     Draw.DeleteTiles(pianoTilesS)
@@ -834,11 +1011,8 @@ while True: #Game Loop
     pygame.draw.rect(Surface, LightGrey, (windowWidth/3.4, 10, windowWidth/3.2, octaveWindowHeight))
     pygame.draw.rect(Surface, Black, (windowWidth/3.4, 10, windowWidth/3.2, octaveWindowHeight), 2)
 
-    #Octave Window Text
+    #octave window text
     Draw.OctaveWindowText(octaveWindowHeight, octave)
-    Text("Press Z to lower octave", windowWidth/2.45, octaveWindowHeight - 200, 27, Black)
-    Text("Press X to raise octave", windowWidth/2.46, octaveWindowHeight - 140, 27, Black)
-    Text("Current octave is " + str(octave), windowWidth/2.57, octaveWindowHeight - 80, 27, Black)
     
     #Top Bar
     Draw.TopBar()
@@ -895,13 +1069,6 @@ while True: #Game Loop
     #info Window Text
     Draw.InfoWindowText(infoWindowX)
 
-    #Info Window Text
-    Text("Press Q to open OCTAVE WINDOW", infoWindowX + 240, 75, 27, Black)
-    Text("Press I to open INFO WINDOW", infoWindowX + 211, 110, 27, Black)
-    Text("Press R to open RECORD", infoWindowX + 174, 145, 27, Black)
-    Text("Change instruments in bottom left", infoWindowX + 215, 180, 27, Black)
-    Text("Change recordings in top left", infoWindowX + 185, 215, 27, Black)
-
     if (recordWindow):
         pygame.draw.rect(Surface, LightGrey, (windowWidth/2+25, windowHeight/2-200, 300, 200))
         pygame.draw.rect(Surface, Black, (windowWidth/2+25, windowHeight/2-200, 300, 200), 2)
@@ -939,15 +1106,37 @@ while True: #Game Loop
             if (Mouse.Pressed()[0] == False):
                 recordWindow = False
                 noPressed = False
+
+                recordBeginTime = 0
+                recordLength = 0
+                recordList = []
         if (yesPressed):
             if (Mouse.Pressed()[0] == False):
                 recordWindow = False
                 yesPressed = False
 
+                highestRecording = 0
+                for i in os.listdir("./Recordings"):
+                    if (i[9].isdigit()):
+                        highestRecording = int(i[9])
+
+                #Append recording to save file
+                recordingFile = open("Recordings/Recording" + str(highestRecording+1) + ".txt", "a")
+                recordingFile.write(str(endTime) + "\n")
+                for notes in recordList:
+                    recordingFile.write(str(notes[0]) + "\n")
+                    recordingFile.write(str(notes[1]) + "\n")
+                    recordingFile.write(str(notes[2]) + "\n")
+                    recordingFile.write(str(notes[3]) + "\n")
+                    recordingFile.write(str(notes[4]) + "\n")
+                recordingFile.close()
+
+                recordBeginTime = 0
+                recordLength = 0
+                recordList = []
+
     Draw.PianoButton(instruments)
     Draw.BassButton(instruments)
-
-    #Draw.PianoButton(instruments)
     
     pygame.display.flip()
     fpsClock.tick(FPS)
